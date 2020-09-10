@@ -50,7 +50,7 @@ public class SaveData : SavableData
         {
             this._AllDataInSlot = new List<Data>(0);
         }
-        _Path = GetDirectory() + MyStringUtils.GenerateID(9) + ".json";
+        _Path = GetDirectory() + StringUtils.GenerateID(9) + ".json";
         Debug.LogWarning(_Path);
        
 

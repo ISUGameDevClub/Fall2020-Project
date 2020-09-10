@@ -22,10 +22,10 @@ public class CheckPointManager
         _LevelCheckPoints = checkpoints;
         DifficultyScriptableObject difficulty;
         //difficulty = difficulty = GameManager.instance.GetGameDifficulty() != null ? difficulty : null; another way to assign two diffeerent values without calling twice
-        if ((difficulty = GameManager.instance.GetGameDifficulty()) != null) //assigns variable only if it does not equal null as well as checking if its null at the same time. If not done this way I would need to call getGameDifficulty twice. once for checking its null and once for assigning it to variable
-        {
-            handleCheckpointDifficulty(difficulty);
-        }
+        //if ((difficulty = GameManager.instance.GetGameDifficulty()) != null) //assigns variable only if it does not equal null as well as checking if its null at the same time. If not done this way I would need to call getGameDifficulty twice. once for checking its null and once for assigning it to variable
+       // {
+         //   handleCheckpointDifficulty(difficulty);
+      //  }
 
         
     }
@@ -130,10 +130,10 @@ public class CheckPointManager
     {
         if (CurrentCheckpointData == null)
         {
-            CurrentCheckpointData = new CheckPointData(this.GetCurrentChekcpint(), GameManager.instance.Level.ToString());
+           // CurrentCheckpointData = new CheckPointData(this.GetCurrentChekcpint(), GameManager.instance.Level.ToString());
         }
         CurrentCheckpointData.SetCheckpointName(this.GetCurrentChekcpint().gameObject.name);
-        GameManager.instance.GetFileManager().GetCurrentSaveFile().OverwriteData(CurrentCheckpointData, CheckPointData._DataTypeCode);
+       // GameManager.instance.GetFileManager().GetCurrentSaveFile().OverwriteData(CurrentCheckpointData, CheckPointData._DataTypeCode);
 
     }
 

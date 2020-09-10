@@ -9,7 +9,7 @@ using System.Collections.Generic;
  */
 public class FileManager
 {
-    private LastSaveFileSeiptableObject _LastSaveFileObject;
+    private LastSaveFileScriptableObject _LastSaveFileObject;
     private SaveData[] _SaveDatas;
     private SavableData[] _SavableResourceFiles;
     private SaveData _CurrentSaveFile;
@@ -20,10 +20,7 @@ public class FileManager
      */
     public FileManager()
     {
-        if (_LastSaveFileObject == null)
-        {
-            // handle
-        }
+       
 
        
     

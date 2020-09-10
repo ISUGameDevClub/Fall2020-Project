@@ -6,7 +6,7 @@ using System.Collections;
 public class Checkpoint : MonoBehaviour
 {
     
-    private Level _Level; // current  level that this instance is assigned to
+   // private Level _Level; // current  level that this instance is assigned to
    [SerializeField] private DifficultyScriptableObject[] _Difficulty;
     private Collider _Collider;
     private bool _Activated;
@@ -73,7 +73,7 @@ public class Checkpoint : MonoBehaviour
         if (ActivateCheckpoint == true && _Activated == false)
         {
             _Activated = true;
-            GameManager.instance.ActivateCheckpoint(this);
+            //GameManager.instance.ActivateCheckpoint(this);
         }
 
         if (_Collider != null)
@@ -122,10 +122,10 @@ public class Checkpoint : MonoBehaviour
     {
         if (!(_Activated))
         {
-            if (other.gameObject.tag == GameManager.PLAYER_TAG)
+            if (other.gameObject.tag == "Player")
             {
                 _Activated = true;
-                GameManager.instance.ActivateCheckpoint(this);
+              //  GameManager.instance.ActivateCheckpoint(this);
                // GameManager.instance.SetCheckpoint(this);
             }
         }

@@ -7,6 +7,7 @@ public class Checkpoint : MonoBehaviour
 {
     
    // private Level _Level; // current  level that this instance is assigned to
+   
    [SerializeField] private DifficultyScriptableObject[] _Difficulty;
     private Collider _Collider;
     private bool _Activated;
@@ -20,7 +21,6 @@ public class Checkpoint : MonoBehaviour
    void Awake()
     {
         gameObject.name = "Checkpoint - " + gameObject.transform.GetSiblingIndex();
-
     }
     /**
      * 

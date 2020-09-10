@@ -80,9 +80,15 @@ public class Room : MonoBehaviour
         if (_RoomSettings != null)
         {
             int objectAmount = _RoomSettings._TotalObjects;
+            SpawnObjectInScene(_RoomSettings._Prefabs[0], transform.position, Quaternion.identity);
+
         }
     }
     
+    public GameObject SpawnObjectInScene(GameObject prefab, Vector3 position, Quaternion rotation)
+    {
+        return ObjectSpawner.SpawnGameObject(prefab, position, rotation);
+    }
     public void CheckAndHandleNull(object obj)
     {
         _Error = obj == null;

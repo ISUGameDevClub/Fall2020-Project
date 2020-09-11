@@ -1,12 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
+ * @Author JAke Botka
+ */
 public class Room_Settings : MonoBehaviour
 {
     public int _TotalObjects;
     public int[] _RoomSizeMatrix;
     public GameObject[] _Prefabs;
+
+    [Tooltip("The indexs of this list correspind to the indexes of the prefabs. " +
+        "The number in each index is the amount of each prefab that you want to spawn")]
+    public int[] _ObjectSpawnLimits;
 
     
     [Header("DEBUG _ DO NOT SET")]

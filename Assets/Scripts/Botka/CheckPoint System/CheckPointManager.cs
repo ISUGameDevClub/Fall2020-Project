@@ -6,6 +6,7 @@ using UnityEngine.UI;
  * @Athor Jake Botka - Programming Lead
  * Non monobehavior data container class that is utilized by the gamemanger monobehavior class
  */
+
 public class CheckPointManager
 {
    

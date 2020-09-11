@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
+ * @Author JAke Botka
+ */
 public class ObjectSpawner
 {
     public static GameObject SpawnGameObject(GameObject prefab, Vector3 position)

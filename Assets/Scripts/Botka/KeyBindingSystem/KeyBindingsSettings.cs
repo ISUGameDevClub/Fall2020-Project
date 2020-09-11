@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
+/*
+ * @Author JAke Botka
+ */
 public class KeyBindingsSettings
 {
 

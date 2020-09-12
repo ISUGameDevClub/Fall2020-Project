@@ -22,6 +22,9 @@ public class Room : MonoBehaviour
     public Room_Settings _RoomSettings;
     public GameObject[,] _ObjectPlacementMatrix;
     public GameObject[] _Doors;
+    public bool _ShowRoomCornersInScene;
+
+    private GameObject[] _CornersInScene;
 
     [Header(" DO NOT SET")]
     public bool _Error;
@@ -46,6 +49,7 @@ public class Room : MonoBehaviour
         _WallOffset = 4.0f; // amount of object lengths from walls
         _DoorOffset = 4.0f; // amount of object lengths from doors
         _MaxNumberOfBjects = FindMaxAMountOfObjectsThatCanFit(); //TODO
+        _CornersInScene = null;
 
       
     }
@@ -69,10 +73,7 @@ public class Room : MonoBehaviour
             transform.position.y + (size.y / 2));
         _WallOffset = size.x * _PercentOffset;
         _DoorOffset = size.x * _PercentOffset;
-        SpawnObjectInScene(_RoomSettings._Prefabs[0], _CornerPositions[0], Quaternion.identity).name = "Corner Piece";
-        SpawnObjectInScene(_RoomSettings._Prefabs[0], _CornerPositions[1], Quaternion.identity).name = "Corner Piece";
-        SpawnObjectInScene(_RoomSettings._Prefabs[0], _CornerPositions[2], Quaternion.identity).name = "Corner Piece";
-        SpawnObjectInScene(_RoomSettings._Prefabs[0], _CornerPositions[3], Quaternion.identity).name = "Corner Piece";
+       
 
         if (_RoomShape == null)
         {
@@ -94,6 +95,7 @@ public class Room : MonoBehaviour
         CheckAndHandleNull(_RoomShape);
         _ObjectPlacementMatrix = new GameObject[_RoomShape[0], _RoomShape[1]];
         GenerateRoom();
+        this.enabled = false; //must be set active by RoomSet
     }
 
     /*
@@ -102,6 +104,21 @@ public class Room : MonoBehaviour
     void FixedUpdate()
     {
         DataValidation();
+        if (_ShowRoomCornersInScene)
+        {
+            ShowRoomCornersInScene();
+        }
+        else
+        {
+            if (_CornersInScene != null)
+            {
+                foreach(GameObject obj in _CornersInScene)
+                {
+                    Destroy(obj);
+                }
+                _CornersInScene = null;
+            }
+        }
     }
 
     /*
@@ -176,15 +193,18 @@ public class Room : MonoBehaviour
         
         //DOuble checks that object is not spwning to close to walls
         float x = position.x + _WallOffset;
-        float requiredDistance = 0.0f;
+        float requiredDistanceX = 0.0f;
+        float requiredDistanceY = 0.0f;
         foreach(GameObject gObject in _SpawnedObjects)
         {
             Vector2 prefabSize = obj.GetComponentInChildren<Renderer>().bounds.size;
             Vector2 gObjectSize = gObject.GetComponentInChildren<Renderer>().bounds.size;
-            requiredDistance = (prefabSize.x / 2) + (gObjectSize.x / 2);
-            Debug.Log(requiredDistance);
+            requiredDistanceX = (prefabSize.x / 2) + (gObjectSize.x / 2) + 0.2f;
+            requiredDistanceY = (prefabSize.y / 2) + (gObjectSize.y / 2) + 0.2f;
+            Debug.Log(gObject.name + ":" + requiredDistanceX + "," + requiredDistanceY);
             Vector3 pos = gObject.transform.position;
-            if (Math.Abs(position.x - gObject.transform.position.x) <= requiredDistance)
+            if (Math.Abs(position.x - gObject.transform.position.x) <= requiredDistanceX
+                && Math.Abs(position.x - gObject.transform.position.x) <= requiredDistanceY)
             {
                 return false;
             }
@@ -232,11 +252,29 @@ public class Room : MonoBehaviour
     }
     public GameObject SpawnObjectInScene(GameObject prefab, Vector3 position, Quaternion rotation)
     {
-        return ObjectSpawner.SpawnGameObject(prefab, position, rotation);
+        GameObject obj = ObjectSpawner.SpawnGameObject(prefab, position, rotation);
+        obj.transform.parent = gameObject.transform;
+        return obj;
     }
     public void CheckAndHandleNull(object obj)
     {
         _Error = obj == null;
+    }
+
+    public void ShowRoomCornersInScene()
+    {
+        if (_ShowRoomCornersInScene && _CornersInScene == null)
+        {
+            _CornersInScene = new GameObject[4];
+            _CornersInScene[0] = SpawnObjectInScene(_RoomSettings._Prefabs[0], _CornerPositions[0], Quaternion.identity);
+            _CornersInScene[0].name = "Corner Piece";
+            _CornersInScene[1] = SpawnObjectInScene(_RoomSettings._Prefabs[0], _CornerPositions[1], Quaternion.identity);
+            _CornersInScene[1].name = "Corner Piece";
+            _CornersInScene[2] = SpawnObjectInScene(_RoomSettings._Prefabs[0], _CornerPositions[2], Quaternion.identity);
+            _CornersInScene[2].name = "Corner Piece";
+            _CornersInScene[3] = SpawnObjectInScene(_RoomSettings._Prefabs[0], _CornerPositions[3], Quaternion.identity);
+            _CornersInScene[3].name = "Corner Piece";
+        }
     }
     [ContextMenu("Print error message to console")]
     public void PrinttErrorMessage()

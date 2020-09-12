@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 858188001811233111}
   m_Layer: 0
   m_Name: Room Test
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,7 +85,11 @@ MonoBehaviour:
   _Doors: []
   _Error: 0
   _CornerPositions: []
+  _SpawnedObjects: []
   _SpawnedObjectPositions: []
+  _WallOffset: 0
+  _DoorOffset: 0
+  _MaxNumberOfBjects: 0
 --- !u!212 &858188001811233111
 SpriteRenderer:
   m_ObjectHideFlags: 0

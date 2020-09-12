@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 /*
- * @Author Jake Botka
- */
+* @Author Jake Botka
+*/
 public class Room : MonoBehaviour
 {
     public enum Corners
@@ -14,7 +16,7 @@ public class Room : MonoBehaviour
     public const string _RoomShapeNullError = "Can not determine the room shape matrix.";
     public const string _RoomSettingsNullError = "Room settings script was left blank and could not be found in the heiarchy";
     public const float _PercentOffset = 0.14f;
-    public const float _MinDistanceBetweenObjects = 2.0f;
+    public const float _MinDistanceBetweenObjects = 0.50f;
     [Tooltip("This is the room shape matrix. Format as follows: # X #")]
     public int[] _RoomShape;
     public Room_Settings _RoomSettings;
@@ -24,7 +26,8 @@ public class Room : MonoBehaviour
     [Header(" DO NOT SET")]
     public bool _Error;
     public Vector3[] _CornerPositions;
-    public List<Vector3> _SpawnedObjectPositions;
+    public List<GameObject> _SpawnedObjects;
+    public Vector3[] _SpawnedObjectPositions;
     public float _WallOffset;
     public float _DoorOffset;
     public int _MaxNumberOfBjects;
@@ -38,9 +41,10 @@ public class Room : MonoBehaviour
         _Error = false;
         _ObjectPlacementMatrix = null;
         _CornerPositions = new Vector3[4];
-        _SpawnedObjectPositions = new List<Vector3>();
-        _WallOffset = 0.0f;
-        _DoorOffset = 0.0f;
+        _SpawnedObjects= new List<GameObject>();
+        _SpawnedObjectPositions = null;
+        _WallOffset = 4.0f; // amount of object lengths from walls
+        _DoorOffset = 4.0f; // amount of object lengths from doors
         _MaxNumberOfBjects = FindMaxAMountOfObjectsThatCanFit(); //TODO
 
       
@@ -129,12 +133,13 @@ public class Room : MonoBehaviour
                 {
                     for (int z = 0; z < objectMatrix[i]; z++)
                     {
-                        Vector3 spawnPos = GenerateRandomPosition();
+                        GameObject prefab = _RoomSettings._Prefabs[z];
+                        Vector3 spawnPos = GenerateRandomPosition(prefab);
                         if (spawnPos != Vector3.zero)
                         {
                             //TODO: Validate position
                             int callstackRepeatCallCount = 0;
-                            while (!IsGeneratePositionGood(spawnPos))
+                            while (!IsGeneratePositionGood(prefab, spawnPos))
                             {
                                 if (callstackRepeatCallCount >= 100)
                                 {
@@ -143,52 +148,62 @@ public class Room : MonoBehaviour
                                     break;
                                 }
                                 callstackRepeatCallCount++;
-                                spawnPos = GenerateRandomPosition();
+                                spawnPos = GenerateRandomPosition(prefab);
                             }
                             if (spawnPos != Vector3.zero) // same as null but Vector3 can not be null
                             {
-                                SpawnObjectInScene(_RoomSettings._Prefabs[z], spawnPos, Quaternion.identity);
-                                _SpawnedObjectPositions.Add(spawnPos);
+                                SpawnObjectInScene(prefab, spawnPos, Quaternion.identity);
+                                _SpawnedObjects.Add(prefab);
                                 Debug.Log("Object Spawned");
                             }
                         }
                     }
                 }
+
+                _SpawnedObjectPositions = new Vector3[_SpawnedObjects.Count];
+                int count = 0;
+                foreach(GameObject obj in _SpawnedObjects)
+                {
+                    _SpawnedObjectPositions[count] = obj.transform.position;
+                    count++;
+                }
             }
         }
     }
     
-    public bool IsGeneratePositionGood(Vector3 position)
+    public bool IsGeneratePositionGood(GameObject obj, Vector3 position)
     {
+        
         //DOuble checks that object is not spwning to close to walls
         float x = position.x + _WallOffset;
-        if (position.x >= GetRoomCornerPosition(Corners.TopLeft).x + _WallOffset
-            && position.x <= GetRoomCornerPosition(Corners.TopRight).x - _WallOffset
-            && position.y >= GetRoomCornerPosition(Corners.BottomLeft).y + _WallOffset
-            && position.y <= GetRoomCornerPosition(Corners.TopLeft).y - _WallOffset)
+        float requiredDistance = 0.0f;
+        foreach(GameObject gObject in _SpawnedObjects)
         {
-            foreach(Vector3 pos in _SpawnedObjectPositions)
+            Vector2 prefabSize = obj.GetComponentInChildren<Renderer>().bounds.size;
+            Vector2 gObjectSize = gObject.GetComponentInChildren<Renderer>().bounds.size;
+            requiredDistance = (prefabSize.x / 2) + (gObjectSize.x / 2);
+            Debug.Log(requiredDistance);
+            Vector3 pos = gObject.transform.position;
+            if (Math.Abs(position.x - gObject.transform.position.x) <= requiredDistance)
             {
-                
-                if (Vector2.Distance(Util.VectorConvertTo(pos), Util.VectorConvertTo(position)) < _MinDistanceBetweenObjects)
-                {
-                    return false;
-                }
-                Debug.Log(Vector3.Distance(pos, position));
+                return false;
             }
-            return true;
+           
         }
-        return false;
+        return true;
+        
     }
-    public Vector3 GenerateRandomPosition()
+    public Vector3 GenerateRandomPosition(GameObject obj)
     {
+        float objectWallOffsetX = (obj.GetComponent<Renderer>().bounds.size.x / 2) * _WallOffset;
+        float objectWallOffsetY = (obj.GetComponent<Renderer>().bounds.size.y / 2) * _WallOffset;
         Debug.Log("Generated random pos");
         if (_CornerPositions != null)
         {
             
-            Vector3 pos = new Vector3(Random.Range(GetRoomCornerPosition(Corners.TopLeft).x + _WallOffset, GetRoomCornerPosition(Corners.TopRight).x - _WallOffset),
-                                        Random.Range(GetRoomCornerPosition(Corners.TopLeft).y - _WallOffset, GetRoomCornerPosition(Corners.BottomLeft).y + _WallOffset), 
-                                        transform.position.z);
+            Vector3 pos = new Vector3(Random.Range(GetRoomCornerPosition(Corners.TopLeft).x + objectWallOffsetX, GetRoomCornerPosition(Corners.TopRight).x -objectWallOffsetX),
+                                        Random.Range(GetRoomCornerPosition(Corners.TopLeft).y - objectWallOffsetY, GetRoomCornerPosition(Corners.BottomLeft).y + objectWallOffsetY), 
+                                        -1);
             Debug.Log("Random position in room constraints: " + pos);
             return pos;
         }

@@ -29,11 +29,7 @@ public class Room : MonoBehaviour
     [Header(" DO NOT SET")]
     public bool _Error;
     public Vector3[] _CornerPositions;
-    public List<GameObject> _SpawnedObjects;
-    public Vector3[] _SpawnedObjectPositions;
-    public float _WallOffset;
-    public float _DoorOffset;
-    public int _MaxNumberOfBjects;
+  
 
     /*
      * Called before first frame.
@@ -44,11 +40,6 @@ public class Room : MonoBehaviour
         _Error = false;
         _ObjectPlacementMatrix = null;
         _CornerPositions = new Vector3[4];
-        _SpawnedObjects= new List<GameObject>();
-        _SpawnedObjectPositions = null;
-        _WallOffset = 4.0f; // amount of object lengths from walls
-        _DoorOffset = 4.0f; // amount of object lengths from doors
-        _MaxNumberOfBjects = FindMaxAMountOfObjectsThatCanFit(); //TODO
         _CornersInScene = null;
 
       
@@ -71,8 +62,7 @@ public class Room : MonoBehaviour
             transform.position.y + (size.y / 2));
         _CornerPositions[3] = new Vector3(transform.position.x + (size.x / 2),
             transform.position.y + (size.y / 2));
-        _WallOffset = size.x * _PercentOffset;
-        _DoorOffset = size.x * _PercentOffset;
+       
        
 
         if (_RoomShape == null)
@@ -94,7 +84,7 @@ public class Room : MonoBehaviour
 
         CheckAndHandleNull(_RoomShape);
         _ObjectPlacementMatrix = new GameObject[_RoomShape[0], _RoomShape[1]];
-        GenerateRoom();
+
         this.enabled = false; //must be set active by RoomSet
     }
 
@@ -132,104 +122,6 @@ public class Room : MonoBehaviour
         CheckAndHandleNull(_RoomSettings);
     }
     
-    /*
-     * Generates Room.
-     */
-    [ContextMenu("Regenerate Room")]
-    public void GenerateRoom()
-    {
-        //TODO
-        if (_RoomSettings != null)
-        {
-            int objectAmount = _RoomSettings._TotalObjects;
-            int[] objectMatrix = _RoomSettings._ObjectSpawnLimits;
-            Debug.Log(objectMatrix[1]);
-            if (objectMatrix != null)
-            {
-                for (int i = 0; i < objectMatrix.Length; i++)
-                {
-                    for (int z = 0; z < objectMatrix[i]; z++)
-                    {
-                        GameObject prefab = _RoomSettings._Prefabs[z];
-                        Vector3 spawnPos = GenerateRandomPosition(prefab);
-                        if (spawnPos != Vector3.zero)
-                        {
-                            //TODO: Validate position
-                            int callstackRepeatCallCount = 0;
-                            while (!IsGeneratePositionGood(prefab, spawnPos))
-                            {
-                                if (callstackRepeatCallCount >= 100)
-                                {
-                                    Debug.LogError("Exceeded calll stack for generating random positition. Object will not be spaned");
-                                    spawnPos = Vector3.zero;
-                                    break;
-                                }
-                                callstackRepeatCallCount++;
-                                spawnPos = GenerateRandomPosition(prefab);
-                            }
-                            if (spawnPos != Vector3.zero) // same as null but Vector3 can not be null
-                            {
-                                SpawnObjectInScene(prefab, spawnPos, Quaternion.identity);
-                                _SpawnedObjects.Add(prefab);
-                                Debug.Log("Object Spawned");
-                            }
-                        }
-                    }
-                }
-
-                _SpawnedObjectPositions = new Vector3[_SpawnedObjects.Count];
-                int count = 0;
-                foreach(GameObject obj in _SpawnedObjects)
-                {
-                    _SpawnedObjectPositions[count] = obj.transform.position;
-                    count++;
-                }
-            }
-        }
-    }
-    
-    public bool IsGeneratePositionGood(GameObject obj, Vector3 position)
-    {
-        
-        //DOuble checks that object is not spwning to close to walls
-        float x = position.x + _WallOffset;
-        float requiredDistanceX = 0.0f;
-        float requiredDistanceY = 0.0f;
-        foreach(GameObject gObject in _SpawnedObjects)
-        {
-            Vector2 prefabSize = obj.GetComponentInChildren<Renderer>().bounds.size;
-            Vector2 gObjectSize = gObject.GetComponentInChildren<Renderer>().bounds.size;
-            requiredDistanceX = (prefabSize.x / 2) + (gObjectSize.x / 2) + 0.2f;
-            requiredDistanceY = (prefabSize.y / 2) + (gObjectSize.y / 2) + 0.2f;
-            Debug.Log(gObject.name + ":" + requiredDistanceX + "," + requiredDistanceY);
-            Vector3 pos = gObject.transform.position;
-            if (Math.Abs(position.x - gObject.transform.position.x) <= requiredDistanceX
-                && Math.Abs(position.x - gObject.transform.position.x) <= requiredDistanceY)
-            {
-                return false;
-            }
-           
-        }
-        return true;
-        
-    }
-    public Vector3 GenerateRandomPosition(GameObject obj)
-    {
-        float objectWallOffsetX = (obj.GetComponent<Renderer>().bounds.size.x / 2) * _WallOffset;
-        float objectWallOffsetY = (obj.GetComponent<Renderer>().bounds.size.y / 2) * _WallOffset;
-        Debug.Log("Generated random pos");
-        if (_CornerPositions != null)
-        {
-            
-            Vector3 pos = new Vector3(Random.Range(GetRoomCornerPosition(Corners.TopLeft).x + objectWallOffsetX, GetRoomCornerPosition(Corners.TopRight).x -objectWallOffsetX),
-                                        Random.Range(GetRoomCornerPosition(Corners.TopLeft).y - objectWallOffsetY, GetRoomCornerPosition(Corners.BottomLeft).y + objectWallOffsetY), 
-                                        -1);
-            Debug.Log("Random position in room constraints: " + pos);
-            return pos;
-        }
-        return Vector3.zero;
-        
-    }
 
     public Vector3 GetRoomCornerPosition(Corners corner)
     {

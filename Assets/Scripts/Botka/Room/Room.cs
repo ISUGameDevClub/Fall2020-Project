@@ -13,12 +13,19 @@ public class Room : MonoBehaviour
         TopLeft, TopRight, BottomLeft, BottomRight
     }
 
+    public enum RoomType
+    {
+        Normal, Special, Shop, Boss
+    }
+
+
     public const string _RoomShapeNullError = "Can not determine the room shape matrix.";
     public const string _RoomSettingsNullError = "Room settings script was left blank and could not be found in the heiarchy";
     public const float _PercentOffset = 0.14f;
     public const float _MinDistanceBetweenObjects = 0.50f;
     [Tooltip("This is the room shape matrix. Format as follows: # X #")]
     public int[] _RoomShape;
+    public RoomType _RoomType;
     public Room_Settings _RoomSettings;
     public GameObject[,] _ObjectPlacementMatrix;
     public GameObject[] _Doors;

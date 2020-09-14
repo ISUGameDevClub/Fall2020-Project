@@ -195,4 +195,27 @@ public class Room : MonoBehaviour
         //TODO
         return -1;
     }
+
+    public bool IsBossRoom()
+    {
+        return _RoomType == RoomType.Boss;
+    }
+
+
+    public bool IsShopRoom()
+    {
+        return _RoomType == RoomType.Shop;
+    }
+
+    public bool IsSpecialRoom()
+    {
+        return _RoomType == RoomType.Special;
+    }
+
+
+    public bool IsNormalRoom()
+    {
+        return _RoomType == RoomType.Normal;
+    }
+
 }

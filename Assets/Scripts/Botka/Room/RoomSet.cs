@@ -8,6 +8,7 @@ public class RoomSet : MonoBehaviour
 {
     public const string _StartingRoomTag = "Room Start";
     public const string _RoomTag = "Room";
+    public GameObject[] _RoomTypePrefabs;
     [Header("DO NOT SET")]
     public Room[] _Rooms;
     public Room _CurrentRoom;

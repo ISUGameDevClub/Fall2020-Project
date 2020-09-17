@@ -199,7 +199,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1956753248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: -10}
+  m_LocalPosition: {x: 0, y: 5, z: -35.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -352,6 +352,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3608186833635854835, guid: b74232a352a36ce43bc31f44cdebf963,
+        type: 3}
+      propertyPath: _ShapeMatrix.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3608186833635854835, guid: b74232a352a36ce43bc31f44cdebf963,
+        type: 3}
+      propertyPath: _ShapeMatrix.Array.data[0]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3608186833635854835, guid: b74232a352a36ce43bc31f44cdebf963,
+        type: 3}
+      propertyPath: _ShapeMatrix.Array.data[1]
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6398431011407931062, guid: b74232a352a36ce43bc31f44cdebf963,
         type: 3}
       propertyPath: m_Name
@@ -365,7 +380,7 @@ PrefabInstance:
     - target: {fileID: 9050278711919599642, guid: b74232a352a36ce43bc31f44cdebf963,
         type: 3}
       propertyPath: _NumberOfRooms
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 9050278711919599642, guid: b74232a352a36ce43bc31f44cdebf963,
         type: 3}

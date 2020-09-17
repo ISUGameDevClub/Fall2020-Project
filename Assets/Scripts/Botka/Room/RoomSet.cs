@@ -18,8 +18,9 @@ public class RoomSet : MonoBehaviour
     public GameObject[] _RoomTypePrefabs;
     public int _NumberOfRooms;
     public Vector3 _Origin;
-
+    [HideInInspector] public FloorMapper _FloorMapper;
     private Coroutine _WaitCoroutine;
+    
     [Header("DO NOT SET")]
     public Room[] _Rooms;
     public List<Room> _GeneratedRoomsOrdered;
@@ -29,10 +30,11 @@ public class RoomSet : MonoBehaviour
     public List<Room> _DestroyedRooms;
     public List<Direction> _DirectionPlacementHistroy;
     public Room _CurrentRoom;
-    public GameObject[] _DirectionEnpointGameobjects;
+    
     public bool[] _DirectionEnpointsBlocked;
     private Vector3 _LastDirectionPos;
     private Direction _LastDirection;
+
 
 
     void Awake()
@@ -51,7 +53,7 @@ public class RoomSet : MonoBehaviour
         _DestroyedRooms = new List<Room>();
         _DirectionPlacementHistroy = new List<Direction>();
         _LastDirection = Direction.Null;
-        _DirectionEnpointGameobjects = new GameObject[4];
+    
         _DirectionEnpointsBlocked = new bool[4];
         _DirectionEnpointsBlocked[0] = false;
         _DirectionEnpointsBlocked[1] = false;
@@ -66,7 +68,9 @@ public class RoomSet : MonoBehaviour
     {
         _Rooms = new Room[_NumberOfRooms];
       _WaitCoroutine = StartCoroutine(WaitTillAllLoaded());
+        _FloorMapper = GetComponentInChildren<FloorMapper>();
         GenerateMap();
+       
        
     }
 
@@ -135,24 +139,23 @@ public class RoomSet : MonoBehaviour
                 //GET RANDOM ROOM
                 if (i == 0)
                 {
-                    AddRoom(i, prefab, GetNewPosition(null,prefab),prefab.GetComponentInChildren<Room>());
-                    _DirectionEnpointGameobjects[0] = prefab;
-                    _DirectionEnpointGameobjects[1] = prefab;
-                    _DirectionEnpointGameobjects[2] = prefab;
-                    _DirectionEnpointGameobjects[3] = prefab;
+                    
+                    _FloorMapper.Init(prefab);
+                    AddRoom(i, prefab, GetNewPosition(null,prefab, _FloorMapper._BranchEndpoints[0]),prefab.GetComponentInChildren<Room>());
+                   
                 }
                 else
                 {
                     
                     GenerateRoom(i, prefab.GetComponentInChildren<Room>(), prefab, _GeneratedRoomsOrdered.ToArray()[_GeneratedRoomsOrdered.Count - 1].gameObject, Direction.Null);
-                    RecordEndpoint(_DirectionPlacementHistroy.ToArray()[_DirectionPlacementHistroy.Count - 1], prefab);
+                    
                 }
                 
             }
         }
     }
 
-    public void GenerateRoom(int index , Room room, GameObject prefab, GameObject lastRoom, Direction direction)
+    public void GenerateRoom(int index, Room room, GameObject prefab, GameObject lastRoom, Direction direction)
     {
         Direction dir = direction;
         dir = dir != Direction.Null ? dir : ChooseSide();
@@ -179,11 +182,15 @@ public class RoomSet : MonoBehaviour
         GameObject chosenPreviousRoom = null;
         if (!_DirectionEnpointsBlocked[i])
         {
-            chosenPreviousRoom = _DirectionEnpointGameobjects[i];
-            Vector3 pos = GetNewPosition(chosenPreviousRoom, lastRoom);
+            BranchEndPoint endPoint = _FloorMapper._BranchEndpoints[i];
+            Debug.Log(endPoint);
+            chosenPreviousRoom = _FloorMapper._BranchEndpoints[i]._EndPoint;
+            Vector3 pos = GetNewPosition(chosenPreviousRoom, lastRoom,endPoint);
             if (pos != Vector3.zero)
             {
-                AddRoom(index, prefab, pos, room);
+                lastRoom = endPoint._EndPoint;
+                
+                _FloorMapper.Add(endPoint, AddRoom(index, prefab, pos, room) ,dir);
             }
             else
             {
@@ -199,31 +206,20 @@ public class RoomSet : MonoBehaviour
                 Debug.Log("All endpoints are blocked");
         }
     }
-    public bool IsBlocking(GameObject previousSpawn, Vector3 sizeOfRoom, Direction dir)
-    {
-        return IsBlocking(ProbeNewPosition(previousSpawn, sizeOfRoom, dir));
-        
-    }
 
-    public bool IsBlocking(Vector3 pos)
+    public bool IsBlocking(BranchEndPoint endpoint, Direction dir)
     {
-        Debug.Log(pos);
-        RaycastHit2D hit = Physics2D.Raycast(pos, -Vector2.up);
-        if (hit.collider != null)
-        {
-            string tag = hit.collider.gameObject.tag;
-            Debug.Log(tag + ", Hit at: " + hit.collider.transform.position);
-            if (tag == "Room")
-                return true;
-        }
-        return false;
+        int[] x = _FloorMapper.GetIndecies(endpoint._EndPointIndeces, dir);
+        return _FloorMapper.IsBLocking(x[0], x[1]);
+        
     }
 
     public bool IsEndpointBlocking(GameObject endpoint)
     {
         int index = 0;
-        foreach (GameObject obj in _DirectionEnpointGameobjects)
+        foreach (BranchEndPoint endP in _FloorMapper._BranchEndpoints)
         {
+            GameObject obj = endP._EndPoint;
             if (obj.name == endpoint.name)
             {
                 return _DirectionEnpointsBlocked[index];
@@ -241,15 +237,20 @@ public class RoomSet : MonoBehaviour
         }
         return false;
     }
-    public void AddRoom(int index, GameObject prefab, Vector3 pos,  Room room)
+    public GameObject AddRoom(int index, GameObject prefab, Vector3 pos,  Room room)
     {
         Debug.Log("Room Added");
         if (_Rooms != null && index >= 0)
         {
             _Rooms[index] = room;
             _GeneratedRoomsOrdered.Add(room);
-            ObjectSpawner.SpawnGameObject(prefab, pos, Quaternion.identity);
+            GameObject x = ObjectSpawner.SpawnGameObject(prefab, pos, Quaternion.identity);
+                x.name += " - " + index;
+            return x;
+           
         }
+
+        return null;
     }
 
     public void RemoveRoom(Room room)
@@ -278,7 +279,7 @@ public class RoomSet : MonoBehaviour
         }
         return Vector3.zero;
     }
-    public Vector3 GetNewPosition(GameObject previousSpawn, GameObject needSpawn)
+    public Vector3 GetNewPosition(GameObject previousSpawn, GameObject needSpawn, BranchEndPoint endP)
     {
         if (previousSpawn == null)
             return _Origin;
@@ -302,24 +303,22 @@ public class RoomSet : MonoBehaviour
 
 
                 }
-                Vector3 pos = ProbeNewPosition(previousSpawn, needSpawn.GetComponentInChildren<Renderer>().bounds.size, dir);
-                if (count != 4)
+
+                int[] indeces = _FloorMapper.GetIndecies(endP._EndPointIndeces, dir);
+                if (!_FloorMapper.IsBLocking(indeces[0], indeces[1]))
                 {
-                    if (!IsBlocking(pos))
-                    {
-                       
-                        return pos;
-                    }
-                    else
-                    {
-                       // Debug.Log("Endpoint is blocked at: " + pos);
-                        
-                    }
+
+                    Debug.Log( indeces[0] + "," + indeces[1]);
+                    Vector3 pos = ProbeNewPosition(previousSpawn, needSpawn.GetComponentInChildren<Renderer>().bounds.size, dir);
+                    return pos;
+                }
+                else if (count < 4)
+                {
+                    _LastDirection = ClockwiseChoice(_LastDirection);
                 }
                 else
                 {
-                    Debug.LogError("Endpoint is fully blocked");
-                    return Vector3.zero; // endpoint is bad
+                    return Vector3.zero;
                 }
 
                 count++;
@@ -328,29 +327,6 @@ public class RoomSet : MonoBehaviour
         //return Vector3.zero;
     }
 
-    public void RecordEndpoint(Direction dir, GameObject endpoint)
-    {
-        int i = -1;
-        switch (dir) // switch direction
-        {
-            case Direction.Null:
-                i = -1;
-                break;
-            case Direction.Left:
-                i = 3;
-                break;
-            case Direction.Right:
-                i = 1;
-                break;
-            case Direction.Up:
-                i = 0;
-                break;
-            case Direction.Down:
-                i = 2;
-                break;
-        }
-        _DirectionEnpointGameobjects[i] = endpoint;
-    }
     public Direction ChooseSide()
     {
         int num = Random.Range(0, 3);

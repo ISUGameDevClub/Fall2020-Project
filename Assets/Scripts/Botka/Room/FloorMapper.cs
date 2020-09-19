@@ -87,12 +87,11 @@ public class FloorMapper : MonoBehaviour
         return _FloorRoomMatrix[row, col] != null;
     }
 
-    public void Add(BranchEndPoint endPoint, GameObject obj, RoomSet.Direction dir)
+    public void Add(BranchEndPoint endPoint, GameObject obj, int[] indeces,RoomSet.Direction dir)
     {
-        int[] indeces = null;
-        indeces = GetIndecies(endPoint._EndPointIndeces, dir);
+       
        // indeces = endPoint._EndPointIndeces;
-        Debug.Log(indeces[0] + "," + indeces[1]);
+        Debug.Log("end: " + indeces[0] + "," + indeces[1] + "," + dir.ToString());
         _FloorRoomMatrix[indeces[0], indeces[1]] = endPoint._EndPoint.GetComponentInChildren<Room>();
 
         endPoint._EndPoint = obj;
@@ -124,6 +123,8 @@ public class FloorMapper : MonoBehaviour
                 l[0] += 1;
                 break;
         }
+
+        Debug.Log("Indes  : " + location[0] + "," + location[1] + "," + l[0] + "," + l[1] + "," + dir.ToString());
         return l;
     }
 

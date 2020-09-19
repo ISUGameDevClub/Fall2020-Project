@@ -141,7 +141,8 @@ public class RoomSet : MonoBehaviour
                 {
                     
                     _FloorMapper.Init(prefab);
-                    AddRoom(i, prefab, GetNewPosition(null,prefab, _FloorMapper._BranchEndpoints[0]),prefab.GetComponentInChildren<Room>());
+                    Tuple tuple = GetNewPosition(null, prefab, _FloorMapper._BranchEndpoints[0]);
+                    AddRoom(i, prefab,tuple.pos, prefab.GetComponentInChildren<Room>());
                    
                 }
                 else
@@ -185,17 +186,21 @@ public class RoomSet : MonoBehaviour
             BranchEndPoint endPoint = _FloorMapper._BranchEndpoints[i];
             Debug.Log(endPoint);
             chosenPreviousRoom = _FloorMapper._BranchEndpoints[i]._EndPoint;
-            Vector3 pos = GetNewPosition(chosenPreviousRoom, lastRoom,endPoint);
-            if (pos != Vector3.zero)
+           Tuple tuple =  GetNewPosition(chosenPreviousRoom, lastRoom, endPoint);
+            if (tuple != null)
             {
-                lastRoom = endPoint._EndPoint;
-                
-                _FloorMapper.Add(endPoint, AddRoom(index, prefab, pos, room) ,dir);
-            }
-            else
-            {
-                _DirectionEnpointsBlocked[i] = true;
-                GenerateRoom(index, room, prefab, lastRoom, ClockwiseChoice(dir));
+                Vector3 pos = tuple.pos;
+                if (pos != Vector3.zero)
+                {
+                    lastRoom = endPoint._EndPoint;
+
+                    _FloorMapper.Add(endPoint, AddRoom(index, prefab, pos, room), tuple.indeces, tuple.dir);
+                }
+                else
+                {
+                    _DirectionEnpointsBlocked[i] = true;
+                    GenerateRoom(index, room, prefab, lastRoom, ClockwiseChoice(dir));
+                }
             }
         }
         else
@@ -279,10 +284,10 @@ public class RoomSet : MonoBehaviour
         }
         return Vector3.zero;
     }
-    public Vector3 GetNewPosition(GameObject previousSpawn, GameObject needSpawn, BranchEndPoint endP)
+    public Tuple GetNewPosition(GameObject previousSpawn, GameObject needSpawn, BranchEndPoint endP)
     {
         if (previousSpawn == null)
-            return _Origin;
+            return new Tuple(_Origin, null, _LastDirection);
         else
         {
             int count = 0;
@@ -297,7 +302,7 @@ public class RoomSet : MonoBehaviour
                 }
                 else
                 {
-                   
+
                     dir = ClockwiseChoice(_LastDirection);
                     _LastDirection = dir;
 
@@ -308,9 +313,9 @@ public class RoomSet : MonoBehaviour
                 if (!_FloorMapper.IsBLocking(indeces[0], indeces[1]))
                 {
 
-                    Debug.Log( indeces[0] + "," + indeces[1]);
+                    Debug.Log(indeces[0] + "," + indeces[1] + "," + dir.ToString());
                     Vector3 pos = ProbeNewPosition(previousSpawn, needSpawn.GetComponentInChildren<Renderer>().bounds.size, dir);
-                    return pos;
+                    return new Tuple(pos, indeces, dir);
                 }
                 else if (count < 4)
                 {
@@ -318,7 +323,7 @@ public class RoomSet : MonoBehaviour
                 }
                 else
                 {
-                    return Vector3.zero;
+                    return null;
                 }
 
                 count++;
@@ -420,3 +425,18 @@ public class RoomSet : MonoBehaviour
         room.gameObject.SetActive(false);
     }
 }
+
+public class Tuple
+{
+    public Vector3 pos;
+    public int[] indeces;
+    public RoomSet.Direction dir;
+
+    public Tuple(Vector3 pos, int[] indeces, RoomSet.Direction dir)
+    {
+        this.pos = pos;
+        this.indeces = indeces;
+        this.dir = dir;
+    }
+}
+

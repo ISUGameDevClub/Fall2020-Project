@@ -126,7 +126,7 @@ public class RoomSet : MonoBehaviour
 
     public void GenerateMap()
     {
-        if (_Rooms != null)
+        if (_Rooms != null && _RoomTypePrefabs != null)
         {
             GameObject prefab = null;
             for (int i =0; i < _NumberOfRooms; i++)
@@ -135,7 +135,7 @@ public class RoomSet : MonoBehaviour
                 {
                     return;
                 }
-                prefab = _RoomTypePrefabs[0]; // defaut
+                prefab = RoomPicker.PickRoomAtRandom(_RoomTypePrefabs);
                 //GET RANDOM ROOM
                 if (i == 0)
                 {
@@ -263,27 +263,7 @@ public class RoomSet : MonoBehaviour
         
         Destroy(room.gameObject);
     }
-    public Vector3 ProbeNewPosition(GameObject previousSpawn, Vector3 size2, Direction dir)
-    {
-        Vector3 size1 = previousSpawn.GetComponentInChildren<Renderer>().bounds.size;
-        
-        float unitsToMoveX = (size1.x / 2) + (size2.x / 2);
-        float unitsToMoveY = (size1.y / 2) + (size2.y / 2);
-        switch (dir)
-        {
-            case Direction.Null:
-                break;
-            case Direction.Left:
-                return new Vector3(previousSpawn.transform.position.x - unitsToMoveX, previousSpawn.transform.position.y, previousSpawn.transform.position.z);
-            case Direction.Right:
-                return new Vector3(previousSpawn.transform.position.x + unitsToMoveX, previousSpawn.transform.position.y, previousSpawn.transform.position.z);
-            case Direction.Up:
-                return new Vector3(previousSpawn.transform.position.x, previousSpawn.transform.position.y + unitsToMoveY, previousSpawn.transform.position.z);
-            case Direction.Down:
-                return new Vector3(previousSpawn.transform.position.x, previousSpawn.transform.position.y - unitsToMoveY, previousSpawn.transform.position.z);
-        }
-        return Vector3.zero;
-    }
+   
     public Tuple GetNewPosition(GameObject previousSpawn, GameObject needSpawn, BranchEndPoint endP)
     {
         if (previousSpawn == null)
@@ -330,6 +310,28 @@ public class RoomSet : MonoBehaviour
             }
         }
         //return Vector3.zero;
+    }
+
+    public Vector3 ProbeNewPosition(GameObject previousSpawn, Vector3 size2, Direction dir)
+    {
+        Vector3 size1 = previousSpawn.GetComponentInChildren<Renderer>().bounds.size;
+
+        float unitsToMoveX = (size1.x / 2) + (size2.x / 2);
+        float unitsToMoveY = (size1.y / 2) + (size2.y / 2);
+        switch (dir)
+        {
+            case Direction.Null:
+                break;
+            case Direction.Left:
+                return new Vector3(previousSpawn.transform.position.x - unitsToMoveX, previousSpawn.transform.position.y, previousSpawn.transform.position.z);
+            case Direction.Right:
+                return new Vector3(previousSpawn.transform.position.x + unitsToMoveX, previousSpawn.transform.position.y, previousSpawn.transform.position.z);
+            case Direction.Up:
+                return new Vector3(previousSpawn.transform.position.x, previousSpawn.transform.position.y + unitsToMoveY, previousSpawn.transform.position.z);
+            case Direction.Down:
+                return new Vector3(previousSpawn.transform.position.x, previousSpawn.transform.position.y - unitsToMoveY, previousSpawn.transform.position.z);
+        }
+        return Vector3.zero;
     }
 
     public Direction ChooseSide()
@@ -424,6 +426,7 @@ public class RoomSet : MonoBehaviour
         _CurrentRoom = null;
         room.gameObject.SetActive(false);
     }
+
 }
 
 public class Tuple
@@ -439,4 +442,16 @@ public class Tuple
         this.dir = dir;
     }
 }
+
+public static class RoomPicker
+{
+    public static GameObject PickRoomAtRandom(GameObject[] prefabs)
+    {
+        GameObject room = null;
+        int index = Random.Range(0, prefabs.Length);
+        room = prefabs[index];
+        return room;
+    }
+}
+
 

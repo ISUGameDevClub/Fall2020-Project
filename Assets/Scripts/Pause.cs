@@ -41,4 +41,9 @@ public class Pause : MonoBehaviour
         Debug.Log("Menu Hidden");
         menu.SetActive(false);
     }
+    public void Quit()
+    {
+        Application.Quit();
+        Debug.Log("Quit Game");
+    }
 }

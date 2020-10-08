@@ -4,12 +4,24 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed; 
+    public GameObject curAttack;
+    public float speed;
+    private bool attackReady;
+
+    private void Start()
+    {
+        attackReady = true;
+    }
 
     void Update()
     {
         Move();
         Rotate();
+
+        if(Input.GetMouseButton(0) && attackReady)
+        {
+            Attack();
+        }
     }
 
     private void Move()
@@ -27,5 +39,17 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
-    
+    private void Attack()
+    {
+        StartCoroutine(PlayerAttacked());
+        GameObject atk = Instantiate(curAttack, transform.position, transform.rotation).gameObject;
+        atk.transform.Translate(Vector3.right);
+    }
+
+    private IEnumerator PlayerAttacked()
+    {
+        attackReady = false;
+        yield return new WaitForSeconds(curAttack.GetComponent<PlayerAttack>().attackSpeed);
+        attackReady = true;
+    }
 }

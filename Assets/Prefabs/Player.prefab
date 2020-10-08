@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8513217512117430968}
   - component: {fileID: 8513217512117430969}
+  - component: {fileID: 8513217512117430974}
   - component: {fileID: 8513217512117430975}
   - component: {fileID: 8513217512117430971}
   - component: {fileID: 8513217512117430970}
-  - component: {fileID: 8302818595804388440}
+  - component: {fileID: 8695636056790837943}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -28,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8513217512117430972}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 925e7b7adb3d3a94cb49af80909cf17b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 595f1fd1dc0a43a428e67e46e5372783, type: 3}
   m_Color: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -85,6 +86,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &8513217512117430974
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8513217512117430972}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 8.86, y: 8.86}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!50 &8513217512117430975
 Rigidbody2D:
   serializedVersion: 4
@@ -118,6 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ca9bdcb6a51d304899c073fe6084ccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curAttack: {fileID: 200650685192658909, guid: 1053e5d2f6c1db84a83394f3ceea936a,
+    type: 3}
   speed: 5
 --- !u!114 &8513217512117430970
 MonoBehaviour:
@@ -136,19 +165,19 @@ MonoBehaviour:
   - 
   - 
   - 
---- !u!58 &8302818595804388440
-CircleCollider2D:
+--- !u!114 &8695636056790837943
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8513217512117430972}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d64e62fc9214084c9acc9009edd2505, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayer: 0
+  maxHealth: 3
+  curHealth: 0
+  invincibilityTimer: 1

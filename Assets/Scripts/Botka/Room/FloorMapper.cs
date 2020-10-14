@@ -83,7 +83,7 @@ public class FloorMapper : MonoBehaviour
             Debug.Log("Indes out of range : " + row + "," + col);
             return true;
         }
-        Debug.Log("Indes in rnage : " + row + "," + col);
+        //Debug.Log("Indes in rnage : " + row + "," + col);
         return _FloorRoomMatrix[row, col] != null;
     }
 
@@ -124,7 +124,7 @@ public class FloorMapper : MonoBehaviour
                 break;
         }
 
-        Debug.Log("Indes  : " + location[0] + "," + location[1] + "," + l[0] + "," + l[1] + "," + dir.ToString());
+        //Debug.Log("Indes  : " + location[0] + "," + location[1] + "," + l[0] + "," + l[1] + "," + dir.ToString());
         return l;
     }
 

@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _DefaultShapeMatrix: 0400000004000000
   _ShapeMatrix: 
+  _X: []
 --- !u!114 &9050278711919599642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,7 +59,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ceb96cee0b2517409f5d409046da0fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _RoomTypePrefabs: []
+  _RoomTypePrefabs:
+  - {fileID: 858188001811233064, guid: 944d26fec3483f34fa874df7fd5c78dd, type: 3}
+  - {fileID: 858188001811233064, guid: 944d26fec3483f34fa874df7fd5c78dd, type: 3}
+  _BossRoomPrefabs:
+  - {fileID: 362341751123962155, guid: dba38b746f12dab41bd333a12db82620, type: 3}
+  _ShopRoomPrefabs:
+  - {fileID: 3890727865467325626, guid: 04200705ada32674f9b8abc82802c620, type: 3}
+  - {fileID: 3890727865467325626, guid: 04200705ada32674f9b8abc82802c620, type: 3}
   _NumberOfRooms: 0
   _Origin: {x: 0, y: 0, z: 0}
   _FloorMapper: {fileID: 0}

@@ -15,7 +15,7 @@ public class Room : MonoBehaviour
 
     public enum RoomType
     {
-        Normal, Special, Shop, Boss
+        Normal, Special, Shop, Boss, NA
     }
 
 

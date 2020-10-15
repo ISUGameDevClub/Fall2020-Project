@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 858188001811233064, guid: 944d26fec3483f34fa874df7fd5c78dd,
         type: 3}
       propertyPath: m_Name
-      value: Room Test 2
+      value: Room Test 2 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 858188001811233107, guid: 944d26fec3483f34fa874df7fd5c78dd,
         type: 3}
@@ -66,6 +66,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 858188001811233110, guid: 944d26fec3483f34fa874df7fd5c78dd,
+        type: 3}
+      propertyPath: _RoomType
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 858188001811233111, guid: 944d26fec3483f34fa874df7fd5c78dd,
         type: 3}

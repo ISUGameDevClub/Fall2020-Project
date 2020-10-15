@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 /*
@@ -14,9 +15,13 @@ public class RoomSet : MonoBehaviour
         Null, Left,Right,Down,Up
     }
 
-
+    public GameObject _StartingRoom;
     public GameObject[] _RoomTypePrefabs;
+    public GameObject[] _BossRoomPrefabs;
+    public GameObject[] _ShopRoomPrefabs;
+    
     public int _NumberOfRooms;
+  
     public Vector3 _Origin;
     [HideInInspector] public FloorMapper _FloorMapper;
     private Coroutine _WaitCoroutine;
@@ -129,6 +134,7 @@ public class RoomSet : MonoBehaviour
         if (_Rooms != null && _RoomTypePrefabs != null)
         {
             GameObject prefab = null;
+            
             for (int i =0; i < _NumberOfRooms; i++)
             {
                 if (IsAllEndpointsBlocked())
@@ -136,19 +142,29 @@ public class RoomSet : MonoBehaviour
                     return;
                 }
                 prefab = RoomPicker.PickRoomAtRandom(_RoomTypePrefabs);
+
                 //GET RANDOM ROOM
                 if (i == 0)
                 {
-                    
+                    prefab = _StartingRoom;
                     _FloorMapper.Init(prefab);
                     Tuple tuple = GetNewPosition(null, prefab, _FloorMapper._BranchEndpoints[0]);
-                    AddRoom(i, prefab,tuple.pos, prefab.GetComponentInChildren<Room>());
+                    AddRoom(i, prefab,tuple.pos, prefab.GetComponentInChildren<Room>(), Room.RoomType.Normal);
+                }
+                else if (i  == Mathf.FloorToInt((float)_NumberOfRooms / 2)) // middle
+                {
                    
+                    GenerateRoom(i, prefab.GetComponentInChildren<Room>(), RoomPicker.PickRoomAtRandom(_ShopRoomPrefabs), _GeneratedRoomsOrdered.ToArray()[_GeneratedRoomsOrdered.Count - 1].gameObject, Direction.Null, Room.RoomType.Shop);
+                }
+                else if (i + 1 == _NumberOfRooms) // last room
+                {
+                    Debug.Log("Generating boss");
+                    GenerateRoom(i, prefab.GetComponentInChildren<Room>(), RoomPicker.PickRoomAtRandom(_BossRoomPrefabs), _GeneratedRoomsOrdered.ToArray()[_GeneratedRoomsOrdered.Count - 1].gameObject, Direction.Null, Room.RoomType.Boss);
                 }
                 else
                 {
                     
-                    GenerateRoom(i, prefab.GetComponentInChildren<Room>(), prefab, _GeneratedRoomsOrdered.ToArray()[_GeneratedRoomsOrdered.Count - 1].gameObject, Direction.Null);
+                    GenerateRoom(i, prefab.GetComponentInChildren<Room>(), prefab, _GeneratedRoomsOrdered.ToArray()[_GeneratedRoomsOrdered.Count - 1].gameObject, Direction.Null, Room.RoomType.Normal);
                     
                 }
                 
@@ -156,8 +172,9 @@ public class RoomSet : MonoBehaviour
         }
     }
 
-    public void GenerateRoom(int index, Room room, GameObject prefab, GameObject lastRoom, Direction direction)
+    public void GenerateRoom(int index, Room room, GameObject prefab, GameObject lastRoom, Direction direction, Room.RoomType roomType)
     {
+        
         Direction dir = direction;
         dir = dir != Direction.Null ? dir : ChooseSide();
         int i = -1;
@@ -194,19 +211,19 @@ public class RoomSet : MonoBehaviour
                 {
                     lastRoom = endPoint._EndPoint;
 
-                    _FloorMapper.Add(endPoint, AddRoom(index, prefab, pos, room), tuple.indeces, tuple.dir);
+                    _FloorMapper.Add(endPoint, AddRoom(index, prefab, pos, room,roomType), tuple.indeces, tuple.dir);
                 }
                 else
                 {
                     _DirectionEnpointsBlocked[i] = true;
-                    GenerateRoom(index, room, prefab, lastRoom, ClockwiseChoice(dir));
+                    GenerateRoom(index, room, prefab, lastRoom, ClockwiseChoice(dir),roomType);
                 }
             }
         }
         else
         {
             if (!IsAllEndpointsBlocked())
-                GenerateRoom(index, room, prefab, lastRoom, ClockwiseChoice(dir));
+                GenerateRoom(index, room, prefab, lastRoom, ClockwiseChoice(dir),roomType);
             else
                 Debug.Log("All endpoints are blocked");
         }
@@ -242,7 +259,7 @@ public class RoomSet : MonoBehaviour
         }
         return false;
     }
-    public GameObject AddRoom(int index, GameObject prefab, Vector3 pos,  Room room)
+    public GameObject AddRoom(int index, GameObject prefab, Vector3 pos,  Room room, Room.RoomType roomType)
     {
         Debug.Log("Room Added");
         if (_Rooms != null && index >= 0)
@@ -250,7 +267,21 @@ public class RoomSet : MonoBehaviour
             _Rooms[index] = room;
             _GeneratedRoomsOrdered.Add(room);
             GameObject x = ObjectSpawner.SpawnGameObject(prefab, pos, Quaternion.identity);
-                x.name += " - " + index;
+                x.name =  "Room  - " + index;
+            switch (roomType)
+            {
+                case Room.RoomType.Normal:
+                    x.name += "-Noraml Room";
+                    break;
+                case Room.RoomType.Shop:
+                    x.name += "-Shop Room";
+                    break;
+                case Room.RoomType.Boss:
+                    x.name += "-Boss Room";
+                    break;
+            }
+
+
             return x;
            
         }

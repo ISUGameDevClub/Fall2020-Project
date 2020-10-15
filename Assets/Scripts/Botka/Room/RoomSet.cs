@@ -19,6 +19,7 @@ public class RoomSet : MonoBehaviour
     public GameObject[] _RoomTypePrefabs;
     public GameObject[] _BossRoomPrefabs;
     public GameObject[] _ShopRoomPrefabs;
+    public int _OriginRoomIndex;
     public int _NumberOfRooms;
   
     public Vector3 _Origin;
@@ -147,7 +148,7 @@ public class RoomSet : MonoBehaviour
                 {
                     _FloorMapper.Init(prefab);
                     Tuple tuple = GetNewPosition(null, prefab, _FloorMapper._BranchEndpoints[0]);
-                    AddRoom(i, prefab,tuple.pos, prefab.GetComponentInChildren<Room>(), Room.RoomType.Normal);
+                    AddRoom(i, _RoomTypePrefabs[_OriginRoomIndex],tuple.pos, prefab.GetComponentInChildren<Room>(), Room.RoomType.Normal);
                 }
                 else if (i  == Mathf.FloorToInt((float)_NumberOfRooms / 2)) // middle
                 {

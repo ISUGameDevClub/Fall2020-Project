@@ -15,11 +15,11 @@ public class RoomSet : MonoBehaviour
         Null, Left,Right,Down,Up
     }
 
-
+    public GameObject _StartingRoom;
     public GameObject[] _RoomTypePrefabs;
     public GameObject[] _BossRoomPrefabs;
     public GameObject[] _ShopRoomPrefabs;
-    public int _OriginRoomIndex;
+    
     public int _NumberOfRooms;
   
     public Vector3 _Origin;
@@ -146,7 +146,7 @@ public class RoomSet : MonoBehaviour
                 //GET RANDOM ROOM
                 if (i == 0)
                 {
-                    prefab = _RoomTypePrefabs[_OriginRoomIndex];
+                    prefab = _StartingRoom;
                     _FloorMapper.Init(prefab);
                     Tuple tuple = GetNewPosition(null, prefab, _FloorMapper._BranchEndpoints[0]);
                     AddRoom(i, prefab,tuple.pos, prefab.GetComponentInChildren<Room>(), Room.RoomType.Normal);

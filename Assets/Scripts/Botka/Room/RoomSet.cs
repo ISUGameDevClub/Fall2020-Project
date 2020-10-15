@@ -146,9 +146,10 @@ public class RoomSet : MonoBehaviour
                 //GET RANDOM ROOM
                 if (i == 0)
                 {
+                    prefab = _RoomTypePrefabs[_OriginRoomIndex];
                     _FloorMapper.Init(prefab);
                     Tuple tuple = GetNewPosition(null, prefab, _FloorMapper._BranchEndpoints[0]);
-                    AddRoom(i, _RoomTypePrefabs[_OriginRoomIndex],tuple.pos, prefab.GetComponentInChildren<Room>(), Room.RoomType.Normal);
+                    AddRoom(i, prefab,tuple.pos, prefab.GetComponentInChildren<Room>(), Room.RoomType.Normal);
                 }
                 else if (i  == Mathf.FloorToInt((float)_NumberOfRooms / 2)) // middle
                 {

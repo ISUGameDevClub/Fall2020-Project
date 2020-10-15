@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class RoomMove : MonoBehaviour
 {
+    public ClosedEnemyDoors ced;
     public GameObject camera;
     public bool horizontal;
     private bool transitioning;
@@ -119,5 +120,10 @@ public class RoomMove : MonoBehaviour
             }
 
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        ced.ActivateRoom(other);
     }
 }

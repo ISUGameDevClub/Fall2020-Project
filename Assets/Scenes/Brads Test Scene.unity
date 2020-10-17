@@ -204,6 +204,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1563490051 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3693953299916698652, guid: 0659a16a833e68e4181626928cc56199,
+    type: 3}
+  m_PrefabInstance: {fileID: 3765251639804486091}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1563490057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563490051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4856c4d017665ea45a8ae547d36e4a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  sightDistance: 5
+  myAttack: {fileID: 200650685192658909, guid: fdef5ac60c6f563479916449d71ceb76, type: 3}
 --- !u!114 &2129496255 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8513217512117430970, guid: e196439cdc36b4347a3470fcc9f21221,
@@ -356,6 +377,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bandit
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693953299916698652, guid: 0659a16a833e68e4181626928cc56199,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3765251638773406033, guid: 0659a16a833e68e4181626928cc56199,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3765251639468267178, guid: 0659a16a833e68e4181626928cc56199,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3765251639468267183, guid: 0659a16a833e68e4181626928cc56199,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0659a16a833e68e4181626928cc56199, type: 3}

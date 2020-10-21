@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject curAttack;
     public float speed;
     private bool attackReady;
+    public float stun;
 
     private void Start()
     {
@@ -15,13 +16,22 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Move();
-        Rotate();
-
-        if(Input.GetMouseButton(0) && attackReady)
+        GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        if (stun <= 0)
         {
-            Attack();
+            Move();
+            Rotate();
+
+            if (Input.GetMouseButton(0) && attackReady)
+            {
+                Attack();
+            }
         }
+        else
+        {
+            stun -= Time.deltaTime;
+        }
+        
     }
 
     private void Move()
@@ -51,5 +61,13 @@ public class PlayerMovement : MonoBehaviour
         attackReady = false;
         yield return new WaitForSeconds(curAttack.GetComponent<PlayerAttack>().attackSpeed);
         attackReady = true;
+    }
+    
+    public void StunPlayer(float time)
+    {
+        if (stun <= time)
+        {
+            stun = time;
+        }
     }
 }

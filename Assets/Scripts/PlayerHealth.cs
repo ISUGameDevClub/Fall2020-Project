@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
+        health = GetComponent<Health>().curHealth;
         if (health > numOfHearts)
         {
             health = numOfHearts;
@@ -39,5 +40,10 @@ public class PlayerHealth : MonoBehaviour
                 hearts[i].enabled = false;
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        hearts[0].sprite = empty;
     }
 }

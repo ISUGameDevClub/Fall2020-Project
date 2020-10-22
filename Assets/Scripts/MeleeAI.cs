@@ -9,9 +9,7 @@ public class MeleeAI : MonoBehaviour
     public float speed;
     public float sightDistance;
 
-    private bool attackReady;
-
-    public Vector3 playerPosition;
+    private Vector3 playerPosition;
     
     // Start is called before the first frame update
     void Start()
@@ -26,6 +24,8 @@ public class MeleeAI : MonoBehaviour
         { 
             MoveTo();
             playerPosition = player.transform.position;
+            Rotate();
+
         }
         else
         {

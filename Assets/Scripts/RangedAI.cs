@@ -22,7 +22,6 @@ public class RangedAI : MonoBehaviour
     void Update()
     {
         if(LookForPlayer()){
-            Debug.Log("See");
             if ((player.transform.position - transform.position).magnitude < sightDistance){
                 Move();
             }

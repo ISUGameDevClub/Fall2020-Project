@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3765251638773406034}
   - component: {fileID: 3765251638773406033}
   - component: {fileID: 3765251638773406032}
-  m_Layer: 0
+  - component: {fileID: 1563490057}
+  m_Layer: 8
   m_Name: Bandit
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -138,6 +139,21 @@ MonoBehaviour:
   maxHealth: 3
   curHealth: 0
   invincibilityTimer: 0
+--- !u!114 &1563490057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3693953299916698652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4856c4d017665ea45a8ae547d36e4a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  sightDistance: 5
+  myAttack: {fileID: 200650685192658909, guid: fdef5ac60c6f563479916449d71ceb76, type: 3}
 --- !u!1 &3765251639468267178
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +165,7 @@ GameObject:
   - component: {fileID: 3765251639468267177}
   - component: {fileID: 3765251639468267183}
   - component: {fileID: 3765251639468267176}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hurt Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}

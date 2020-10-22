@@ -8,6 +8,12 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     private bool attackReady;
 
+    public AudioSource footstep1;
+    public AudioSource footstep2;
+
+    private float timeUntilNextStep;
+    private bool step1Next;
+
     private void Start()
     {
         attackReady = true;
@@ -30,6 +36,27 @@ public class PlayerMovement : MonoBehaviour
         Vector2 playerInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         Vector2 movement = Vector2.ClampMagnitude(playerInput, 1) * speed * Time.deltaTime;
         transform.position = transform.position + new Vector3(movement.x,movement.y, 0);
+
+        if(playerInput.magnitude > .5f)
+        {
+            if (timeUntilNextStep > 0)
+                timeUntilNextStep -= Time.deltaTime;
+            else
+            {
+                if (step1Next)
+                {
+                    AudioSource.PlayClipAtPoint(footstep1.clip, transform.position);
+                }
+                else
+                {
+                    AudioSource.PlayClipAtPoint(footstep2.clip, transform.position);
+                }
+                timeUntilNextStep = .25f;
+                step1Next = !step1Next;
+            }
+        }
+        else
+            timeUntilNextStep = .2f;
     }
 
     private void Rotate()
@@ -44,6 +71,8 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(PlayerAttacked());
         GameObject atk = Instantiate(curAttack, transform.position, transform.rotation).gameObject;
         atk.transform.Translate(Vector3.right);
+        if (atk.GetComponent<PlayerAttack>().attackSound != null)
+            AudioSource.PlayClipAtPoint(atk.GetComponent<PlayerAttack>().attackSound.clip, transform.position);
     }
 
     private IEnumerator PlayerAttacked()

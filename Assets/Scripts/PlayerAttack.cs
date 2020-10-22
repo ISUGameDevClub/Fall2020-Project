@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    public AudioSource attackSound;
     public float attackLifespan;
     public float attackSpeed;
 

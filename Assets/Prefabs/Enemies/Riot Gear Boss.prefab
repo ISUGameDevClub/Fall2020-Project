@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
-  maxHealth: 25
+  maxHealth: 20
   curHealth: 0
   invincibilityTimer: 0
 --- !u!114 &8085404624756762706
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad1089e34909b3d44af72e7ae0eb6f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 9
   timeUntilCharge: 3
   timeStunned: 1.5
   backwardsSpeed: 0.1

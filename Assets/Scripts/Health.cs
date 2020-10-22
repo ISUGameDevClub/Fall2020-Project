@@ -30,6 +30,10 @@ public class Health : MonoBehaviour
         {
             curHealth = maxHealth;
         }
+        if (isPlayer)
+        {
+            GetComponent<Animator>().SetTrigger("Heal");
+        }
     }
 
     public void TakeDamage(int amount)
@@ -38,6 +42,10 @@ public class Health : MonoBehaviour
         {
             curHealth -= amount;
             StartCoroutine(PlayerHit());
+            if (isPlayer)
+            {
+                GetComponent<Animator>().SetTrigger("Hurt");
+            }
         }
 
         if(curHealth <= 0)

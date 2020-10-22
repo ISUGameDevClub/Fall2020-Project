@@ -6,10 +6,12 @@ public class Player_Movement : MonoBehaviour
 {
     public float playerSpeed;
     public Pause pause;
+    public GameObject curAttack;
+    private bool atkReady;
     // Start is called before the first frame update
     void Start()
     {
-
+        atkReady = true;
     }
 
     // Update is called once per frame
@@ -20,6 +22,10 @@ public class Player_Movement : MonoBehaviour
         {
             Move();
             Rotate();
+            if(Input.GetMouseButtonDown(0) && atkReady)
+            {
+                Attack();
+            }
         }
     }
 
@@ -36,5 +42,19 @@ public class Player_Movement : MonoBehaviour
         Vector3 direction = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+
+    private void Attack()
+    {
+        GameObject ATK = Instantiate(curAttack, transform.position, transform.rotation).gameObject;
+        ATK.transform.Translate(Vector3.right);
+    }
+    
+    private IEnumerator PlayerAttacked()
+    {
+        atkReady = false;
+        yield return new WaitForSeconds(curAttack.GetComponent<PlayerAttack>().attackSpeed);
+        atkReady = true;
+
     }
 }

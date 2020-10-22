@@ -20,6 +20,7 @@ public class Pause : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             Debug.Log("Pause Game");
+            Debug.Log("Menu Showing");
             PauseGame();
             
         }

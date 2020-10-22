@@ -18,12 +18,11 @@ public class PauseMenu : MonoBehaviour
     {
         if (pause.gamePause == true)
         {
-            Debug.Log("Menu Showing");
+            
             menu.SetActive(true);
         }
         if (!pause.gamePause)
         {
-            Debug.Log("Menu Hidden");
             menu.SetActive(false);
         }
        

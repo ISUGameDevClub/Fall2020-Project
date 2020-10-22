@@ -168,6 +168,7 @@ public class ClosedEnemyDoors : MonoBehaviour
         {
             if (turrets[x].GetComponent<RangedAI>() != null)
                 turrets[x].GetComponent<RangedAI>().enabled = true;
+            yield return new WaitForSeconds(2);
         }
     }
 

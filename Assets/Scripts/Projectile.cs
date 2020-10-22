@@ -24,5 +24,10 @@ public class Projectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        else if (collision.gameObject.tag == "Shield")
+        {
+            Destroy(gameObject);
+            AudioSource.PlayClipAtPoint(collision.GetComponent<AudioSource>().clip, transform.position);
+        }
     }
 }

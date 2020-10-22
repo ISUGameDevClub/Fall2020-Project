@@ -18,6 +18,7 @@ public class HealthPack : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<Health>().HealDamage(healthHealed);
+            AudioSource.PlayClipAtPoint(GetComponent<AudioSource>().clip, transform.position);
             Destroy(gameObject);
         }
     }

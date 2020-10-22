@@ -66,6 +66,8 @@ public class RangedAI : MonoBehaviour
         StartCoroutine(EnemyAttacked());
         GameObject atk = Instantiate(myAttack, transform.position, transform.rotation).gameObject;
         atk.transform.Translate(Vector3.right);
+        if (atk.GetComponent<PlayerAttack>().attackSound != null)
+            AudioSource.PlayClipAtPoint(atk.GetComponent<PlayerAttack>().attackSound.clip, transform.position);
     }
 
     private IEnumerator EnemyAttacked()

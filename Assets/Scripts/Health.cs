@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
     public int curHealth;
     public float invincibilityTimer;
     private bool isInvincible;
+    public AudioSource hurtSound;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +46,9 @@ public class Health : MonoBehaviour
             if (isPlayer)
             {
                 GetComponent<Animator>().SetTrigger("Hurt");
+            }
+            if (hurtSound != null) { 
+            AudioSource.PlayClipAtPoint(hurtSound.clip, transform.position);
             }
         }
 

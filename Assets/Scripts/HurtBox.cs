@@ -25,6 +25,10 @@ public class HurtBox : MonoBehaviour
         {
             collision.gameObject.GetComponent<Health>().TakeDamage(damage);
         }
+        else if (collision.gameObject.tag == "Barrel" && playerAttack)
+        {
+            collision.gameObject.GetComponent<Health>().TakeDamage(damage);
+        }
         else if(collision.gameObject.tag == "Player" && !playerAttack)
         {
             collision.gameObject.GetComponent<Health>().TakeDamage(damage);

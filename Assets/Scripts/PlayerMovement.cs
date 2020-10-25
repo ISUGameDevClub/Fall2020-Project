@@ -7,7 +7,9 @@ public class PlayerMovement : MonoBehaviour
     public GameObject curAttack;
     public float speed;
     private bool attackReady;
+    
 
+    
     private void Start()
     {
         attackReady = true;
@@ -18,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
         Move();
         Rotate();
 
-        if(Input.GetMouseButton(0) && attackReady)
+        if (Input.GetMouseButton(0) && attackReady)
         {
             Attack();
         }

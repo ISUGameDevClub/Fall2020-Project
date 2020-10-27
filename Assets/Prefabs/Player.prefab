@@ -19,6 +19,8 @@ GameObject:
   - component: {fileID: 1801323523}
   - component: {fileID: 3511560476985289862}
   - component: {fileID: 833469471}
+  - component: {fileID: 2026753603}
+  - component: {fileID: 2026753614}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -486,3 +488,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2026753603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8513217512117430972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc03afb5be6bf3e42b5e9a7a99ec2095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFull: 00000000
+  slots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &2026753614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8513217512117430972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eadc0f7eb06a62c40b38c5724cb5ea7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SwitchWeapon: 0

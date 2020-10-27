@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
     {
         StartCoroutine(PlayerAttacked());
         GameObject atk = Instantiate(curAttack, transform.position, transform.rotation).gameObject;
-        atk.transform.Translate(Vector3.right);
+        atk.transform.Translate(Vector3.right * atk.GetComponent<PlayerAttack>().spawnDistancefromPlayer);
         if (atk.GetComponent<PlayerAttack>().attackSound != null)
             AudioSource.PlayClipAtPoint(atk.GetComponent<PlayerAttack>().attackSound.clip, transform.position);
     }

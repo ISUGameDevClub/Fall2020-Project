@@ -6,44 +6,35 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     public int health;
+    private Health h;
     public int numOfHearts;
 
-    public Image[] hearts;
-    public Sprite heart;
-    public Sprite empty;
+    public Animator[] hearts;
+
+    private void Start()
+    {
+        h = GetComponent<Health>();
+    }
 
     private void Update()
     {
-        health = GetComponent<Health>().curHealth;
-        if (health > numOfHearts)
-        {
-            health = numOfHearts;
-        }
+        health = h.curHealth;
 
-        for (int i = 0; i < hearts.Length; i++)
+        for (int i = 1; i < hearts.Length; i++)
         {
             if (i < health)
             {
-                hearts[i].sprite = heart;
+                hearts[i].SetTrigger("Gain Heart");
             }
             else
             {
-                hearts[i].sprite = empty;
-            }
-
-            if (i < numOfHearts)
-            {
-                hearts[i].enabled = true;
-            }
-            else
-            {
-                hearts[i].enabled = false;
+                hearts[i].SetTrigger("Lose Heart");
             }
         }
     }
 
     private void OnDestroy()
     {
-        hearts[0].sprite = empty;
+        hearts[0].SetTrigger("Lose Heart");
     }
 }

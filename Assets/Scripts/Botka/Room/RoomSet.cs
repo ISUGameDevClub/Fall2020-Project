@@ -91,14 +91,14 @@ public class RoomSet : MonoBehaviour
     public IEnumerator WaitTillAllLoaded()
     {
         yield return new WaitUntil(() => IsRoomsLoaded());
-        Debug.Log("Rooms Loadded");
+        //Debug.Log("Rooms Loadded");
         if (_Rooms != null)
         {
             foreach (Room room in _Rooms)
             {
                 if (room.gameObject.tag == _StartingRoomTag)
                 {
-                    Debug.Log(room.gameObject.tag);
+                    //Debug.Log(room.gameObject.tag);
                     ActivateRoom(room);
                     break;
                 }
@@ -158,7 +158,7 @@ public class RoomSet : MonoBehaviour
                 }
                 else if (i + 1 == _NumberOfRooms) // last room
                 {
-                    Debug.Log("Generating boss");
+                    //Debug.Log("Generating boss");
                     GenerateRoom(i, prefab.GetComponentInChildren<Room>(), RoomPicker.PickRoomAtRandom(_BossRoomPrefabs), _GeneratedRoomsOrdered.ToArray()[_GeneratedRoomsOrdered.Count - 1].gameObject, Direction.Null, Room.RoomType.Boss);
                 }
                 else
@@ -201,7 +201,7 @@ public class RoomSet : MonoBehaviour
         if (!_DirectionEnpointsBlocked[i])
         {
             BranchEndPoint endPoint = _FloorMapper._BranchEndpoints[i];
-            Debug.Log(endPoint);
+            //Debug.Log(endPoint);
             chosenPreviousRoom = _FloorMapper._BranchEndpoints[i]._EndPoint;
            Tuple tuple =  GetNewPosition(chosenPreviousRoom, lastRoom, endPoint);
             if (tuple != null)
@@ -224,8 +224,8 @@ public class RoomSet : MonoBehaviour
         {
             if (!IsAllEndpointsBlocked())
                 GenerateRoom(index, room, prefab, lastRoom, ClockwiseChoice(dir),roomType);
-            else
-                Debug.Log("All endpoints are blocked");
+            //else
+                //Debug.Log("All endpoints are blocked");
         }
     }
 
@@ -261,7 +261,7 @@ public class RoomSet : MonoBehaviour
     }
     public GameObject AddRoom(int index, GameObject prefab, Vector3 pos,  Room room, Room.RoomType roomType)
     {
-        Debug.Log("Room Added");
+        //Debug.Log("Room Added");
         if (_Rooms != null && index >= 0)
         {
             _Rooms[index] = room;
@@ -324,7 +324,7 @@ public class RoomSet : MonoBehaviour
                 if (!_FloorMapper.IsBLocking(indeces[0], indeces[1]))
                 {
 
-                    Debug.Log(indeces[0] + "," + indeces[1] + "," + dir.ToString());
+                    //Debug.Log(indeces[0] + "," + indeces[1] + "," + dir.ToString());
                     Vector3 pos = ProbeNewPosition(previousSpawn, needSpawn.GetComponentInChildren<Renderer>().bounds.size, dir);
                     return new Tuple(pos, indeces, dir);
                 }

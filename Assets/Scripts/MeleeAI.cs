@@ -15,6 +15,7 @@ public class MeleeAI : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<PlayerMovement>().gameObject;
+        playerPosition = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -29,7 +30,8 @@ public class MeleeAI : MonoBehaviour
         }
         else
         {
-            MoveToLast();
+            if(playerPosition != Vector3.zero)
+                MoveToLast();
         }
     }
     private void MoveTo()
@@ -56,17 +58,22 @@ public class MeleeAI : MonoBehaviour
     }
     private bool LookForPlayer()
     {
-        Vector3 direction = (player.transform.position - transform.position);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction);
-
-        if (hit.collider.gameObject.tag == "Player")
+        if (player != null)
         {
-            playerPosition = player.transform.position;
-            return true;
+            Vector3 direction = (player.transform.position - transform.position);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction);
+
+            if (hit.collider.gameObject.tag == "Player")
+            {
+                playerPosition = player.transform.position;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
-        {
             return false;
-        }
     }
 }

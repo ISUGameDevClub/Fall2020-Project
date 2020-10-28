@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-        if (stun <= 0)
+        if (stun <= 0 && !FindObjectOfType<Pause>().gamePause)
         {
             Move();
             Rotate();

@@ -35,6 +35,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnDestroy()
     {
-        hearts[0].SetTrigger("Lose Heart");
+        if (hearts[0] != null)
+            hearts[0].SetTrigger("Lose Heart");
     }
 }

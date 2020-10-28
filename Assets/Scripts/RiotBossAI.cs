@@ -14,7 +14,14 @@ public class RiotBossAI : MonoBehaviour
     public float timeStunned;
     private float stunTimer;
     public float backwardsSpeed;
-    
+    private GameObject stairs;
+
+    private void Awake()
+    {
+        stairs = FindObjectOfType<LevelTransition>().gameObject;
+        stairs.SetActive(false);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -80,5 +87,15 @@ public class RiotBossAI : MonoBehaviour
             stunned = true;
             charging = false;
         }
+    }
+
+    private void OnDestroy()
+    {
+        foreach(PlayerInRoom piy in FindObjectsOfType<PlayerInRoom>())
+        {
+            if (piy.roomType == "Boss")
+                piy.roomType = "Main";
+        }
+        stairs.SetActive(true);
     }
 }

@@ -513,6 +513,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3301038434909428269}
   - component: {fileID: 3013099094883417985}
+  - component: {fileID: 5451315145582762349}
   m_Layer: 0
   m_Name: Floor Manager
   m_TagString: Untagged
@@ -594,6 +595,19 @@ MonoBehaviour:
   roomInUse: 0
   roomDone: 0
   enemySleepTime: 1
+--- !u!114 &5451315145582762349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2433297806294191886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9c9504195faece4ab0d1fe85deb36d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomType: Main
 --- !u!1 &2599905591106747357
 GameObject:
   m_ObjectHideFlags: 0
@@ -2201,6 +2215,11 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1719132624135566602, guid: 4bec071531949194995a8b73076a16a7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 2329073472730881419, guid: 4bec071531949194995a8b73076a16a7,
         type: 3}
       propertyPath: ced
@@ -2329,6 +2348,11 @@ PrefabInstance:
       propertyPath: ced
       value: 
       objectReference: {fileID: 3013099094883417985}
+    - target: {fileID: 4848013927847663392, guid: 0f47b86325070894cb2c35b2b7bcb71c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 6891730624018995368, guid: 0f47b86325070894cb2c35b2b7bcb71c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3057,6 +3081,11 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1389417174694884740, guid: f0eac274dd9095c4985ae83fc5b3710a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 1702021350826534117, guid: f0eac274dd9095c4985ae83fc5b3710a,
         type: 3}
       propertyPath: m_Name
@@ -3305,6 +3334,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3301038434909428269}
     m_Modifications:
+    - target: {fileID: 2854578708895709594, guid: 3890adaf3af3f2846825b55428152bd1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 4521363638023276838, guid: 3890adaf3af3f2846825b55428152bd1,
         type: 3}
       propertyPath: m_Name
@@ -3404,15 +3438,15 @@ PrefabInstance:
     - {fileID: 4361177806141816543, guid: 3890adaf3af3f2846825b55428152bd1, type: 3}
     - {fileID: 3090049250674815044, guid: 3890adaf3af3f2846825b55428152bd1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3890adaf3af3f2846825b55428152bd1, type: 3}
---- !u!4 &2602651145152842010 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6541206448124773842, guid: 3890adaf3af3f2846825b55428152bd1,
-    type: 3}
-  m_PrefabInstance: {fileID: 9140462223387364552}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4640517072145565166 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4521363638023276838, guid: 3890adaf3af3f2846825b55428152bd1,
+    type: 3}
+  m_PrefabInstance: {fileID: 9140462223387364552}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2602651145152842010 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6541206448124773842, guid: 3890adaf3af3f2846825b55428152bd1,
     type: 3}
   m_PrefabInstance: {fileID: 9140462223387364552}
   m_PrefabAsset: {fileID: 0}

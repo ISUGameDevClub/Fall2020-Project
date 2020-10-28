@@ -662,7 +662,7 @@ MonoBehaviour:
   nextScene: Power Plant Floor 1
   fadeOut: 0
   fadeIn: 0
-  fadeSpeed: 0.05
+  fadeSpeed: 0.02
   a: 0
   trans: {fileID: 1899077993}
   act: {fileID: 1899077990}
@@ -814,7 +814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:

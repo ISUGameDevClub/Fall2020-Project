@@ -6,11 +6,13 @@ public class Pause : MonoBehaviour
 {
     public bool gamePause;
     public GameObject menu;
+    private RoomMove[] rm;
     
 
     // Start is called before the first frame update
     void Start()
     {
+        rm = FindObjectsOfType<RoomMove>();
         Time.timeScale = 1;
     }
 
@@ -19,7 +21,15 @@ public class Pause : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            PauseGame();
+            bool canPause = true;
+            foreach(RoomMove r in rm)
+            {
+                if (r.direction != "")
+                    canPause = false;
+            }
+
+            if(canPause)
+                PauseGame();
         }
     }
 

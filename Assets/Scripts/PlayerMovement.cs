@@ -80,9 +80,18 @@ public class PlayerMovement : MonoBehaviour
     {
         StartCoroutine(PlayerAttacked());
         GameObject atk = Instantiate(curAttack, transform.position, transform.rotation).gameObject;
+        FindObjectOfType<UI_Inventory>().durs[GetComponent<CurrentWeapon>().SwitchWeapon] -= atk.GetComponent<PlayerAttack>().breakSpeed;
         atk.transform.Translate(Vector3.right * atk.GetComponent<PlayerAttack>().spawnDistancefromPlayer);
         if (atk.GetComponent<PlayerAttack>().attackSound != null)
             AudioSource.PlayClipAtPoint(atk.GetComponent<PlayerAttack>().attackSound.clip, transform.position);
+
+        if(FindObjectOfType<UI_Inventory>().durs[GetComponent<CurrentWeapon>().SwitchWeapon] <= 0)
+        {
+            FindObjectOfType<UI_Inventory>().isFull[GetComponent<CurrentWeapon>().SwitchWeapon] = false;
+            FindObjectOfType<WeaponInventory>().weapons[GetComponent<CurrentWeapon>().SwitchWeapon] = "";
+            Destroy(FindObjectOfType<UI_Inventory>().slots[GetComponent<CurrentWeapon>().SwitchWeapon].GetComponentInChildren<SwitchWeapon>().gameObject);
+            FindObjectOfType<CurrentWeapon>().SwitchWeapon = 0;
+        }
     }
 
     private IEnumerator PlayerAttacked()

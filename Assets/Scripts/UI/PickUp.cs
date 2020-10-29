@@ -26,7 +26,8 @@ public class PickUp : MonoBehaviour
                     if (inventory.isFull[i] == false)
                     {
                         inventory.isFull[i] = true;
-                        Instantiate(itemButton, inventory.slots[i].transform, false);
+                        inventory.durs[i] = 100;
+                        Instantiate(itemButton, inventory.slots[i].transform, false).GetComponent<SwitchWeapon>().myWeaponNumber = i;
                         Destroy(gameObject);
                         break;
                     }

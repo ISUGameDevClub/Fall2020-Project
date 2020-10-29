@@ -80,7 +80,7 @@ public class FloorMapper : MonoBehaviour
     {
         if (row < 0 || row > _ShapeMatrix[0] - 1 || col < 0 || col > _ShapeMatrix[1] - 1)
         {
-            Debug.Log("Indes out of range : " + row + "," + col);
+            //Debug.Log("Indes out of range : " + row + "," + col);
             return true;
         }
         //Debug.Log("Indes in rnage : " + row + "," + col);
@@ -91,7 +91,7 @@ public class FloorMapper : MonoBehaviour
     {
        
        // indeces = endPoint._EndPointIndeces;
-        Debug.Log("end: " + indeces[0] + "," + indeces[1] + "," + dir.ToString());
+        //Debug.Log("end: " + indeces[0] + "," + indeces[1] + "," + dir.ToString());
         _FloorRoomMatrix[indeces[0], indeces[1]] = endPoint._EndPoint.GetComponentInChildren<Room>();
 
         endPoint._EndPoint = obj;
@@ -157,7 +157,7 @@ public class FloorMapper : MonoBehaviour
             }
             
         }
-        Debug.Log(log);
+        //Debug.Log(log);
     }
 }
 

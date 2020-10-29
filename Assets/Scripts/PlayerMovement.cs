@@ -6,13 +6,15 @@ public class PlayerMovement : MonoBehaviour
 {
     public GameObject curAttack;
     public float speed;
-    private bool attackReady;
+    public bool attackReady;
+  
     
 
     
     private void Start()
     {
         attackReady = true;
+        
     }
 
     void Update()

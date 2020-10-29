@@ -28,4 +28,8 @@ public class WeaponInventory : MonoBehaviour
             }
         }
     }
+    public void DestroyWeapon(int CurrentWeapon)
+    {
+        weapons[CurrentWeapon] = "";
+    }
 }

@@ -13,10 +13,9 @@ GameObject:
   - component: {fileID: 3765251638773406034}
   - component: {fileID: 3765251638773406033}
   - component: {fileID: 3765251638773406032}
-  - component: {fileID: 824712956427697040}
-  - component: {fileID: 6711635623179594464}
+  - component: {fileID: 4033718413589082577}
   m_Layer: 8
-  m_Name: Bandit
+  m_Name: Explosives Boss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3693953299916698652}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children:
   - {fileID: 3765251639468267177}
   m_Father: {fileID: 0}
@@ -76,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c99ba3d43e826fa498ea5231862ea11f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 41766fdd5407ee1428548a0cd06c5440, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -123,7 +122,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.425
 --- !u!114 &3765251638773406032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,27 +136,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
-  maxHealth: 1
+  maxHealth: 20
   curHealth: 0
   invincibilityTimer: 0
-  hurtSound: {fileID: 6711635623179594464}
---- !u!114 &824712956427697040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3693953299916698652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b55872de3d12aba40babd1f9ea2d1bc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  sightDistance: 5
-  stun: 0
-  myAttack: {fileID: 200650685192658909, guid: fdef5ac60c6f563479916449d71ceb76, type: 3}
---- !u!82 &6711635623179594464
+  hurtSound: {fileID: 4033718413589082577}
+--- !u!82 &4033718413589082577
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -300,7 +283,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.55
+  m_Radius: 0.5
 --- !u!114 &3765251639468267176
 MonoBehaviour:
   m_ObjectHideFlags: 0

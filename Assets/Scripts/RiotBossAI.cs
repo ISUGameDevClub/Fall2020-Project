@@ -59,6 +59,7 @@ public class RiotBossAI : MonoBehaviour
         }
         
     }
+
     private void Rotate()
     {
         Vector3 direction = (player.transform.position - transform.position);

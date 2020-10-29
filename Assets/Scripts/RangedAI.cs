@@ -8,6 +8,7 @@ public class RangedAI : MonoBehaviour
 
     public float speed;
     public float sightDistance;
+    public float stun;
 
     public GameObject myAttack;
     private bool attackReady;
@@ -25,24 +26,33 @@ public class RangedAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(LookForPlayer()){
-            playerPosition = player.transform.position;
-            if ((player.transform.position - transform.position).magnitude < sightDistance){
-                Move();
+        if (stun <= 0)
+        {
+            if (LookForPlayer())
+            {
+                playerPosition = player.transform.position;
+                if ((player.transform.position - transform.position).magnitude < sightDistance)
+                {
+                    Move();
+                }
+                else
+                {
+                    MoveAway();
+                }
+                Rotate();
+                if (attackReady)
+                {
+                    Attack();
+                }
             }
-            else {
-                MoveAway();
-            }
-            Rotate();
-            if (attackReady){
-                Attack();
+            else
+            {
+                if (playerPosition != Vector3.zero)
+                    MoveToLast();
             }
         }
         else
-        {
-            if (playerPosition != Vector3.zero)
-                MoveToLast();
-        }
+            stun -= Time.deltaTime;
     }
 
     private void Move()

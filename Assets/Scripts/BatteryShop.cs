@@ -14,18 +14,17 @@ public class BatteryShop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void Remove(int batteryCost)
     {
-        if (batteryTotal > batteryCost)
+        if (batteryTotal - batteryCost < 0)
+        {
+            batteryTotal = 0;
+        }
+        else
         {
             batteryTotal -= batteryCost;
-            if (batteryTotal < 0)
-            {
-                batteryTotal = 0;
-            }
         }
-
     }
 }

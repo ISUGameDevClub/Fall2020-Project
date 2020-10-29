@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-    public float musicVolume;
+    public float mainVolume;
+    public float shopVolume;
+    public float bossVolume;
     public float musicFadeSpeed;
     public AudioSource mainTheme;
     public AudioSource shopTheme;
@@ -24,26 +26,26 @@ public class MusicManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentSong=="Main" && mainTheme.volume < musicVolume) 
+        if (currentSong=="Main" && mainTheme.volume < mainVolume) 
         {
             mainTheme.volume += Time.deltaTime * musicFadeSpeed;
         }
         else if (currentSong=="Main")
         {
-            mainTheme.volume = musicVolume; 
+            mainTheme.volume = mainVolume; 
         }
         else if (mainTheme.volume > 0)
         {
             mainTheme.volume -= Time.deltaTime * musicFadeSpeed;
         }
 
-        if (currentSong == "Shop" && shopTheme.volume < musicVolume)
+        if (currentSong == "Shop" && shopTheme.volume < shopVolume)
         {
             shopTheme.volume += Time.deltaTime * musicFadeSpeed;
         }
         else if (currentSong == "Shop")
         {
-            shopTheme.volume = musicVolume;
+            shopTheme.volume = shopVolume;
         }
         else if (shopTheme.volume > 0)
         {
@@ -51,7 +53,7 @@ public class MusicManager : MonoBehaviour
 
         }
 
-        if (currentSong == "Boss" && bossTheme.volume < musicVolume)
+        if (currentSong == "Boss" && bossTheme.volume < bossVolume)
         {
             if(!bossThemeCanPlay)
             {
@@ -62,7 +64,7 @@ public class MusicManager : MonoBehaviour
         }
         else if (currentSong == "Boss")
         {
-            bossTheme.volume = musicVolume;
+            bossTheme.volume = bossVolume;
         }
         else if (bossTheme.volume > 0)
         {

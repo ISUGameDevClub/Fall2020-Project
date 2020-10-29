@@ -6,6 +6,7 @@ public class BatteryShop : MonoBehaviour
 {
     public int batteryCost;
     public BatteryInventory be;
+    public AudioSource rejectSound;
 
     void Start()
     {
@@ -19,6 +20,7 @@ public class BatteryShop : MonoBehaviour
             be.batteries -= batteryCost;
             return true;
         }
+        AudioSource.PlayClipAtPoint(rejectSound.clip, transform.position);
         return false;
     }
 }

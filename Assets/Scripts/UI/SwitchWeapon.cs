@@ -26,7 +26,7 @@ public class SwitchWeapon : MonoBehaviour
     private void Update()
     {
         CurrentWeapon = cw.SwitchWeapon;
-        if(text != null)
+        if(text != null && FindObjectOfType<UI_Inventory>() != null)
             text.text = FindObjectOfType<UI_Inventory>().durs[myWeaponNumber].ToString() +"%";
         AddWeapon(CurrentWeapon);
     }

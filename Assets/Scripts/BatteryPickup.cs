@@ -5,6 +5,7 @@ using UnityEngine;
 public class BatteryPickup : MonoBehaviour
 {
     public BatteryInventory bi;
+    public AudioSource pickupSound;
     public int batteryLife = 1;
     void Start()
     {
@@ -22,6 +23,7 @@ public class BatteryPickup : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             bi.AddBattery(batteryLife);
+            AudioSource.PlayClipAtPoint(pickupSound.clip, transform.position);
             Destroy(gameObject);
         }
     }

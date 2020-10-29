@@ -8,7 +8,7 @@ public class Health : MonoBehaviour
     public int maxHealth;
     public int curHealth;
     public float invincibilityTimer;
-    private bool isInvincible;
+    public bool isInvincible;
     public AudioSource hurtSound;
 
     // Start is called before the first frame update

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3765251638773406032}
   - component: {fileID: 2543251867866278117}
   - component: {fileID: -700630333509124864}
+  - component: {fileID: -7194352772868019097}
   m_Layer: 8
   m_Name: Melee Enemy
   m_TagString: Enemy
@@ -252,6 +253,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-7194352772868019097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3693953299916698652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76b76c23cadab46418934f01543b962c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alwaysDropsAnItem: 0
+  alwaysDropped: {fileID: 0}
+  possibleCommonDrops:
+  - {fileID: 2210531438463764903, guid: 6bdc9d599104088478b3680738c4ed57, type: 3}
+  - {fileID: 2210531438463764903, guid: 6bdc9d599104088478b3680738c4ed57, type: 3}
+  - {fileID: 2210531438463764903, guid: 6bdc9d599104088478b3680738c4ed57, type: 3}
+  - {fileID: 2210531438463764903, guid: 6bdc9d599104088478b3680738c4ed57, type: 3}
+  possibleRareDrops:
+  - {fileID: 654103678196928525, guid: b17749fb1b901804283cfeb7dc39a21b, type: 3}
+  - {fileID: 654103678196928525, guid: b17749fb1b901804283cfeb7dc39a21b, type: 3}
+  possibleLegendaryDrops: []
 --- !u!1 &3765251639468267178
 GameObject:
   m_ObjectHideFlags: 0

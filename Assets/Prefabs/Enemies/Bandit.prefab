@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3765251638773406032}
   - component: {fileID: 824712956427697040}
   - component: {fileID: 6711635623179594464}
+  - component: {fileID: 2220840168107508358}
   m_Layer: 8
   m_Name: Bandit
   m_TagString: Enemy
@@ -253,6 +254,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2220840168107508358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3693953299916698652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76b76c23cadab46418934f01543b962c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alwaysDropsAnItem: 0
+  alwaysDropped: {fileID: 0}
+  possibleCommonDrops:
+  - {fileID: 2210531438463764903, guid: 6bdc9d599104088478b3680738c4ed57, type: 3}
+  - {fileID: 2210531438463764903, guid: 6bdc9d599104088478b3680738c4ed57, type: 3}
+  - {fileID: 2210531438463764903, guid: 6bdc9d599104088478b3680738c4ed57, type: 3}
+  - {fileID: 2210531438463764903, guid: 6bdc9d599104088478b3680738c4ed57, type: 3}
+  possibleRareDrops:
+  - {fileID: 326376490766786925, guid: 2df1da6e265349845ae4bc9a7a5e3599, type: 3}
+  - {fileID: 326376490766786925, guid: 2df1da6e265349845ae4bc9a7a5e3599, type: 3}
+  possibleLegendaryDrops:
+  - {fileID: 654103678196928525, guid: a68c53c4bd19f144ab663043fe71c864, type: 3}
 --- !u!1 &3765251639468267178
 GameObject:
   m_ObjectHideFlags: 0

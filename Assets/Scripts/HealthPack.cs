@@ -17,9 +17,12 @@ public class HealthPack : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<Health>().HealDamage(healthHealed);
-            AudioSource.PlayClipAtPoint(GetComponent<AudioSource>().clip, transform.position);
-            Destroy(gameObject);
+            if (!GetComponent<BatteryShop>() || (GetComponent<BatteryShop>() && GetComponent<BatteryShop>().CanPickup()))
+            {
+                collision.gameObject.GetComponent<Health>().HealDamage(healthHealed);
+                AudioSource.PlayClipAtPoint(GetComponent<AudioSource>().clip, transform.position);
+                Destroy(gameObject);
+            }
         }
     }
 }

@@ -18,15 +18,18 @@ public class PickUp : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            wi.AddWeapon(weaponType);
-            for (int i = 0; i < inventory.slots.Length; i++)
+            if (!GetComponent<BatteryShop>() || (GetComponent<BatteryShop>() && GetComponent<BatteryShop>().CanPickup()))
             {
-                if (inventory.isFull[i] == false)
+                wi.AddWeapon(weaponType);
+                for (int i = 0; i < inventory.slots.Length; i++)
                 {
-                    inventory.isFull[i] = true;
-                    Instantiate(itemButton, inventory.slots[i].transform, false);        
-                    Destroy(gameObject);
-                    break;
+                    if (inventory.isFull[i] == false)
+                    {
+                        inventory.isFull[i] = true;
+                        Instantiate(itemButton, inventory.slots[i].transform, false);
+                        Destroy(gameObject);
+                        break;
+                    }
                 }
             }
 

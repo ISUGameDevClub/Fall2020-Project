@@ -103,4 +103,25 @@ public class ScreenTransition : MonoBehaviour
         yield return new WaitForSecondsRealtime(1);
         SceneManager.LoadScene("Title");
     }
+
+    public void FadeToDeath()
+    {
+        act.SetActive(true);
+        fadeIn = true;
+        StartCoroutine(WaitForDeath());
+    }
+
+    IEnumerator WaitForDeath()
+    {
+        Barrel[] allbarrels = FindObjectsOfType<Barrel>();
+        foreach (Barrel bar in allbarrels)
+        {
+            bar.itemToSpawn = null;
+        }
+        if (FindObjectOfType<PlayerHealth>() != null)
+            FindObjectOfType<PlayerHealth>().hearts[0] = null;
+
+        yield return new WaitForSecondsRealtime(1);
+        SceneManager.LoadScene("Death Screen");
+    }
 }

@@ -67,6 +67,10 @@ public class Health : MonoBehaviour
 
     public void Die()
     {
+        if (isPlayer)
+        {
+            FindObjectOfType<ScreenTransition>().FadeToDeath();
+        }
         Destroy(gameObject);
     }
 }

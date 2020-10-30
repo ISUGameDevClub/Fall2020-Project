@@ -97,11 +97,11 @@ public class RiotBossAI : MonoBehaviour
 
     private void OnDestroy()
     {
-        foreach(PlayerInRoom piy in FindObjectsOfType<PlayerInRoom>())
+        stairs.SetActive(true);
+        foreach (PlayerInRoom piy in FindObjectsOfType<PlayerInRoom>())
         {
             if (piy.roomType == "Boss")
-                piy.roomType = "Main";
+                piy.roomType = "Victory";
         }
-        stairs.SetActive(true);
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ClosedEnemyDoors : MonoBehaviour
 {
+    public AudioSource openDoor;
+    public AudioSource closeDoor;
     public GameObject[] doors;
     public GameObject[] closedDoors;
     public GameObject[] enemies;
@@ -137,6 +139,8 @@ public class ClosedEnemyDoors : MonoBehaviour
     {
         if (!roomDone)
         {
+            if (GetComponent<PlayerInRoom>().roomType != "Shop" && closeDoor != null)
+                AudioSource.PlayClipAtPoint(closeDoor.clip, transform.position);
             for (int i = 0; i < doors.Length; i++)
             {
                 doors[i].transform.GetChild(0).GetComponent<Collider2D>().enabled = true;
@@ -197,6 +201,8 @@ public class ClosedEnemyDoors : MonoBehaviour
             if (turrets[x].GetComponent<RangedAI>() != null)
                 turrets[x].GetComponent<RangedAI>().enabled = false;
         }
+        if (GetComponent<PlayerInRoom>().roomType != "Shop" && openDoor != null)
+            AudioSource.PlayClipAtPoint(openDoor.clip, transform.position);
     }
 }
 

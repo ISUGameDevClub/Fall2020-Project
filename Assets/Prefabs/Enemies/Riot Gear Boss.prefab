@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3765251638773406032}
   - component: {fileID: 8085404624756762706}
   - component: {fileID: 4033718413589082577}
+  - component: {fileID: 8853442825911573227}
   m_Layer: 8
   m_Name: Riot Gear Boss
   m_TagString: Enemy
@@ -124,7 +125,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.425
+  m_Radius: 0.475
 --- !u!114 &3765251638773406032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +142,7 @@ MonoBehaviour:
   maxHealth: 20
   curHealth: 0
   invincibilityTimer: 0
+  isInvincible: 0
   hurtSound: {fileID: 4033718413589082577}
 --- !u!114 &8085404624756762706
 MonoBehaviour:
@@ -254,6 +256,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8853442825911573227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3693953299916698652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76b76c23cadab46418934f01543b962c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alwaysDropsAnItem: 0
+  alwaysDropped: {fileID: 326376490766786925, guid: 889ee76fbcc0ea9418fca5cf5989598c,
+    type: 3}
+  possibleCommonDrops: []
+  possibleRareDrops: []
+  possibleLegendaryDrops: []
 --- !u!1 &3765251639468267178
 GameObject:
   m_ObjectHideFlags: 0

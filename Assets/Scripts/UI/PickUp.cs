@@ -5,12 +5,14 @@ using UnityEngine;
 public class PickUp : MonoBehaviour
 {
     private UI_Inventory inventory;
+    public AudioSource pickupSound;
     public GameObject itemButton;
     public string weaponType;
     public WeaponInventory wi;
     private void Start()
     {
-        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<UI_Inventory>();
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+            inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<UI_Inventory>();
         wi = FindObjectOfType<WeaponInventory>();
 
     }
@@ -25,6 +27,8 @@ public class PickUp : MonoBehaviour
                 {
                     if (inventory.isFull[i] == false)
                     {
+                        if (pickupSound != null)
+                            AudioSource.PlayClipAtPoint(pickupSound.clip, transform.position);
                         inventory.isFull[i] = true;
                         inventory.durs[i] = 100;
                         Instantiate(itemButton, inventory.slots[i].transform, false).GetComponent<SwitchWeapon>().myWeaponNumber = i;

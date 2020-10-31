@@ -14,6 +14,7 @@ public class SwitchWeapon : MonoBehaviour
     public int CurrentWeapon;
     private Text text;
     public int myWeaponNumber;
+    public Sprite CharacterWithWeapon;
     
     public void Start()
     {
@@ -26,19 +27,17 @@ public class SwitchWeapon : MonoBehaviour
     private void Update()
     {
         CurrentWeapon = cw.SwitchWeapon;
-        if(text != null)
+        if(text != null && FindObjectOfType<UI_Inventory>() != null)
             text.text = FindObjectOfType<UI_Inventory>().durs[myWeaponNumber].ToString() +"%";
         AddWeapon(CurrentWeapon);
     }
 
     private void AddWeapon(int slot)
     {
-        if(wi.weapons[slot] == WeaponType)
+        if(wi.weapons[slot] == WeaponType && pm != null)
         {
             pm.curAttack = WeaponBox;
+            pm.GetComponent<SpriteRenderer>().sprite = CharacterWithWeapon;
         }  
     }
-    
-
-
 }

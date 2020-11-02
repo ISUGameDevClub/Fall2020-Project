@@ -20,11 +20,11 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Barrel" || collision.gameObject.tag == "Turret")
+        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Barrel")
         {
             Destroy(gameObject);
         }
-        else if (collision.gameObject.tag == "Shield")
+        else if (collision.gameObject.tag == "Shield" || collision.gameObject.tag == "Turret")
         {
             AudioSource.PlayClipAtPoint(collision.GetComponent<AudioSource>().clip, transform.position);
 

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 /*
  * @Author Jake Botka
  */
@@ -69,14 +70,15 @@ public class RoomSet : MonoBehaviour
 
 
     }
+
     void Start()
     {
         _Rooms = new Room[_NumberOfRooms];
       _WaitCoroutine = StartCoroutine(WaitTillAllLoaded());
         _FloorMapper = GetComponentInChildren<FloorMapper>();
         GenerateMap();
-       
-       
+
+        StartCoroutine(BossCheck());
     }
 
     // Update is called once per frame
@@ -85,6 +87,40 @@ public class RoomSet : MonoBehaviour
         if (_WaitCoroutine == null)
         {
 
+        }
+    }
+
+    private IEnumerator BossCheck()
+    {
+        yield return new WaitForSecondsRealtime(.1f);
+        PlayerInRoom[] piy = FindObjectsOfType<PlayerInRoom>();
+        bool hasBossRoom = false;
+        foreach (PlayerInRoom p in piy)
+        {
+            if (p.roomType == "Boss")
+            {
+                hasBossRoom = true;
+            }
+        }
+
+        if (!hasBossRoom)
+        {
+            Debug.Log("Boss bug happened");
+
+            Barrel[] allbarrels = FindObjectsOfType<Barrel>();
+            foreach (Barrel bar in allbarrels)
+            {
+                bar.itemToSpawn = null;
+            }
+            ItemDrops[] allItems = FindObjectsOfType<ItemDrops>();
+            foreach (ItemDrops itemDrop in allItems)
+            {
+                itemDrop.possibleCommonDrops = new GameObject[0];
+                itemDrop.possibleRareDrops = new GameObject[0];
+                itemDrop.possibleLegendaryDrops = new GameObject[0];
+            }
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
@@ -105,7 +141,6 @@ public class RoomSet : MonoBehaviour
             }
         }
         _WaitCoroutine = null;
-        
     }
 
     public bool IsRoomsLoaded()

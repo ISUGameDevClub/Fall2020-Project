@@ -143,6 +143,8 @@ MonoBehaviour:
   invincibilityTimer: 0
   isInvincible: 0
   hurtSound: {fileID: 6711635623179594464}
+  healthBar: {fileID: 0}
+  showHealthToStart: 0
 --- !u!114 &824712956427697040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,6 +276,7 @@ MonoBehaviour:
   - {fileID: 2210531438463764903, guid: 6bdc9d599104088478b3680738c4ed57, type: 3}
   - {fileID: 2210531438463764903, guid: 6bdc9d599104088478b3680738c4ed57, type: 3}
   - {fileID: 2210531438463764903, guid: 6bdc9d599104088478b3680738c4ed57, type: 3}
+  - {fileID: 3311224671789597219, guid: b488596ecfc493340af0d4d21c33afb6, type: 3}
   possibleRareDrops:
   - {fileID: 326376490766786925, guid: 2df1da6e265349845ae4bc9a7a5e3599, type: 3}
   - {fileID: 326376490766786925, guid: 2df1da6e265349845ae4bc9a7a5e3599, type: 3}

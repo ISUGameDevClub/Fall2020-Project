@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 /*
  * @Author Jake Botka
  */
+[HelpURL("https://www.youtube.com/watch?v=dQw4w9WgXcQ")]
 public class RoomSet : MonoBehaviour
 {
     public const string _StartingRoomTag = "Room Start";

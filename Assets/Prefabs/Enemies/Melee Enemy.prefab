@@ -298,6 +298,7 @@ MonoBehaviour:
   isInvincible: 0
   hurtSound: {fileID: -700630333509124864}
   healthBar: {fileID: 1389980119597301199}
+  showHealthToStart: 0
 --- !u!114 &2543251867866278117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,7 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26251d7901a0e3a419ef9f2fe78de0e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.5
+  speed: 2.25
   sightDistance: 5
   stun: 0
 --- !u!82 &-700630333509124864
@@ -427,7 +428,8 @@ MonoBehaviour:
   - {fileID: 2210531438463764903, guid: 6bdc9d599104088478b3680738c4ed57, type: 3}
   - {fileID: 2210531438463764903, guid: 6bdc9d599104088478b3680738c4ed57, type: 3}
   - {fileID: 2210531438463764903, guid: 6bdc9d599104088478b3680738c4ed57, type: 3}
-  - {fileID: 2210531438463764903, guid: 6bdc9d599104088478b3680738c4ed57, type: 3}
+  - {fileID: 3311224671789597219, guid: b488596ecfc493340af0d4d21c33afb6, type: 3}
+  - {fileID: 3311224671789597219, guid: b488596ecfc493340af0d4d21c33afb6, type: 3}
   possibleRareDrops:
   - {fileID: 654103678196928525, guid: b17749fb1b901804283cfeb7dc39a21b, type: 3}
   - {fileID: 654103678196928525, guid: b17749fb1b901804283cfeb7dc39a21b, type: 3}

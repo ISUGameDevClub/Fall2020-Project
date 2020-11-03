@@ -81,6 +81,7 @@ public class ScreenTransition : MonoBehaviour
             itemDrop.possibleCommonDrops = new GameObject[0];
             itemDrop.possibleRareDrops = new GameObject[0];
             itemDrop.possibleLegendaryDrops = new GameObject[0];
+            itemDrop.alwaysDropped = null;
         }
         if (FindObjectOfType<PlayerHealth>() != null)
             FindObjectOfType<PlayerHealth>().hearts[0] = null;
@@ -110,6 +111,7 @@ public class ScreenTransition : MonoBehaviour
             itemDrop.possibleCommonDrops = new GameObject[0];
             itemDrop.possibleRareDrops = new GameObject[0];
             itemDrop.possibleLegendaryDrops = new GameObject[0];
+            itemDrop.alwaysDropped = null;
         }
         if (FindObjectOfType<PlayerHealth>() != null)
             FindObjectOfType<PlayerHealth>().hearts[0] = null;
@@ -138,6 +140,7 @@ public class ScreenTransition : MonoBehaviour
             itemDrop.possibleCommonDrops = new GameObject[0];
             itemDrop.possibleRareDrops = new GameObject[0];
             itemDrop.possibleLegendaryDrops = new GameObject[0];
+            itemDrop.alwaysDropped = null;
         }
         if (FindObjectOfType<PlayerHealth>() != null)
             FindObjectOfType<PlayerHealth>().hearts[0] = null;
@@ -166,6 +169,7 @@ public class ScreenTransition : MonoBehaviour
             itemDrop.possibleCommonDrops = new GameObject[0];
             itemDrop.possibleRareDrops = new GameObject[0];
             itemDrop.possibleLegendaryDrops = new GameObject[0];
+            itemDrop.alwaysDropped = null;
         }
         if (FindObjectOfType<PlayerHealth>() != null)
             FindObjectOfType<PlayerHealth>().hearts[0] = null;

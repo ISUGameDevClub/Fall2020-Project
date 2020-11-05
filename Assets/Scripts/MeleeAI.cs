@@ -7,6 +7,7 @@ public class MeleeAI : MonoBehaviour
     private GameObject player;
 
     public float speed;
+    public float stun;
     public float sightDistance;
 
     private Vector3 playerPosition;
@@ -21,17 +22,24 @@ public class MeleeAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (LookForPlayer())
-        { 
-            MoveTo();
-            playerPosition = player.transform.position;
-            Rotate();
+        if (stun <= 0)
+        {
+            if (LookForPlayer())
+            {
+                MoveTo();
+                playerPosition = player.transform.position;
+                Rotate();
 
+            }
+            else
+            {
+                if (playerPosition != Vector3.zero)
+                    MoveToLast();
+            }
         }
         else
         {
-            if(playerPosition != Vector3.zero)
-                MoveToLast();
+            stun -= Time.deltaTime;
         }
     }
     private void MoveTo()

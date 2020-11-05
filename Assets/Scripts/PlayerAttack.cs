@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    public AudioSource attackSound;
+    public float attackLifespan;
     public float attackSpeed;
-    public float speed;
+    public float spawnDistancefromPlayer;
+
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Destroy(gameObject, attackLifespan);
     }
 }

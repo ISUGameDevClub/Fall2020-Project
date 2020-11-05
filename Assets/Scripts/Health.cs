@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public int maxHealth, curHealth;
     public bool isPlayer;
+    public int maxHealth;
+    public int curHealth;
     public float invincibilityTimer;
     private bool isInvincible;
+    public AudioSource hurtSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,15 +31,26 @@ public class Health : MonoBehaviour
         {
             curHealth = maxHealth;
         }
+        if (isPlayer)
+        {
+            GetComponent<Animator>().SetTrigger("Heal");
+        }
     }
+
     public void TakeDamage(int amount)
     {
         if (!isInvincible)
         {
             curHealth -= amount;
             StartCoroutine(PlayerHit());
+            if (isPlayer)
+            {
+                GetComponent<Animator>().SetTrigger("Hurt");
+            }
+            if (hurtSound != null) { 
+            AudioSource.PlayClipAtPoint(hurtSound.clip, transform.position);
+            }
         }
-        
 
         if(curHealth <= 0)
         {

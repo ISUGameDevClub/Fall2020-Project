@@ -297,7 +297,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 675947375}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.380434, y: 2.8985512, z: 0}
+  m_LocalPosition: {x: -5.45, y: 2.93, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -506,6 +506,7 @@ MonoBehaviour:
   curHealth: 3
   isPlayer: 0
   invincibilityTimer: 1
+  isInvincible: 0
 --- !u!1 &2138438640
 GameObject:
   m_ObjectHideFlags: 0

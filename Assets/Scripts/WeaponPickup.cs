@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class WeaponPickup : MonoBehaviour
 {
-    public WeaponInventory wi;
     public string weaponType;
+    public WeaponInventory wi;
+
     void Start()
     {
-      wi = FindObjectOfType<WeaponInventory>();
+        wi = FindObjectOfType<WeaponInventory>();
     }
 
     // Update is called once per frame
@@ -16,11 +17,14 @@ public class WeaponPickup : MonoBehaviour
     {
 
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player"){
-          wi.AddWeapon(weaponType);
-          Destroy(gameObject);
+        if (collision.gameObject.tag == "Player")
+        {
+            wi.AddWeapon(weaponType);
+
+            Destroy(gameObject);
         }
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BatteryShop : MonoBehaviour
 {
+    public bool weapon;
     public int batteryCost;
     public BatteryInventory be;
     public AudioSource rejectSound;
@@ -24,7 +25,7 @@ public class BatteryShop : MonoBehaviour
                 invFull = false;
         }
 
-        if (be.batteries >= batteryCost && !invFull)
+        if (be.batteries >= batteryCost && (!invFull || !weapon))
         {
             be.batteries -= batteryCost;
             return true;

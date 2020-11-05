@@ -12,11 +12,12 @@ GameObject:
   - component: {fileID: 3693953299916698649}
   - component: {fileID: 3765251638773406034}
   - component: {fileID: 3765251638773406033}
-  - component: {fileID: 824712956427697040}
-  - component: {fileID: 8209672850058883384}
+  - component: {fileID: 3765251638773406032}
+  - component: {fileID: 5107420198228099359}
+  - component: {fileID: 4033718413589082577}
   m_Layer: 8
-  m_Name: Security Bot
-  m_TagString: Turret
+  m_Name: Explosive Boss
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,9 +30,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3693953299916698652}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_LocalPosition: {x: -0.077, y: -0.033, z: 0}
+  m_LocalScale: {x: 2.42311, y: 2.5329528, z: 1}
+  m_Children:
+  - {fileID: 3765251639468267177}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -74,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 246ca85a1d02b1a4b93b87fb34d01949, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 41766fdd5407ee1428548a0cd06c5440, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,7 +107,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 7
+  m_Constraints: 4
 --- !u!58 &3765251638773406033
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -121,8 +123,8 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.34
---- !u!114 &824712956427697040
+  m_Radius: 0.425
+--- !u!114 &3765251638773406032
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,15 +133,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 3693953299916698652}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b55872de3d12aba40babd1f9ea2d1bc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d64e62fc9214084c9acc9009edd2505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToShootAfterSeeingThePlayer: 0.5
-  speed: 0
-  sightDistance: 20
-  stun: 0
-  myAttack: {fileID: 200650685192658909, guid: 062d311b62c150146a3cf08ba4d90e1f, type: 3}
---- !u!82 &8209672850058883384
+  isPlayer: 0
+  maxHealth: 35
+  curHealth: 0
+  invincibilityTimer: 0
+  isInvincible: 0
+  hurtSound: {fileID: 4033718413589082577}
+  healthBar: {fileID: 0}
+  showHealthToStart: 0
+--- !u!114 &5107420198228099359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3693953299916698652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4448379abd640ff4b874f3d38c41f844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinSpeed: 360
+  timeBetweenVollyShots: 0.1
+  myAttack: {fileID: 200650685192658909, guid: cb59c2e688fe20447adf1b7c3c848147, type: 3}
+--- !u!82 &4033718413589082577
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,7 +169,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 940695bf614bc44488640345e21f74a4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 97aeb5b8737996a459a0bb1443cc8a31, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -235,3 +255,66 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &3765251639468267178
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3765251639468267177}
+  - component: {fileID: 3765251639468267183}
+  - component: {fileID: 3765251639468267176}
+  m_Layer: 8
+  m_Name: Hurt Box
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3765251639468267177
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3765251639468267178}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3693953299916698648}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &3765251639468267183
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3765251639468267178}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &3765251639468267176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3765251639468267178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e96ed3321dbf264191e0745660d2325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  playerAttack: 0
+  constantDamage: 0

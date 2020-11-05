@@ -15,7 +15,16 @@ public class BatteryShop : MonoBehaviour
 
     public bool CanPickup()
     {
-        if (be.batteries >= batteryCost)
+        bool invFull = true;
+
+        bool[] inv = FindObjectOfType<UI_Inventory>().isFull;
+        foreach(bool slot in inv)
+        {
+            if (!slot)
+                invFull = false;
+        }
+
+        if (be.batteries >= batteryCost && !invFull)
         {
             be.batteries -= batteryCost;
             return true;

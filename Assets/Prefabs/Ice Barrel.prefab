@@ -119,7 +119,10 @@ MonoBehaviour:
   maxHealth: 1
   curHealth: 1
   invincibilityTimer: 0
+  isInvincible: 0
   hurtSound: {fileID: 6064558942439468834}
+  healthBar: {fileID: 0}
+  showHealthToStart: 0
 --- !u!114 &6532563125401897206
 MonoBehaviour:
   m_ObjectHideFlags: 0

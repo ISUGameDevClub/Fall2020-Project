@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RangedAI : MonoBehaviour
 {
+    public float timeToShootAfterSeeingThePlayer;
     private GameObject player;
 
     public float speed;
@@ -12,6 +13,7 @@ public class RangedAI : MonoBehaviour
 
     public GameObject myAttack;
     private bool attackReady;
+    private float hasSeenForTime;
 
     private Vector3 playerPosition;
 
@@ -40,13 +42,16 @@ public class RangedAI : MonoBehaviour
                     MoveAway();
                 }
                 Rotate();
-                if (attackReady)
+                if (attackReady && hasSeenForTime <= 0)
                 {
                     Attack();
                 }
+                else
+                    hasSeenForTime -= Time.deltaTime;
             }
             else
             {
+                hasSeenForTime = timeToShootAfterSeeingThePlayer;
                 if (playerPosition != Vector3.zero)
                     MoveToLast();
             }

@@ -73,6 +73,8 @@ public class ClosedEnemyDoors : MonoBehaviour
                 enemies[x].GetComponent<MeleeAI>().enabled = false;
             if (enemies[x].GetComponent<RiotBossAI>() != null)
                 enemies[x].GetComponent<RiotBossAI>().enabled = false;
+            if (enemies[x].GetComponent<ExplosiveBossAI>() != null)
+                enemies[x].GetComponent<ExplosiveBossAI>().enabled = false;
         }
         for (int x = 0; x < turrets.Length; x++)
         {
@@ -167,6 +169,8 @@ public class ClosedEnemyDoors : MonoBehaviour
                 enemies[x].GetComponent<MeleeAI>().enabled = true;
             if (enemies[x] != null && enemies[x].GetComponent<RiotBossAI>() != null)
                 enemies[x].GetComponent<RiotBossAI>().enabled = true;
+            if (enemies[x] != null && enemies[x].GetComponent<ExplosiveBossAI>() != null)
+                enemies[x].GetComponent<ExplosiveBossAI>().enabled = true;
         }
         for (int x = 0; x < turrets.Length; x++)
         {

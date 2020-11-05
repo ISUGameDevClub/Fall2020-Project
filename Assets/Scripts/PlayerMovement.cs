@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     private bool attackReady;
     public float stun;
+    public GameObject shieldObject;
 
     public AudioSource footstep1;
     public AudioSource footstep2;
@@ -18,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         attackReady = true;
+        shieldObject.SetActive(false);
     }
 
     void Update()
@@ -37,7 +39,11 @@ public class PlayerMovement : MonoBehaviour
         {
             stun -= Time.deltaTime;
         }
-        
+
+        if (curAttack == null)
+            shieldObject.SetActive(true);
+        else
+            shieldObject.SetActive(false);
     }
 
     private void Move()
@@ -78,11 +84,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void Attack()
     {
-        StartCoroutine(PlayerAttacked());
-        GameObject atk = Instantiate(curAttack, transform.position, transform.rotation).gameObject;
-        atk.transform.Translate(Vector3.right * atk.GetComponent<PlayerAttack>().spawnDistancefromPlayer);
-        if (atk.GetComponent<PlayerAttack>().attackSound != null)
-            AudioSource.PlayClipAtPoint(atk.GetComponent<PlayerAttack>().attackSound.clip, transform.position);
+        if (curAttack != null)
+        {
+            StartCoroutine(PlayerAttacked());
+            GameObject atk = Instantiate(curAttack, transform.position, transform.rotation).gameObject;
+            FindObjectOfType<UI_Inventory>().durs[GetComponent<CurrentWeapon>().SwitchWeapon] -= atk.GetComponent<PlayerAttack>().breakSpeed;
+            atk.transform.Translate(Vector3.right * atk.GetComponent<PlayerAttack>().spawnDistancefromPlayer);
+            if (atk.GetComponent<PlayerAttack>().attackSound != null)
+                AudioSource.PlayClipAtPoint(atk.GetComponent<PlayerAttack>().attackSound.clip, transform.position);
+
+            if (FindObjectOfType<UI_Inventory>().durs[GetComponent<CurrentWeapon>().SwitchWeapon] <= 0)
+            {
+                FindObjectOfType<UI_Inventory>().isFull[GetComponent<CurrentWeapon>().SwitchWeapon] = false;
+                FindObjectOfType<WeaponInventory>().weapons[GetComponent<CurrentWeapon>().SwitchWeapon] = "";
+                Destroy(FindObjectOfType<UI_Inventory>().slots[GetComponent<CurrentWeapon>().SwitchWeapon].GetComponentInChildren<SwitchWeapon>().gameObject);
+                FindObjectOfType<CurrentWeapon>().SwitchWeapon = 0;
+            }
+        }
     }
 
     private IEnumerator PlayerAttacked()

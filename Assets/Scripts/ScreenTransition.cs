@@ -75,7 +75,15 @@ public class ScreenTransition : MonoBehaviour
         {
             bar.itemToSpawn = null;
         }
-        if(FindObjectOfType<PlayerHealth>() != null)
+        ItemDrops[] allItems = FindObjectsOfType<ItemDrops>();
+        foreach (ItemDrops itemDrop in allItems)
+        {
+            itemDrop.possibleCommonDrops = new GameObject[0];
+            itemDrop.possibleRareDrops = new GameObject[0];
+            itemDrop.possibleLegendaryDrops = new GameObject[0];
+            itemDrop.alwaysDropped = null;
+        }
+        if (FindObjectOfType<PlayerHealth>() != null)
             FindObjectOfType<PlayerHealth>().hearts[0] = null;
 
         yield return new WaitForSecondsRealtime(1);
@@ -96,6 +104,14 @@ public class ScreenTransition : MonoBehaviour
         foreach (Barrel bar in allbarrels)
         {
             bar.itemToSpawn = null;
+        }
+        ItemDrops[] allItems = FindObjectsOfType<ItemDrops>();
+        foreach (ItemDrops itemDrop in allItems)
+        {
+            itemDrop.possibleCommonDrops = new GameObject[0];
+            itemDrop.possibleRareDrops = new GameObject[0];
+            itemDrop.possibleLegendaryDrops = new GameObject[0];
+            itemDrop.alwaysDropped = null;
         }
         if (FindObjectOfType<PlayerHealth>() != null)
             FindObjectOfType<PlayerHealth>().hearts[0] = null;
@@ -118,10 +134,47 @@ public class ScreenTransition : MonoBehaviour
         {
             bar.itemToSpawn = null;
         }
+        ItemDrops[] allItems = FindObjectsOfType<ItemDrops>();
+        foreach (ItemDrops itemDrop in allItems)
+        {
+            itemDrop.possibleCommonDrops = new GameObject[0];
+            itemDrop.possibleRareDrops = new GameObject[0];
+            itemDrop.possibleLegendaryDrops = new GameObject[0];
+            itemDrop.alwaysDropped = null;
+        }
         if (FindObjectOfType<PlayerHealth>() != null)
             FindObjectOfType<PlayerHealth>().hearts[0] = null;
 
         yield return new WaitForSecondsRealtime(1);
         SceneManager.LoadScene("Death Screen");
+    }
+
+    public void FadeToCredits()
+    {
+        act.SetActive(true);
+        fadeIn = true;
+        StartCoroutine(WaitForCredits());
+    }
+
+    IEnumerator WaitForCredits()
+    {
+        Barrel[] allbarrels = FindObjectsOfType<Barrel>();
+        foreach (Barrel bar in allbarrels)
+        {
+            bar.itemToSpawn = null;
+        }
+        ItemDrops[] allItems = FindObjectsOfType<ItemDrops>();
+        foreach (ItemDrops itemDrop in allItems)
+        {
+            itemDrop.possibleCommonDrops = new GameObject[0];
+            itemDrop.possibleRareDrops = new GameObject[0];
+            itemDrop.possibleLegendaryDrops = new GameObject[0];
+            itemDrop.alwaysDropped = null;
+        }
+        if (FindObjectOfType<PlayerHealth>() != null)
+            FindObjectOfType<PlayerHealth>().hearts[0] = null;
+
+        yield return new WaitForSecondsRealtime(1);
+        SceneManager.LoadScene("Credits");
     }
 }

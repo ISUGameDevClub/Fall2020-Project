@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
+    public GameObject deathParticle;
     public bool isPlayer;
     public int maxHealth;
     public int curHealth;
@@ -93,6 +94,9 @@ public class Health : MonoBehaviour
         {
             FindObjectOfType<ScreenTransition>().FadeToDeath();
         }
+
+        if (deathParticle != null)
+            Instantiate(deathParticle, transform.position, new Quaternion(0,0,0,0));
 
         if (healthBar != null)
             Destroy(healthBar.gameObject);

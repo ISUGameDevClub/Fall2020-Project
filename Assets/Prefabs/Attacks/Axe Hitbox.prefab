@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2000396877702473022}
   - component: {fileID: 3772431929201023175}
   - component: {fileID: 3955724239641120504}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Axe Hitbox
   m_TagString: Attack
   m_Icon: {fileID: 0}
@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e96ed3321dbf264191e0745660d2325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meleeAttack: 1
   damage: 2
   playerAttack: 1
   constantDamage: 0

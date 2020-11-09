@@ -103,5 +103,10 @@ public class RiotBossAI : MonoBehaviour
             if (piy.roomType == "Boss")
                 piy.roomType = "Victory";
         }
+
+        if(FindObjectOfType<Timer>() != false)
+        {
+            FindObjectOfType<Timer>().StopTimer();
+        }
     }
 }

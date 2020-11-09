@@ -137,6 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d64e62fc9214084c9acc9009edd2505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathParticle: {fileID: 3549462287981749056, guid: c6c689ad507fe3945a2e8ca19a5f6b03,
+    type: 3}
   isPlayer: 0
   maxHealth: 1
   curHealth: 0
@@ -343,6 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e96ed3321dbf264191e0745660d2325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meleeAttack: 0
   damage: 1
   playerAttack: 0
   constantDamage: 1

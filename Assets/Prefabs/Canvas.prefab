@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fae0d203c686fe479fac4746aa70d60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: Credits
+  nextScene: Power Plant Floor 2
   fadeOut: 0
   fadeIn: 0
   fadeSpeed: 0.08
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab9306c9abeefc749b6c1e9072cc88fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResetGameWhenLoaded: 0
+  ResetGameWhenLoaded: 1
 --- !u!1 &228741688448892302
 GameObject:
   m_ObjectHideFlags: 0
@@ -2618,7 +2618,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 100
+    m_MaxSize: 165
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1

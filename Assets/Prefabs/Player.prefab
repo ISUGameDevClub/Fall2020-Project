@@ -297,12 +297,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d64e62fc9214084c9acc9009edd2505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathParticle: {fileID: 0}
   isPlayer: 1
   maxHealth: 5
   curHealth: 0
   invincibilityTimer: 1
   isInvincible: 0
   hurtSound: {fileID: 833469471}
+  healthBar: {fileID: 0}
+  showHealthToStart: 0
 --- !u!114 &393995056578830092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,7 +319,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   batteryText: {fileID: 0}
-  batteries: 0
 --- !u!114 &2026753603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +331,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc03afb5be6bf3e42b5e9a7a99ec2095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemButtons:
+  - {fileID: 7173790392630513862, guid: 6a290b4d460659042b8355b992370fea, type: 3}
+  - {fileID: 7173790392630513862, guid: e181727260d978d429865e00b6f293de, type: 3}
+  - {fileID: 6966545104782800506, guid: 2a0a1a573ea953a45ae1cfb9d14c328f, type: 3}
+  - {fileID: 7173790392630513862, guid: db32991d0bd2f4f4293f75545fb2ce64, type: 3}
+  - {fileID: 6966545104782800506, guid: 5d1c7ab009073cf40b3e05f31356fcbe, type: 3}
   isFull: 00000000
   slots:
   - {fileID: 0}

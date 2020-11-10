@@ -15,6 +15,7 @@ public class SwitchWeapon : MonoBehaviour
     private Text text;
     public int myWeaponNumber;
     public Sprite CharacterWithWeapon;
+    public int myWeaponTypeNumber;
     
     public void Start()
     {

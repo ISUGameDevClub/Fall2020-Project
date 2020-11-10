@@ -87,6 +87,8 @@ public class ScreenTransition : MonoBehaviour
             FindObjectOfType<PlayerHealth>().hearts[0] = null;
 
         yield return new WaitForSecondsRealtime(1);
+        if(FindObjectOfType<UI_Inventory>() != null)
+            FindObjectOfType<UI_Inventory>().UpdateStaticWeapons();
         SceneManager.LoadScene(nextScene);
     }
 

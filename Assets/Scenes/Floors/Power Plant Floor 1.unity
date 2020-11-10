@@ -133,6 +133,75 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1422921464172706927}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &155874846
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 326376490766786923, guid: 2df1da6e265349845ae4bc9a7a5e3599,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.0142248
+      objectReference: {fileID: 0}
+    - target: {fileID: 326376490766786923, guid: 2df1da6e265349845ae4bc9a7a5e3599,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.17014723
+      objectReference: {fileID: 0}
+    - target: {fileID: 326376490766786923, guid: 2df1da6e265349845ae4bc9a7a5e3599,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326376490766786923, guid: 2df1da6e265349845ae4bc9a7a5e3599,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326376490766786923, guid: 2df1da6e265349845ae4bc9a7a5e3599,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326376490766786923, guid: 2df1da6e265349845ae4bc9a7a5e3599,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326376490766786923, guid: 2df1da6e265349845ae4bc9a7a5e3599,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 326376490766786923, guid: 2df1da6e265349845ae4bc9a7a5e3599,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 326376490766786923, guid: 2df1da6e265349845ae4bc9a7a5e3599,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326376490766786923, guid: 2df1da6e265349845ae4bc9a7a5e3599,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326376490766786923, guid: 2df1da6e265349845ae4bc9a7a5e3599,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326376490766786925, guid: 2df1da6e265349845ae4bc9a7a5e3599,
+        type: 3}
+      propertyPath: m_Name
+      value: Pistol Pickup
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2df1da6e265349845ae4bc9a7a5e3599, type: 3}
 --- !u!1 &282177103
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +230,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &439341531 stripped
 GameObject:
@@ -262,7 +331,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &981240002
 GameObject:
@@ -607,7 +676,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &981240008
 AudioSource:
@@ -1010,7 +1079,7 @@ PrefabInstance:
     - target: {fileID: 654103678196928523, guid: 55d59c2ecc6bfef45add043314b645a2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 654103678196928523, guid: 55d59c2ecc6bfef45add043314b645a2,
         type: 3}
@@ -1148,7 +1217,7 @@ PrefabInstance:
     - target: {fileID: 8513217512117430968, guid: e196439cdc36b4347a3470fcc9f21221,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8513217512117430968, guid: e196439cdc36b4347a3470fcc9f21221,
         type: 3}
@@ -1185,6 +1254,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 48630992, guid: 82a596dac06a4c04380b4da27a660b75, type: 3}
+      propertyPath: ResetGameWhenLoaded
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065625828, guid: 82a596dac06a4c04380b4da27a660b75, type: 3}
+      propertyPath: nextScene
+      value: Power Plant Floor 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1422921464166609269, guid: 82a596dac06a4c04380b4da27a660b75,
         type: 3}
       propertyPath: m_LocalPosition.x

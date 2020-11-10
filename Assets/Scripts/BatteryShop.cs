@@ -25,9 +25,9 @@ public class BatteryShop : MonoBehaviour
                 invFull = false;
         }
 
-        if (be.batteries >= batteryCost && (!invFull || !weapon))
+        if (BatteryInventory.batteries >= batteryCost && (!invFull || !weapon))
         {
-            be.batteries -= batteryCost;
+            BatteryInventory.batteries -= batteryCost;
             return true;
         }
         AudioSource.PlayClipAtPoint(rejectSound.clip, transform.position);

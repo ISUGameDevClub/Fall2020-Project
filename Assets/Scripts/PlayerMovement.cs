@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         if (stun <= 0 && !FindObjectOfType<Pause>().gamePause)
         {
-            Move();
+            //Move();
             Rotate();
 
             if (Input.GetMouseButton(0) && attackReady)
@@ -46,14 +46,20 @@ public class PlayerMovement : MonoBehaviour
             shieldObject.SetActive(false);
     }
 
+    private void FixedUpdate()
+    {
+        Move();
+    }
+
     private void Move()
     {
         GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         Vector2 playerInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        Vector2 movement = Vector2.ClampMagnitude(playerInput, 1) * speed * Time.deltaTime;
-        transform.position = transform.position + new Vector3(movement.x,movement.y, 0);
+        Vector2 movement = Vector2.ClampMagnitude(playerInput, 1) * speed * Time.fixedDeltaTime;
+        //transform.position = transform.position + new Vector3(movement.x,movement.y, 0);
+        GetComponent<Rigidbody2D>().position = GetComponent<Rigidbody2D>().position + new Vector2(movement.x, movement.y);
 
-        if(playerInput.magnitude > .5f)
+        if (playerInput.magnitude > .5f)
         {
             if (timeUntilNextStep > 0)
                 timeUntilNextStep -= Time.deltaTime;

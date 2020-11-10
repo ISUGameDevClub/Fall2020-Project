@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2065625828}
   - component: {fileID: 2065625830}
   - component: {fileID: 2065625831}
+  - component: {fileID: 48630992}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -92,6 +93,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1422921463361987520}
+--- !u!114 &48630992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065625826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab9306c9abeefc749b6c1e9072cc88fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ResetGameWhenLoaded: 0
 --- !u!1 &228741688448892302
 GameObject:
   m_ObjectHideFlags: 0

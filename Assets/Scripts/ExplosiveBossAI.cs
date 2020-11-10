@@ -9,6 +9,7 @@ public class ExplosiveBossAI : MonoBehaviour
     public float timeBetweenVollyShots;
     private GameObject player;
     public GameObject myAttack;
+    public GameObject myFastAttack;
     private bool attackReady;
     private bool spinAttack;
     private bool spinNext;
@@ -73,15 +74,15 @@ public class ExplosiveBossAI : MonoBehaviour
             float playerDistance = Vector3.Distance(transform.position, player.transform.position);
             float randAngle = Random.Range(-25f, 25f);
             float rangeMultiplier = Random.Range(-.5f, .5f);
-            atk = Instantiate(myAttack, transform.position, transform.rotation).gameObject;
+            atk = Instantiate(myFastAttack, transform.position, transform.rotation).gameObject;
             atk.transform.Translate(Vector3.right * atk.GetComponent<PlayerAttack>().spawnDistancefromPlayer);
             atk.transform.eulerAngles = new Vector3(0, 0, atk.transform.eulerAngles.z + randAngle);
-            atk.GetComponent<ExplisiveProjectile>().projectileSpeed = Mathf.Clamp((playerDistance - 1) + rangeMultiplier, 2, 8);
+            atk.GetComponent<ExplisiveProjectile>().projectileSpeed = Mathf.Clamp((playerDistance - 1) + rangeMultiplier, 2, 8) * 1.5f;
             if (atk.GetComponent<PlayerAttack>().attackSound != null)
                 AudioSource.PlayClipAtPoint(atk.GetComponent<PlayerAttack>().attackSound.clip, transform.position);
             yield return new WaitForSeconds(timeBetweenVollyShots);
         }
-        yield return new WaitForSeconds(myAttack.GetComponent<PlayerAttack>().attackSpeed);
+        yield return new WaitForSeconds(myFastAttack.GetComponent<PlayerAttack>().attackSpeed);
         attackReady = true;
     }
 

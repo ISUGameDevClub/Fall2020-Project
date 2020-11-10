@@ -40,6 +40,9 @@ public class RiotBossAI : MonoBehaviour
             myHealth.isInvincible = true;
             Rotate();
             chargeTimer -= Time.deltaTime;
+
+            if (chargeTimer <= .5f && chargeTimer > .3f)
+                GetComponent<Animator>().SetTrigger("Prepare");
         }
         else if (!charging && !stunned)
         {
@@ -55,6 +58,7 @@ public class RiotBossAI : MonoBehaviour
             myHealth.isInvincible = false;
             MoveAwayFromWall();
             stunTimer -= Time.deltaTime;
+
         }
         else
         {
@@ -104,7 +108,7 @@ public class RiotBossAI : MonoBehaviour
                 piy.roomType = "Victory";
         }
 
-        if(FindObjectOfType<Timer>() != false)
+        if(FindObjectOfType<Timer>() != false) // MOVE TO FINAL BOSS
         {
             FindObjectOfType<Timer>().StopTimer();
         }

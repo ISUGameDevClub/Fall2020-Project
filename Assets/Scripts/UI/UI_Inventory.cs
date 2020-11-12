@@ -23,7 +23,6 @@ public class UI_Inventory : MonoBehaviour
 
         for(int x = 0; x < slots.Length; x++)
         {
-            Debug.Log(lastItemButtonNums[x].ToString());
             if (lastItemButtonNums[x] != 0)
             {
                 GetWeapon(lastDurs[x], lastWeaponTypes[x], lastItemButtonNums[x]);

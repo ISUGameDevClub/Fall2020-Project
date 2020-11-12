@@ -14,26 +14,6 @@ public class ResetGame : MonoBehaviour
             UI_Inventory.lastDurs = new int[4];
             UI_Inventory.lastWeaponTypes = new string[4];
             UI_Inventory.lastItemButtonNums = new int[4];
-
-            /*
-            WeaponInventory.weapons = new string[4];
-            for (int x = 0; x < WeaponInventory.weapons.Length; x++)
-            {
-                WeaponInventory.weapons[x] = "";
-            }
-
-            UI_Inventory.isFull = new bool[4];
-            for (int x = 0; x < UI_Inventory.isFull.Length; x++)
-            {
-                UI_Inventory.isFull[x] = false;
-            }
-
-            UI_Inventory.durs = new int[4];
-            for (int x = 0; x < UI_Inventory.durs.Length; x++)
-            {
-                UI_Inventory.durs[x] = 0;
-            }
-            */
         }
     }
 

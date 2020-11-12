@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     private float timeUntilNextStep;
     private bool step1Next;
 
+    private float dropWeaponTimer;
+
     private void Start()
     {
         attackReady = true;
@@ -27,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         if (stun <= 0 && !FindObjectOfType<Pause>().gamePause)
         {
-            //Move();
             Rotate();
 
             if (Input.GetMouseButton(0) && attackReady)
@@ -35,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
                 Attack();
             }
         }
-        else
+        else if (!FindObjectOfType<Pause>().gamePause)
         {
             stun -= Time.deltaTime;
         }
@@ -44,11 +45,33 @@ public class PlayerMovement : MonoBehaviour
             shieldObject.SetActive(true);
         else
             shieldObject.SetActive(false);
+
+        if(dropWeaponTimer > 0 && Input.GetKey(KeyCode.Q) && GetComponent<CurrentWeapon>().SwitchWeapon != 0)
+        {
+            dropWeaponTimer -= Time.deltaTime;
+        }
+        else if (!Input.GetKey(KeyCode.Q) || GetComponent<CurrentWeapon>().SwitchWeapon == 0)
+        {
+            dropWeaponTimer = 1;
+        }
+        else
+        {
+            FindObjectOfType<UI_Inventory>().durs[GetComponent<CurrentWeapon>().SwitchWeapon] -= 100;
+
+            FindObjectOfType<UI_Inventory>().isFull[GetComponent<CurrentWeapon>().SwitchWeapon] = false;
+            FindObjectOfType<WeaponInventory>().weapons[GetComponent<CurrentWeapon>().SwitchWeapon] = "";
+            Destroy(FindObjectOfType<UI_Inventory>().slots[GetComponent<CurrentWeapon>().SwitchWeapon].GetComponentInChildren<SwitchWeapon>().gameObject);
+            FindObjectOfType<CurrentWeapon>().SwitchWeapon = 0;
+        }
     }
 
     private void FixedUpdate()
     {
-        Move();
+        if (stun <= 0 && !FindObjectOfType<Pause>().gamePause)
+        {
+            Move();
+
+        }
     }
 
     private void Move()

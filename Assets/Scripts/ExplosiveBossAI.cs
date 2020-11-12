@@ -29,18 +29,21 @@ public class ExplosiveBossAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!spinAttack)
+        if (player != null)
         {
-            Rotate();
-        }
-        else
-        {
-            transform.eulerAngles += new Vector3(0, 0, Time.deltaTime * spinSpeed);
-        }
+            if (!spinAttack)
+            {
+                Rotate();
+            }
+            else
+            {
+                transform.eulerAngles += new Vector3(0, 0, Time.deltaTime * spinSpeed);
+            }
 
-        if (attackReady)
-        {
-            Attack();
+            if (attackReady)
+            {
+                Attack();
+            }
         }
     }
 

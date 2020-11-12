@@ -5,6 +5,7 @@ using UnityEngine;
 public class FreezeZone : MonoBehaviour
 {
     public float freezeTime;
+    public GameObject freezeEffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,13 +23,20 @@ public class FreezeZone : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<PlayerMovement>().stun = freezeTime;
+            Instantiate(freezeEffect, collision.gameObject.transform.position, new Quaternion(0,0,0,0)).GetComponent<DestroyAfterTime>().lingerTime = freezeTime;
         }
         else if (collision.gameObject.tag == "Enemy")
         {
-            if(collision.gameObject.GetComponent<MeleeAI>() != null)
+            if (collision.gameObject.GetComponent<MeleeAI>() != null)
+            {
                 collision.gameObject.GetComponent<MeleeAI>().stun = freezeTime;
+                Instantiate(freezeEffect, collision.gameObject.transform.position, new Quaternion(0, 0, 0, 0)).GetComponent<DestroyAfterTime>().lingerTime = freezeTime;
+            }
             else if (collision.gameObject.GetComponent<RangedAI>() != null)
+            {
                 collision.gameObject.GetComponent<RangedAI>().stun = freezeTime;
+                Instantiate(freezeEffect, collision.gameObject.transform.position, new Quaternion(0, 0, 0, 0)).GetComponent<DestroyAfterTime>().lingerTime = freezeTime;
+            }
         }
     }
 }

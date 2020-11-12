@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4113900289689372953}
   - component: {fileID: 5448571726218051668}
   - component: {fileID: 9155645779801570838}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Security Bot Laser
   m_TagString: Attack
   m_Icon: {fileID: 0}
@@ -103,6 +103,7 @@ MonoBehaviour:
   attackLifespan: 5
   attackSpeed: 4
   spawnDistancefromPlayer: 1
+  breakSpeed: 0
 --- !u!114 &200650685192658905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,6 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e96ed3321dbf264191e0745660d2325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meleeAttack: 0
   damage: 1
   playerAttack: 0
   constantDamage: 0
@@ -130,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af449bd2be0013545be1647f44efd8ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 10
+  projectileSpeed: 8
 --- !u!50 &4113900289689372953
 Rigidbody2D:
   serializedVersion: 4

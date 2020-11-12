@@ -15,6 +15,7 @@ public class RiotBossAI : MonoBehaviour
     private float stunTimer;
     public float backwardsSpeed;
     private GameObject stairs;
+    private Health myHealth;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class RiotBossAI : MonoBehaviour
         player = FindObjectOfType<PlayerMovement>().gameObject;
         chargeTimer = timeUntilCharge;
         stunTimer = timeStunned;
+        myHealth = GetComponent<Health>();
     }
 
     // Update is called once per frame
@@ -35,8 +37,12 @@ public class RiotBossAI : MonoBehaviour
     {
         if (!stunned && !charging && chargeTimer > 0)
         {
+            myHealth.isInvincible = true;
             Rotate();
             chargeTimer -= Time.deltaTime;
+
+            if (chargeTimer <= .5f && chargeTimer > .3f)
+                GetComponent<Animator>().SetTrigger("Prepare");
         }
         else if (!charging && !stunned)
         {
@@ -44,12 +50,15 @@ public class RiotBossAI : MonoBehaviour
         }
         else if (charging)
         {
+            myHealth.isInvincible = false;
             Move();
         }
         else if (stunned && stunTimer > 0)
         {
+            myHealth.isInvincible = false;
             MoveAwayFromWall();
             stunTimer -= Time.deltaTime;
+
         }
         else
         {
@@ -59,6 +68,7 @@ public class RiotBossAI : MonoBehaviour
         }
         
     }
+
     private void Rotate()
     {
         Vector3 direction = (player.transform.position - transform.position);
@@ -91,11 +101,16 @@ public class RiotBossAI : MonoBehaviour
 
     private void OnDestroy()
     {
-        foreach(PlayerInRoom piy in FindObjectsOfType<PlayerInRoom>())
+        stairs.SetActive(true);
+        foreach (PlayerInRoom piy in FindObjectsOfType<PlayerInRoom>())
         {
             if (piy.roomType == "Boss")
-                piy.roomType = "Main";
+                piy.roomType = "Victory";
         }
-        stairs.SetActive(true);
+
+        if(FindObjectOfType<Timer>() != false) // MOVE TO FINAL BOSS
+        {
+            FindObjectOfType<Timer>().StopTimer();
+        }
     }
 }

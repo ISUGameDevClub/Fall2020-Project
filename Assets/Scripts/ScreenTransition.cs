@@ -48,6 +48,11 @@ public class ScreenTransition : MonoBehaviour
             }
 
         }
+
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            StartCoroutine(Wait(SceneManager.GetActiveScene().name));
+        }
     }
 
     public void FadeOut()
@@ -58,9 +63,7 @@ public class ScreenTransition : MonoBehaviour
 
     public void FadeIn()
     {
-        act.SetActive(true);
-        fadeIn = true;
-        StartCoroutine(Wait());
+        StartCoroutine(Wait(nextScene));
     }
 
     public void Quit()
@@ -68,39 +71,44 @@ public class ScreenTransition : MonoBehaviour
         Application.Quit();
     }
 
-    IEnumerator Wait()
+    public void FadeToTitle()
     {
+        StartCoroutine(Wait("Title"));
+    }
+
+    public void FadeToDeath()
+    {
+        StartCoroutine(Wait("Death Screen"));
+    }
+
+    public void FadeToCredits()
+    {
+        StartCoroutine(Wait("Credits"));
+    }
+
+    IEnumerator Wait(string ns)
+    {
+        act.SetActive(true);
+        fadeIn = true;
         Barrel[] allbarrels = FindObjectsOfType<Barrel>();
         foreach (Barrel bar in allbarrels)
         {
             bar.itemToSpawn = null;
         }
-        if(FindObjectOfType<PlayerHealth>() != null)
-            FindObjectOfType<PlayerHealth>().hearts[0] = null;
-
-        yield return new WaitForSecondsRealtime(1);
-        SceneManager.LoadScene(nextScene);
-    }
-
-
-    public void FadeToTitle()
-    {
-        act.SetActive(true);
-        fadeIn = true;
-        StartCoroutine(WaitForTitle());
-    }
-
-    IEnumerator WaitForTitle()
-    {
-        Barrel[] allbarrels = FindObjectsOfType<Barrel>();
-        foreach (Barrel bar in allbarrels)
+        ItemDrops[] allItems = FindObjectsOfType<ItemDrops>();
+        foreach (ItemDrops itemDrop in allItems)
         {
-            bar.itemToSpawn = null;
+            itemDrop.possibleCommonDrops = new GameObject[0];
+            itemDrop.possibleRareDrops = new GameObject[0];
+            itemDrop.possibleLegendaryDrops = new GameObject[0];
+            itemDrop.alwaysDropped = null;
         }
         if (FindObjectOfType<PlayerHealth>() != null)
             FindObjectOfType<PlayerHealth>().hearts[0] = null;
 
         yield return new WaitForSecondsRealtime(1);
-        SceneManager.LoadScene("Title");
+        if(FindObjectOfType<UI_Inventory>() != null)
+            FindObjectOfType<UI_Inventory>().UpdateStaticWeapons();
+        SceneManager.LoadScene(ns);
     }
 }

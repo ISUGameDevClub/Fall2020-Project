@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class RangedAI : MonoBehaviour
 {
+    public float timeToShootAfterSeeingThePlayer;
     private GameObject player;
 
     public float speed;
     public float sightDistance;
+    public float stun;
 
     public GameObject myAttack;
     private bool attackReady;
+    private float hasSeenForTime;
 
     private Vector3 playerPosition;
 
@@ -25,24 +28,36 @@ public class RangedAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(LookForPlayer()){
-            playerPosition = player.transform.position;
-            if ((player.transform.position - transform.position).magnitude < sightDistance){
-                Move();
+        if (stun <= 0)
+        {
+            if (LookForPlayer())
+            {
+                playerPosition = player.transform.position;
+                if ((player.transform.position - transform.position).magnitude < sightDistance)
+                {
+                    Move();
+                }
+                else
+                {
+                    MoveAway();
+                }
+                Rotate();
+                if (attackReady && hasSeenForTime <= 0)
+                {
+                    Attack();
+                }
+                else
+                    hasSeenForTime -= Time.deltaTime;
             }
-            else {
-                MoveAway();
-            }
-            Rotate();
-            if (attackReady){
-                Attack();
+            else
+            {
+                hasSeenForTime = timeToShootAfterSeeingThePlayer;
+                if (playerPosition != Vector3.zero)
+                    MoveToLast();
             }
         }
         else
-        {
-            if (playerPosition != Vector3.zero)
-                MoveToLast();
-        }
+            stun -= Time.deltaTime;
     }
 
     private void Move()

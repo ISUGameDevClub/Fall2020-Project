@@ -5,28 +5,27 @@ using UnityEngine;
 public class PickUp : MonoBehaviour
 {
     private UI_Inventory inventory;
-    public GameObject itemButton;
+    public AudioSource pickupSound;
+    public int itemButtonNumber;
     public string weaponType;
-    public WeaponInventory wi;
+
     private void Start()
     {
-        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<UI_Inventory>();
-        wi = FindObjectOfType<WeaponInventory>();
-
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+            inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<UI_Inventory>();
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            wi.AddWeapon(weaponType);
-            for (int i = 0; i < inventory.slots.Length; i++)
+            if (!GetComponent<BatteryShop>() || (GetComponent<BatteryShop>() && GetComponent<BatteryShop>().CanPickup()))
             {
-                if (inventory.isFull[i] == false)
+                if(inventory.GetWeapon(100, weaponType, itemButtonNumber))
                 {
-                    inventory.isFull[i] = true;
-                    Instantiate(itemButton, inventory.slots[i].transform, false);        
+                    if (pickupSound != null)
+                        AudioSource.PlayClipAtPoint(pickupSound.clip, transform.position);
                     Destroy(gameObject);
-                    break;
                 }
             }
 

@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 3765251638773406032}
   - component: {fileID: 824712956427697040}
   - component: {fileID: 6711635623179594464}
-  - component: {fileID: 2220840168107508358}
   m_Layer: 8
   m_Name: Bandit
   m_TagString: Enemy
@@ -77,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ef3d5c5e16b5e8f4eb8eb4151cd3433f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c99ba3d43e826fa498ea5231862ea11f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -143,10 +142,7 @@ MonoBehaviour:
   maxHealth: 1
   curHealth: 0
   invincibilityTimer: 0
-  isInvincible: 0
   hurtSound: {fileID: 6711635623179594464}
-  healthBar: {fileID: 0}
-  showHealthToStart: 0
 --- !u!114 &824712956427697040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +158,6 @@ MonoBehaviour:
   timeToShootAfterSeeingThePlayer: 0.5
   speed: 1
   sightDistance: 5
-  stun: 0
   myAttack: {fileID: 200650685192658909, guid: fdef5ac60c6f563479916449d71ceb76, type: 3}
 --- !u!82 &6711635623179594464
 AudioSource:
@@ -260,31 +255,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2220840168107508358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3693953299916698652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76b76c23cadab46418934f01543b962c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  alwaysDropsAnItem: 0
-  alwaysDropped: {fileID: 0}
-  possibleCommonDrops:
-  - {fileID: 2210531438463764903, guid: 6bdc9d599104088478b3680738c4ed57, type: 3}
-  - {fileID: 2210531438463764903, guid: 6bdc9d599104088478b3680738c4ed57, type: 3}
-  - {fileID: 2210531438463764903, guid: 6bdc9d599104088478b3680738c4ed57, type: 3}
-  - {fileID: 2210531438463764903, guid: 6bdc9d599104088478b3680738c4ed57, type: 3}
-  - {fileID: 3311224671789597219, guid: b488596ecfc493340af0d4d21c33afb6, type: 3}
-  possibleRareDrops:
-  - {fileID: 326376490766786925, guid: 2df1da6e265349845ae4bc9a7a5e3599, type: 3}
-  - {fileID: 326376490766786925, guid: 2df1da6e265349845ae4bc9a7a5e3599, type: 3}
-  possibleLegendaryDrops:
-  - {fileID: 654103678196928525, guid: a68c53c4bd19f144ab663043fe71c864, type: 3}
 --- !u!1 &3765251639468267178
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,7 +302,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.55
+  m_Radius: 0.6
 --- !u!114 &3765251639468267176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,4 +318,4 @@ MonoBehaviour:
   meleeAttack: 0
   damage: 1
   playerAttack: 0
-  constantDamage: 1
+  constantDamage: 0

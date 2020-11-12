@@ -15,7 +15,6 @@ public class RiotBossAI : MonoBehaviour
     private float stunTimer;
     public float backwardsSpeed;
     private GameObject stairs;
-    private Health myHealth;
 
     private void Awake()
     {
@@ -29,7 +28,6 @@ public class RiotBossAI : MonoBehaviour
         player = FindObjectOfType<PlayerMovement>().gameObject;
         chargeTimer = timeUntilCharge;
         stunTimer = timeStunned;
-        myHealth = GetComponent<Health>();
     }
 
     // Update is called once per frame
@@ -37,7 +35,6 @@ public class RiotBossAI : MonoBehaviour
     {
         if (!stunned && !charging && chargeTimer > 0)
         {
-            myHealth.isInvincible = true;
             Rotate();
             chargeTimer -= Time.deltaTime;
 
@@ -50,12 +47,10 @@ public class RiotBossAI : MonoBehaviour
         }
         else if (charging)
         {
-            myHealth.isInvincible = false;
             Move();
         }
         else if (stunned && stunTimer > 0)
         {
-            myHealth.isInvincible = false;
             MoveAwayFromWall();
             stunTimer -= Time.deltaTime;
 
@@ -68,7 +63,6 @@ public class RiotBossAI : MonoBehaviour
         }
         
     }
-
     private void Rotate()
     {
         Vector3 direction = (player.transform.position - transform.position);
@@ -101,16 +95,19 @@ public class RiotBossAI : MonoBehaviour
 
     private void OnDestroy()
     {
-        stairs.SetActive(true);
-        foreach (PlayerInRoom piy in FindObjectsOfType<PlayerInRoom>())
+        foreach(PlayerInRoom piy in FindObjectsOfType<PlayerInRoom>())
         {
             if (piy.roomType == "Boss")
-                piy.roomType = "Victory";
+                piy.roomType = "Main";
         }
+<<<<<<< HEAD
 
         if(FindObjectOfType<Timer>() != false) // MOVE TO FINAL BOSS
         {
             FindObjectOfType<Timer>().StopTimer();
         }
+=======
+        stairs.SetActive(true);
+>>>>>>> d8f934a9bedafd7e6df3a29a5952d9ad8ba196ed
     }
 }

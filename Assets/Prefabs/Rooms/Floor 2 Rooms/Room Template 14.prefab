@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -3551388771465188781}
   - component: {fileID: -8937149701890861719}
   m_Layer: 0
-  m_Name: Room Template 14
+  m_Name: Starting Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,6 +31,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+<<<<<<< HEAD
   - {fileID: 7741589386570330184}
   - {fileID: 873604603724236024}
   - {fileID: 6331755956732540181}
@@ -44,6 +45,9 @@ Transform:
   - {fileID: 2821322502673178119}
   - {fileID: 8512646226442932336}
   - {fileID: 775195646292307751}
+=======
+  - {fileID: 6525391356686209084}
+>>>>>>> d8f934a9bedafd7e6df3a29a5952d9ad8ba196ed
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -150,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebafecbecb9bebc4eb99d99afd91cb73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
 --- !u!1001 &334256225920273382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -976,6 +981,9 @@ Transform:
   m_PrefabInstance: {fileID: 7250061521956045069}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8199081654300745531
+=======
+--- !u!1001 &8593286084587129361
+>>>>>>> d8f934a9bedafd7e6df3a29a5952d9ad8ba196ed
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1050,6 +1058,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8199081654300745531}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1001 &9129373297604466967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1125,3 +1134,5 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 9129373297604466967}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> d8f934a9bedafd7e6df3a29a5952d9ad8ba196ed

@@ -19,12 +19,4 @@ public class MeleeAttack : MonoBehaviour
         if(player != null)
             transform.position = player.transform.position + offset;
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Shield" || collision.gameObject.tag == "Turret")
-        {
-            AudioSource.PlayClipAtPoint(collision.GetComponent<AudioSource>().clip, transform.position);
-        }
-    }
 }

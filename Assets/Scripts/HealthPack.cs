@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HealthPack : MonoBehaviour
 {
-    public AudioSource healSound;
 
     public int healthHealed = 100;
     // Start is called before the first frame update
@@ -18,12 +17,9 @@ public class HealthPack : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (!GetComponent<BatteryShop>() || (GetComponent<BatteryShop>() && GetComponent<BatteryShop>().CanPickup()))
-            {
-                collision.gameObject.GetComponent<Health>().HealDamage(healthHealed);
-                AudioSource.PlayClipAtPoint(healSound.clip, transform.position);
-                Destroy(gameObject);
-            }
+            collision.gameObject.GetComponent<Health>().HealDamage(healthHealed);
+            AudioSource.PlayClipAtPoint(GetComponent<AudioSource>().clip, transform.position);
+            Destroy(gameObject);
         }
     }
 }

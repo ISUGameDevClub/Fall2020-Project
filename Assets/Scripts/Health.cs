@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
@@ -10,40 +9,19 @@ public class Health : MonoBehaviour
     public int maxHealth;
     public int curHealth;
     public float invincibilityTimer;
-    public bool isInvincible;
+    private bool isInvincible;
     public AudioSource hurtSound;
-    public Slider healthBar;
-    private float healthBarOffset;
-    public bool showHealthToStart;
 
     // Start is called before the first frame update
     void Start()
     {
         curHealth = maxHealth;
-
-        if (healthBar != null)
-        {
-            healthBar.minValue = 0;
-            healthBar.maxValue = maxHealth;
-            healthBar.value = maxHealth;
-            healthBarOffset = healthBar.transform.localPosition.y;
-            healthBar.gameObject.transform.SetParent(null);
-            if(!showHealthToStart)
-                healthBar.gameObject.SetActive(false);
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(healthBar != null)
-            healthBar.transform.position = transform.position + (new Vector3(0, healthBarOffset, 0) * transform.localScale.x);
-
-        if (healthBar != null && curHealth != maxHealth)
-        {
-            healthBar.gameObject.SetActive(true);
-            healthBar.value = curHealth;
-        }
+        
     }
 
     public void HealDamage(int amount)
@@ -90,6 +68,7 @@ public class Health : MonoBehaviour
 
     public void Die()
     {
+<<<<<<< HEAD
         if (isPlayer)
         {
             FindObjectOfType<ScreenTransition>().FadeToDeath();
@@ -100,6 +79,8 @@ public class Health : MonoBehaviour
 
         if (healthBar != null)
             Destroy(healthBar.gameObject);
+=======
+>>>>>>> d8f934a9bedafd7e6df3a29a5952d9ad8ba196ed
         Destroy(gameObject);
     }
 }

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 326376490766786924}
   - component: {fileID: 326376490766786922}
   - component: {fileID: 326376490766786921}
-  - component: {fileID: 6892821482883549230}
   m_Layer: 0
   m_Name: Pistol Pickup
   m_TagString: Untagged
@@ -73,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: 21300000, guid: 0fb47449d867d1a4daa3186c9c66323f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8653d38b71d4f044dbf77b0dd77de5f5, type: 3}
   m_Color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -112,6 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74b6cee08d1534943b10a3cf369c027b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   pickupSound: {fileID: 6892821482883549230}
   itemButtonNumber: 2
   weaponType: Pistol
@@ -211,3 +211,9 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+=======
+  itemButton: {fileID: 6966545104782800506, guid: 2a0a1a573ea953a45ae1cfb9d14c328f,
+    type: 3}
+  weaponType: Pistol
+  wi: {fileID: 0}
+>>>>>>> d8f934a9bedafd7e6df3a29a5952d9ad8ba196ed

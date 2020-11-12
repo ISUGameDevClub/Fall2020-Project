@@ -19,7 +19,7 @@ public class Barrel : MonoBehaviour
 
     private void OnDestroy()
     {
-        if(itemToSpawn != null && !GameQuiting.gameEnding)
+        if(itemToSpawn != null)
             Instantiate(itemToSpawn, transform.position, transform.rotation);
     }
 }

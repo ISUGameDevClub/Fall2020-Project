@@ -71,6 +71,7 @@ public class ScreenTransition : MonoBehaviour
         Application.Quit();
     }
 
+<<<<<<< HEAD
     public void FadeToTitle()
     {
         StartCoroutine(Wait("Title"));
@@ -111,4 +112,41 @@ public class ScreenTransition : MonoBehaviour
             FindObjectOfType<UI_Inventory>().UpdateStaticWeapons();
         SceneManager.LoadScene(ns);
     }
+=======
+    IEnumerator Wait()
+    {
+        Barrel[] allbarrels = FindObjectsOfType<Barrel>();
+        foreach (Barrel bar in allbarrels)
+        {
+            bar.itemToSpawn = null;
+        }
+        if(FindObjectOfType<PlayerHealth>() != null)
+            FindObjectOfType<PlayerHealth>().hearts[0] = null;
+
+        yield return new WaitForSecondsRealtime(1);
+        SceneManager.LoadScene(nextScene);
+    }
+
+
+    public void FadeToTitle()
+    {
+        act.SetActive(true);
+        fadeIn = true;
+        StartCoroutine(WaitForTitle());
+    }
+
+    IEnumerator WaitForTitle()
+    {
+        Barrel[] allbarrels = FindObjectsOfType<Barrel>();
+        foreach (Barrel bar in allbarrels)
+        {
+            bar.itemToSpawn = null;
+        }
+        if (FindObjectOfType<PlayerHealth>() != null)
+            FindObjectOfType<PlayerHealth>().hearts[0] = null;
+
+        yield return new WaitForSecondsRealtime(1);
+        SceneManager.LoadScene("Title");
+    }
+>>>>>>> d8f934a9bedafd7e6df3a29a5952d9ad8ba196ed
 }

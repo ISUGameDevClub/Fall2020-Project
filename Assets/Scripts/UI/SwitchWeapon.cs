@@ -12,33 +12,36 @@ public class SwitchWeapon : MonoBehaviour
     public GameObject WeaponBox;
     public string WeaponType;
     public int CurrentWeapon;
+<<<<<<< HEAD
     private Text text;
     public int myWeaponNumber;
     public Sprite CharacterWithWeapon;
     public int myWeaponTypeNumber;
+=======
+>>>>>>> d8f934a9bedafd7e6df3a29a5952d9ad8ba196ed
     
     public void Start()
     {
         wi = FindObjectOfType<WeaponInventory>();
         cw = GameObject.FindGameObjectWithTag("Player").GetComponent<CurrentWeapon>();
         pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-        text = GetComponentInChildren<Text>();
     }
 
     private void Update()
     {
         CurrentWeapon = cw.SwitchWeapon;
-        if(text != null && FindObjectOfType<UI_Inventory>() != null)
-            text.text = FindObjectOfType<UI_Inventory>().durs[myWeaponNumber].ToString() +"%";
+        
         AddWeapon(CurrentWeapon);
     }
 
     private void AddWeapon(int slot)
     {
-        if(wi.weapons[slot] == WeaponType && pm != null)
+        if(wi.weapons[slot] == WeaponType)
         {
             pm.curAttack = WeaponBox;
-            pm.GetComponent<SpriteRenderer>().sprite = CharacterWithWeapon;
         }  
     }
+    
+
+
 }

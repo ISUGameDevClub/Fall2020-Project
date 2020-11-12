@@ -8,7 +8,6 @@ public class PlayerAttack : MonoBehaviour
     public float attackLifespan;
     public float attackSpeed;
     public float spawnDistancefromPlayer;
-    public int breakSpeed;
 
     // Start is called before the first frame update
     void Start()

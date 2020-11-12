@@ -7,8 +7,8 @@ public class MeleeAI : MonoBehaviour
     private GameObject player;
 
     public float speed;
-    public float sightDistance;
     public float stun;
+    public float sightDistance;
 
     private Vector3 playerPosition;
     
@@ -42,7 +42,6 @@ public class MeleeAI : MonoBehaviour
             stun -= Time.deltaTime;
         }
     }
-
     private void MoveTo()
     {
         GetComponent<Rigidbody2D>().velocity = Vector3.zero;

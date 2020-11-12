@@ -8,8 +8,8 @@ public class RangedAI : MonoBehaviour
     private GameObject player;
 
     public float speed;
-    public float sightDistance;
     public float stun;
+    public float sightDistance;
 
     public GameObject myAttack;
     private bool attackReady;
@@ -49,6 +49,7 @@ public class RangedAI : MonoBehaviour
                 else
                     hasSeenForTime -= Time.deltaTime;
             }
+
             else
             {
                 hasSeenForTime = timeToShootAfterSeeingThePlayer;
@@ -57,7 +58,9 @@ public class RangedAI : MonoBehaviour
             }
         }
         else
+        {
             stun -= Time.deltaTime;
+        }
     }
 
     private void Move()

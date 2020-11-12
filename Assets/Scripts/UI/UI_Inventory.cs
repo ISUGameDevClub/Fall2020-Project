@@ -8,6 +8,7 @@ public class UI_Inventory : MonoBehaviour
 
     public bool[] isFull;
     public GameObject[] slots;
+<<<<<<< HEAD
     public int[] durs;
 
     private WeaponInventory wi;
@@ -63,4 +64,6 @@ public class UI_Inventory : MonoBehaviour
         }
         return false;
     }
+=======
+>>>>>>> d8f934a9bedafd7e6df3a29a5952d9ad8ba196ed
 }

@@ -29,8 +29,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2402919465559485484}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -66,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0fb47449d867d1a4daa3186c9c66323f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8653d38b71d4f044dbf77b0dd77de5f5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -92,6 +91,7 @@ MonoBehaviour:
     type: 3}
   WeaponType: Pistol
   CurrentWeapon: 0
+<<<<<<< HEAD
   myWeaponNumber: 0
   CharacterWithWeapon: {fileID: 21300000, guid: 4d3df6bd4fc553a47860f7bc7d0a9722,
     type: 3}
@@ -174,3 +174,5 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 100%
+=======
+>>>>>>> d8f934a9bedafd7e6df3a29a5952d9ad8ba196ed

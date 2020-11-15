@@ -135,6 +135,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpeed: 6
+  speedLossOverTime: 0
+  verticalSprite: 0
+  verticalSpriteGameObject: {fileID: 0}
 --- !u!70 &200650685192658904
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1275,7 +1278,7 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.1
+      scalar: 2
       minScalar: 0.1
       maxCurve:
         serializedVersion: 2

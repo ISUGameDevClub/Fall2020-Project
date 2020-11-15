@@ -9,6 +9,9 @@ public class ExplisiveProjectile : MonoBehaviour
     public float projectileSpeedReduction = 1;
     public float explosionTimer = 1;
     public GameObject explosion;
+
+    public bool playerAttack;
+
     void Start()
     {
         Invoke("Explosive", explosionTimer);
@@ -30,6 +33,16 @@ public class ExplisiveProjectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Wall")
+        {
+            Explosive();
+        }
+
+        if (playerAttack && collision.gameObject.tag == "Enemy")
+        {
+            Explosive();
+        }
+
+        if (playerAttack && collision.gameObject.tag == "Barrel")
         {
             Explosive();
         }

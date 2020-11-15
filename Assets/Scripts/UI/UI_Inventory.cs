@@ -23,7 +23,7 @@ public class UI_Inventory : MonoBehaviour
     //4: Shield
     //5:
     //6:
-    //7:
+    //7: Grenade Launcher
     //8: Flamethrower
 
 

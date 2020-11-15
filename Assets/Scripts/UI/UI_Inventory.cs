@@ -16,6 +16,17 @@ public class UI_Inventory : MonoBehaviour
     public static string[] lastWeaponTypes = new string[4];
     public static int[] lastItemButtonNums = new int[4];
 
+    //0: Knife
+    //1: Axe
+    //2: Pistol
+    //3: Machine Gun
+    //4: Shield
+    //5:
+    //6:
+    //7:
+    //8: Flamethrower
+
+
     private void Start()
     {
         wi = FindObjectOfType<WeaponInventory>();

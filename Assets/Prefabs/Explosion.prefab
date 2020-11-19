@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e96ed3321dbf264191e0745660d2325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meleeAttack: 0
   damage: 1
   playerAttack: 0
   constantDamage: 0
@@ -129,7 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e96ed3321dbf264191e0745660d2325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
+  meleeAttack: 0
+  damage: 6
   playerAttack: 1
   constantDamage: 0
 --- !u!114 &4783495125853658155

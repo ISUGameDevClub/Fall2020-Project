@@ -5,16 +5,30 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float projectileSpeed;
+    public float speedLossOverTime;
+    private float speedLoss;
+    public bool verticalSprite;
+    public GameObject verticalSpriteGameObject;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(verticalSprite && verticalSpriteGameObject != null)
+        {
+            verticalSpriteGameObject.transform.parent = null;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.right * projectileSpeed * Time.deltaTime);
+        speedLoss += Time.deltaTime * speedLossOverTime;
+        transform.Translate(Vector3.right * Mathf.Max((projectileSpeed - speedLoss), 0)* Time.deltaTime);
+
+        if (verticalSprite && verticalSpriteGameObject != null)
+        {
+            verticalSpriteGameObject.transform.position = transform.position;
+        }
     }
 
 
@@ -41,6 +55,14 @@ public class Projectile : MonoBehaviour
                 }
             }
             Destroy(gameObject);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (verticalSprite && verticalSpriteGameObject != null)
+        {
+            Destroy(verticalSpriteGameObject);
         }
     }
 }

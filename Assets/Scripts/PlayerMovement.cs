@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     public AudioSource footstep1;
     public AudioSource footstep2;
+    public AudioSource weaponBreak;
 
     private float timeUntilNextStep;
     private bool step1Next;
@@ -62,6 +63,8 @@ public class PlayerMovement : MonoBehaviour
             FindObjectOfType<WeaponInventory>().weapons[GetComponent<CurrentWeapon>().SwitchWeapon] = "";
             Destroy(FindObjectOfType<UI_Inventory>().slots[GetComponent<CurrentWeapon>().SwitchWeapon].GetComponentInChildren<SwitchWeapon>().gameObject);
             FindObjectOfType<CurrentWeapon>().SwitchWeapon = 0;
+
+            AudioSource.PlayClipAtPoint(weaponBreak.clip, transform.position);
         }
     }
 
@@ -119,16 +122,18 @@ public class PlayerMovement : MonoBehaviour
             GameObject atk = Instantiate(curAttack, transform.position, transform.rotation).gameObject;
             FindObjectOfType<UI_Inventory>().durs[GetComponent<CurrentWeapon>().SwitchWeapon] -= atk.GetComponent<PlayerAttack>().breakSpeed;
             atk.transform.Translate(Vector3.right * atk.GetComponent<PlayerAttack>().spawnDistancefromPlayer);
-            if (atk.GetComponent<PlayerAttack>().attackSound != null)
-                AudioSource.PlayClipAtPoint(atk.GetComponent<PlayerAttack>().attackSound.clip, transform.position);
-
+                
             if (FindObjectOfType<UI_Inventory>().durs[GetComponent<CurrentWeapon>().SwitchWeapon] <= 0)
             {
                 FindObjectOfType<UI_Inventory>().isFull[GetComponent<CurrentWeapon>().SwitchWeapon] = false;
                 FindObjectOfType<WeaponInventory>().weapons[GetComponent<CurrentWeapon>().SwitchWeapon] = "";
                 Destroy(FindObjectOfType<UI_Inventory>().slots[GetComponent<CurrentWeapon>().SwitchWeapon].GetComponentInChildren<SwitchWeapon>().gameObject);
                 FindObjectOfType<CurrentWeapon>().SwitchWeapon = 0;
+
+                AudioSource.PlayClipAtPoint(weaponBreak.clip, transform.position);
             }
+            else if (atk.GetComponent<PlayerAttack>().attackSound != null)
+                AudioSource.PlayClipAtPoint(atk.GetComponent<PlayerAttack>().attackSound.clip, transform.position);
         }
     }
 

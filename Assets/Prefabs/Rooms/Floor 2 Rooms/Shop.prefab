@@ -363,7 +363,6 @@ Transform:
   - {fileID: 7429236851324641509}
   - {fileID: 5398923590127674926}
   - {fileID: 3933449036843788072}
-  - {fileID: 8940339663425513036}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -560,7 +559,7 @@ PrefabInstance:
     - target: {fileID: 6155908576988789466, guid: 9bcef3b8e3f4bc74ab7df9c00d342a31,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6155908576988789466, guid: 9bcef3b8e3f4bc74ab7df9c00d342a31,
         type: 3}
@@ -624,81 +623,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6155908576988789466, guid: 9bcef3b8e3f4bc74ab7df9c00d342a31,
     type: 3}
   m_PrefabInstance: {fileID: 3636618979394460223}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &6832994054242078607
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 6422475546516475765}
-    m_Modifications:
-    - target: {fileID: 2504525232440912323, guid: 4d3d72d0d5ff67741b209d66a1760bfe,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2504525232440912323, guid: 4d3d72d0d5ff67741b209d66a1760bfe,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2504525232440912323, guid: 4d3d72d0d5ff67741b209d66a1760bfe,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2504525232440912323, guid: 4d3d72d0d5ff67741b209d66a1760bfe,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2504525232440912323, guid: 4d3d72d0d5ff67741b209d66a1760bfe,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2504525232440912323, guid: 4d3d72d0d5ff67741b209d66a1760bfe,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2504525232440912323, guid: 4d3d72d0d5ff67741b209d66a1760bfe,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2504525232440912323, guid: 4d3d72d0d5ff67741b209d66a1760bfe,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2504525232440912323, guid: 4d3d72d0d5ff67741b209d66a1760bfe,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2504525232440912323, guid: 4d3d72d0d5ff67741b209d66a1760bfe,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2504525232440912323, guid: 4d3d72d0d5ff67741b209d66a1760bfe,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5189141107390175682, guid: 4d3d72d0d5ff67741b209d66a1760bfe,
-        type: 3}
-      propertyPath: m_Name
-      value: Shop Bandage
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4d3d72d0d5ff67741b209d66a1760bfe, type: 3}
---- !u!4 &8940339663425513036 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2504525232440912323, guid: 4d3d72d0d5ff67741b209d66a1760bfe,
-    type: 3}
-  m_PrefabInstance: {fileID: 6832994054242078607}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7042237544831410774
 PrefabInstance:

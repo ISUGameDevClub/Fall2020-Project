@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RiotBossAI : MonoBehaviour
 {
+    public CyberChipDrop ccd;
     private GameObject player;
 
     public float speed;
@@ -112,5 +113,8 @@ public class RiotBossAI : MonoBehaviour
         {
             FindObjectOfType<Timer>().StopTimer();
         }
+
+        if(ccd != null && !GameQuiting.gameEnding)
+            ccd.DropChips();
     }
 }

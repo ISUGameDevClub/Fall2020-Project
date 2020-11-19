@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ExplosiveBossAI : MonoBehaviour
 {
+    public CyberChipDrop ccd;
     public float spinSpeed;
     public float timeBetweenVollyShots;
     private GameObject player;
@@ -13,10 +14,12 @@ public class ExplosiveBossAI : MonoBehaviour
     private bool attackReady;
     private bool spinAttack;
     private bool spinNext;
+    private GameObject stairs;
 
     private void Awake()
     {
-
+        stairs = FindObjectOfType<LevelTransition>().gameObject;
+        stairs.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -114,10 +117,15 @@ public class ExplosiveBossAI : MonoBehaviour
 
     private void OnDestroy()
     {
+        stairs.SetActive(true);
+
         foreach (PlayerInRoom piy in FindObjectsOfType<PlayerInRoom>())
         {
             if (piy.roomType == "Boss")
                 piy.roomType = "Main";
         }
+
+        if (ccd != null && !GameQuiting.gameEnding)
+            ccd.DropChips();
     }
 }

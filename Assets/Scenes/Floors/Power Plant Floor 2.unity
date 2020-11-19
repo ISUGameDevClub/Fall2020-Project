@@ -1079,6 +1079,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 48630992, guid: 82a596dac06a4c04380b4da27a660b75, type: 3}
+      propertyPath: ResetGameWhenLoaded
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065625828, guid: 82a596dac06a4c04380b4da27a660b75, type: 3}
+      propertyPath: nextScene
+      value: Power Plant Floor 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1422921464166609269, guid: 82a596dac06a4c04380b4da27a660b75,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1273,6 +1281,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1875227609}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1875227621 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 613241500452416723, guid: 82a596dac06a4c04380b4da27a660b75,
+    type: 3}
+  m_PrefabInstance: {fileID: 1875227609}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1972339366
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1297,6 +1311,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1875227617}
     - target: {fileID: 2128305136, guid: e196439cdc36b4347a3470fcc9f21221, type: 3}
+      propertyPath: hearts.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2128305136, guid: e196439cdc36b4347a3470fcc9f21221, type: 3}
       propertyPath: hearts.Array.data[0]
       value: 
       objectReference: {fileID: 1875227616}
@@ -1316,6 +1334,10 @@ PrefabInstance:
       propertyPath: hearts.Array.data[4]
       value: 
       objectReference: {fileID: 1875227612}
+    - target: {fileID: 2128305136, guid: e196439cdc36b4347a3470fcc9f21221, type: 3}
+      propertyPath: hearts.Array.data[5]
+      value: 
+      objectReference: {fileID: 1875227621}
     - target: {fileID: 393995056578830092, guid: e196439cdc36b4347a3470fcc9f21221,
         type: 3}
       propertyPath: batteryText

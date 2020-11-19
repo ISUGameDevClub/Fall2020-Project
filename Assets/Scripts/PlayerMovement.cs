@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static bool speedBoost = false;
+    public static bool attackSpeedBoost = false;
+    public static int maxHealth = 5;
+
     public GameObject curAttack;
     public float speed;
     private bool attackReady;
@@ -23,11 +27,14 @@ public class PlayerMovement : MonoBehaviour
     {
         attackReady = true;
         shieldObject.SetActive(false);
+        GetComponent<Health>().maxHealth = maxHealth;
+        GetComponent<Health>().curHealth = maxHealth;
     }
 
     void Update()
     {
         GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+
         if (stun <= 0 && !FindObjectOfType<Pause>().gamePause)
         {
             Rotate();
@@ -73,7 +80,6 @@ public class PlayerMovement : MonoBehaviour
         if (stun <= 0 && !FindObjectOfType<Pause>().gamePause)
         {
             Move();
-
         }
     }
 
@@ -81,8 +87,13 @@ public class PlayerMovement : MonoBehaviour
     {
         GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         Vector2 playerInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        Vector2 movement = Vector2.ClampMagnitude(playerInput, 1) * speed * Time.fixedDeltaTime;
-        //transform.position = transform.position + new Vector3(movement.x,movement.y, 0);
+        Vector2 movement = new Vector2(0, 0);
+
+        if (!speedBoost)
+            movement = Vector2.ClampMagnitude(playerInput, 1) * speed * Time.fixedDeltaTime;
+        else
+            movement = Vector2.ClampMagnitude(playerInput, 1) * speed * 1.25f * Time.fixedDeltaTime;
+
         GetComponent<Rigidbody2D>().position = GetComponent<Rigidbody2D>().position + new Vector2(movement.x, movement.y);
 
         if (playerInput.magnitude > .5f)
@@ -140,7 +151,10 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator PlayerAttacked()
     {
         attackReady = false;
-        yield return new WaitForSeconds(curAttack.GetComponent<PlayerAttack>().attackSpeed);
+        if(!attackSpeedBoost)
+            yield return new WaitForSeconds(curAttack.GetComponent<PlayerAttack>().attackSpeed);
+        else
+            yield return new WaitForSeconds(curAttack.GetComponent<PlayerAttack>().attackSpeed * .8f);
         attackReady = true;
     }
     

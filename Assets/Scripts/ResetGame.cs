@@ -14,6 +14,9 @@ public class ResetGame : MonoBehaviour
             UI_Inventory.lastDurs = new int[4];
             UI_Inventory.lastWeaponTypes = new string[4];
             UI_Inventory.lastItemButtonNums = new int[4];
+            PlayerMovement.speedBoost = false;
+            PlayerMovement.attackSpeedBoost = false;
+            PlayerMovement.maxHealth = 5;
         }
     }
 

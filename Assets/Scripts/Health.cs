@@ -65,13 +65,16 @@ public class Health : MonoBehaviour
         if (!isInvincible)
         {
             curHealth -= amount;
-            StartCoroutine(PlayerHit());
+
             if (isPlayer)
             {
                 GetComponent<Animator>().SetTrigger("Hurt");
+                StartCoroutine(PlayerHit());
             }
-            if (hurtSound != null) { 
-            AudioSource.PlayClipAtPoint(hurtSound.clip, transform.position);
+
+            if (hurtSound != null)
+            { 
+                AudioSource.PlayClipAtPoint(hurtSound.clip, transform.position);
             }
         }
 

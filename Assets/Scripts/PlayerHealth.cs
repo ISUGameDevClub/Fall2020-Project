@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     public int health;
+    private int maxHealth;
     private Health h;
     public int numOfHearts;
 
@@ -18,6 +19,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
+        maxHealth = h.maxHealth;
         health = h.curHealth;
 
         for (int i = 1; i < hearts.Length; i++)
@@ -30,6 +32,9 @@ public class PlayerHealth : MonoBehaviour
             {
                 hearts[i].SetTrigger("Lose Heart");
             }
+
+            if (i >= maxHealth)
+                hearts[i].SetTrigger("No Heart");
         }
     }
 

@@ -678,7 +678,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: be6898fc21787e842800cadf405e2ca4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d2e737c51ad18934da6bc2b5d9354f9b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -870,7 +870,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e8c254ddcfd9d3b46b0d4dfa7be7b1a9, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c22e39c2b67334446bc449e501f4b1e0, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -968,8 +968,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57bd6981f44ad314e9a810adeddd4af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainVolume: 0.3
-  shopVolume: 0.1
+  mainVolume: 0.1
+  shopVolume: 0.15
   bossVolume: 0.08
   victoryVolume: 0.3
   musicFadeSpeed: 0.5

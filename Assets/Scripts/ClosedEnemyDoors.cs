@@ -12,6 +12,7 @@ public class ClosedEnemyDoors : MonoBehaviour
     public GameObject[] turrets;
     public bool roomInUse;
     public bool roomDone;
+    public bool staggerTurrets;
 
     public float enemySleepTime;
 
@@ -176,7 +177,8 @@ public class ClosedEnemyDoors : MonoBehaviour
         {
             if (turrets[x].GetComponent<RangedAI>() != null)
                 turrets[x].GetComponent<RangedAI>().enabled = true;
-            yield return new WaitForSeconds(2);
+            if(staggerTurrets)
+                yield return new WaitForSeconds(2);
         }
     }
 

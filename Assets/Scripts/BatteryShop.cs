@@ -8,10 +8,12 @@ public class BatteryShop : MonoBehaviour
     public int batteryCost;
     public BatteryInventory be;
     public AudioSource rejectSound;
+    bool canPlaySound;
 
     void Start()
     {
         be = FindObjectOfType<BatteryInventory>();
+        canPlaySound = true;
     }
 
     public bool CanPickup()
@@ -30,7 +32,16 @@ public class BatteryShop : MonoBehaviour
             BatteryInventory.batteries -= batteryCost;
             return true;
         }
-        AudioSource.PlayClipAtPoint(rejectSound.clip, transform.position);
+        if (canPlaySound)
+            StartCoroutine(playSound());
         return false;
+    }
+
+    private IEnumerator playSound()
+    {
+        canPlaySound = false;
+        AudioSource.PlayClipAtPoint(rejectSound.clip, transform.position);
+        yield return new WaitForSeconds(.5f);
+        canPlaySound = true;
     }
 }

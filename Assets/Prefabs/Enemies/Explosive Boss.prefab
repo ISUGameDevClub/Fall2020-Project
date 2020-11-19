@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 3765251638773406032}
   - component: {fileID: 5107420198228099359}
   - component: {fileID: 4033718413589082577}
+  - component: {fileID: 4731170525261876788}
   m_Layer: 8
   m_Name: Explosive Boss
   m_TagString: Enemy
@@ -362,7 +363,7 @@ MonoBehaviour:
   deathParticle: {fileID: 3549462287981749056, guid: c6c689ad507fe3945a2e8ca19a5f6b03,
     type: 3}
   isPlayer: 0
-  maxHealth: 70
+  maxHealth: 80
   curHealth: 0
   invincibilityTimer: 0
   isInvincible: 0
@@ -381,6 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4448379abd640ff4b874f3d38c41f844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ccd: {fileID: 0}
   spinSpeed: 360
   timeBetweenVollyShots: 0.1
   myAttack: {fileID: 200650685192658909, guid: cb59c2e688fe20447adf1b7c3c848147, type: 3}
@@ -482,6 +484,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4731170525261876788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3693953299916698652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76b76c23cadab46418934f01543b962c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alwaysDropsAnItem: 0
+  alwaysDropped: {fileID: 654103678196928525, guid: 8540e2bfe29f43c48ac7e1307b96ff7a,
+    type: 3}
+  possibleCommonDrops: []
+  possibleRareDrops: []
+  possibleLegendaryDrops: []
 --- !u!1 &4396778370354392161
 GameObject:
   m_ObjectHideFlags: 0

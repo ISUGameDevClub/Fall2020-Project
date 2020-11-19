@@ -36,38 +36,40 @@ public class RiotBossAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!stunned && !charging && chargeTimer > 0)
+        if (player != null)
         {
-            myHealth.isInvincible = true;
-            Rotate();
-            chargeTimer -= Time.deltaTime;
+            if (!stunned && !charging && chargeTimer > 0)
+            {
+                myHealth.isInvincible = true;
+                Rotate();
+                chargeTimer -= Time.deltaTime;
 
-            if (chargeTimer <= .5f && chargeTimer > .3f)
-                GetComponent<Animator>().SetTrigger("Prepare");
-        }
-        else if (!charging && !stunned)
-        {
-            charging = true;
-        }
-        else if (charging)
-        {
-            myHealth.isInvincible = false;
-            Move();
-        }
-        else if (stunned && stunTimer > 0)
-        {
-            myHealth.isInvincible = false;
-            MoveAwayFromWall();
-            stunTimer -= Time.deltaTime;
+                if (chargeTimer <= .5f && chargeTimer > .3f)
+                    GetComponent<Animator>().SetTrigger("Prepare");
+            }
+            else if (!charging && !stunned)
+            {
+                charging = true;
+            }
+            else if (charging)
+            {
+                myHealth.isInvincible = false;
+                Move();
+            }
+            else if (stunned && stunTimer > 0)
+            {
+                myHealth.isInvincible = false;
+                MoveAwayFromWall();
+                stunTimer -= Time.deltaTime;
 
+            }
+            else
+            {
+                chargeTimer = timeUntilCharge;
+                stunTimer = timeStunned;
+                stunned = false;
+            }
         }
-        else
-        {
-            chargeTimer = timeUntilCharge;
-            stunTimer = timeStunned;
-            stunned = false;
-        }
-        
     }
 
     private void Rotate()

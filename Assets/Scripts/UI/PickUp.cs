@@ -15,13 +15,13 @@ public class PickUp : MonoBehaviour
             inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<UI_Inventory>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             if (!GetComponent<BatteryShop>() || (GetComponent<BatteryShop>() && GetComponent<BatteryShop>().CanPickup()))
             {
-                if(inventory.GetWeapon(100, weaponType, itemButtonNumber))
+                if (inventory.GetWeapon(100, weaponType, itemButtonNumber))
                 {
                     if (pickupSound != null)
                         AudioSource.PlayClipAtPoint(pickupSound.clip, transform.position);

@@ -122,7 +122,7 @@ public class ExplosiveBossAI : MonoBehaviour
         foreach (PlayerInRoom piy in FindObjectsOfType<PlayerInRoom>())
         {
             if (piy.roomType == "Boss")
-                piy.roomType = "Main";
+                piy.roomType = "Victory";
         }
 
         if (ccd != null && !GameQuiting.gameEnding)

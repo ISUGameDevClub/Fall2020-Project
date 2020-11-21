@@ -46,5 +46,7 @@ public class LevelTransition : MonoBehaviour
             nextScene = true;
             FindObjectOfType<ScreenTransition>().FadeIn();
         }
+        else if (collision.gameObject.tag == "Destructible")
+            Destroy(collision.gameObject);
     }
 }

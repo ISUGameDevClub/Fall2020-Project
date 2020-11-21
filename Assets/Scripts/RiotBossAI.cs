@@ -111,11 +111,6 @@ public class RiotBossAI : MonoBehaviour
                 piy.roomType = "Victory";
         }
 
-        if(FindObjectOfType<Timer>() != false) // MOVE TO FINAL BOSS
-        {
-            FindObjectOfType<Timer>().StopTimer();
-        }
-
         if(ccd != null && !GameQuiting.gameEnding)
             ccd.DropChips();
     }

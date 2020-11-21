@@ -76,6 +76,8 @@ public class ClosedEnemyDoors : MonoBehaviour
                 enemies[x].GetComponent<RiotBossAI>().enabled = false;
             if (enemies[x].GetComponent<ExplosiveBossAI>() != null)
                 enemies[x].GetComponent<ExplosiveBossAI>().enabled = false;
+            if (enemies[x].GetComponent<FlameThrowerBoss>() != null)
+                enemies[x].GetComponent<FlameThrowerBoss>().enabled = false;
         }
         for (int x = 0; x < turrets.Length; x++)
         {
@@ -162,35 +164,34 @@ public class ClosedEnemyDoors : MonoBehaviour
     private IEnumerator EnableEnemiesAfterTime()
     {
         yield return new WaitForSeconds(enemySleepTime);
-        for (int x = 0; x < enemies.Length; x++)
+        if (!roomDone)
         {
-            if(enemies[x] != null && enemies[x].GetComponent<RangedAI>() != null)
-                enemies[x].GetComponent<RangedAI>().enabled = true;
-            if (enemies[x] != null && enemies[x].GetComponent<MeleeAI>() != null)
-                enemies[x].GetComponent<MeleeAI>().enabled = true;
-            if (enemies[x] != null && enemies[x].GetComponent<RiotBossAI>() != null)
-                enemies[x].GetComponent<RiotBossAI>().enabled = true;
-            if (enemies[x] != null && enemies[x].GetComponent<ExplosiveBossAI>() != null)
-                enemies[x].GetComponent<ExplosiveBossAI>().enabled = true;
-        }
-        for (int x = 0; x < turrets.Length; x++)
-        {
-            if (turrets[x].GetComponent<RangedAI>() != null)
-                turrets[x].GetComponent<RangedAI>().enabled = true;
-            if(staggerTurrets)
-                yield return new WaitForSeconds(2);
+            for (int x = 0; x < enemies.Length; x++)
+            {
+                if (enemies[x] != null && enemies[x].GetComponent<RangedAI>() != null)
+                    enemies[x].GetComponent<RangedAI>().enabled = true;
+                if (enemies[x] != null && enemies[x].GetComponent<MeleeAI>() != null)
+                    enemies[x].GetComponent<MeleeAI>().enabled = true;
+                if (enemies[x] != null && enemies[x].GetComponent<RiotBossAI>() != null)
+                    enemies[x].GetComponent<RiotBossAI>().enabled = true;
+                if (enemies[x] != null && enemies[x].GetComponent<ExplosiveBossAI>() != null)
+                    enemies[x].GetComponent<ExplosiveBossAI>().enabled = true;
+                if (enemies[x] != null && enemies[x].GetComponent<FlameThrowerBoss>() != null)
+                    enemies[x].GetComponent<FlameThrowerBoss>().enabled = true;
+            }
+            for (int x = 0; x < turrets.Length; x++)
+            {
+                if (turrets[x].GetComponent<RangedAI>() != null)
+                    turrets[x].GetComponent<RangedAI>().enabled = true;
+                if (staggerTurrets)
+                    yield return new WaitForSeconds(2);
+            }
         }
     }
 
     public void OpenDoors()
     {
         roomInUse = false;
-        /*
-        for (int i = 0; i < doors.Length; i++)
-        {
-            doors[i].transform.GetChild(0).GetComponent<Collider2D>().enabled = false;
-        }
-        */
 
         for (int i = 0; i < closedDoors.Length; i++)
         {

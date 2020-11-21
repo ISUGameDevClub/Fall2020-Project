@@ -9,6 +9,8 @@ public class Projectile : MonoBehaviour
     private float speedLoss;
     public bool verticalSprite;
     public GameObject verticalSpriteGameObject;
+    public bool passOverDestructible;
+    public bool stopOnWall;
 
     // Start is called before the first frame update
     void Start()
@@ -34,9 +36,16 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Barrel")
+        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Barrel" || (!passOverDestructible && collision.gameObject.tag == "Destructible"))
         {
-            Destroy(gameObject);
+            if (!stopOnWall || (stopOnWall && collision.gameObject.tag != "Wall"))
+                Destroy(gameObject);
+            else
+            {
+                projectileSpeed = 0;
+                speedLossOverTime = 0;
+                speedLoss = 0;
+            }
         }
         else if (collision.gameObject.tag == "Shield" || collision.gameObject.tag == "Turret")
         {

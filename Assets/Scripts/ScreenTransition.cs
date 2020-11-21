@@ -106,6 +106,9 @@ public class ScreenTransition : MonoBehaviour
         if (FindObjectOfType<PlayerHealth>() != null)
             FindObjectOfType<PlayerHealth>().hearts[0] = null;
 
+        if (FindObjectOfType<CyberChipDrop>() != null)
+            Destroy(FindObjectOfType<CyberChipDrop>());
+
         yield return new WaitForSecondsRealtime(1);
         if(FindObjectOfType<UI_Inventory>() != null)
             FindObjectOfType<UI_Inventory>().UpdateStaticWeapons();

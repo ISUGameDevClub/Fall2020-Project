@@ -394,7 +394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d64e62fc9214084c9acc9009edd2505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathParticle: {fileID: 3549462287981749056, guid: c6c689ad507fe3945a2e8ca19a5f6b03,
+  deathParticle: {fileID: 3549462287981749056, guid: af471cab788d56d4a9e3c9c7de5f755f,
     type: 3}
   isPlayer: 0
   maxHealth: 40
@@ -404,6 +404,7 @@ MonoBehaviour:
   hurtSound: {fileID: 4033718413589082577}
   healthBar: {fileID: 2001511586177968920}
   showHealthToStart: 1
+  destructible: 0
 --- !u!114 &8085404624756762706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -416,6 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad1089e34909b3d44af72e7ae0eb6f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ccd: {fileID: 0}
   speed: 9
   timeUntilCharge: 3
   timeStunned: 1.5
@@ -781,6 +783,7 @@ MonoBehaviour:
   damage: 1
   playerAttack: 0
   constantDamage: 1
+  passOverDestructible: 0
 --- !u!1 &7961033016681781996
 GameObject:
   m_ObjectHideFlags: 0

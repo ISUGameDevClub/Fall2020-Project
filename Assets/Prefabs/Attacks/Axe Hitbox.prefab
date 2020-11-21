@@ -116,10 +116,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e96ed3321dbf264191e0745660d2325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeAttack: 1
+  meleeAttack: 0
   damage: 4
   playerAttack: 1
   constantDamage: 0
+  passOverDestructible: 0
 --- !u!70 &200650685192658904
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

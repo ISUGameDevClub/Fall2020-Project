@@ -17,6 +17,8 @@ public class ResetGame : MonoBehaviour
             PlayerMovement.speedBoost = false;
             PlayerMovement.attackSpeedBoost = false;
             PlayerMovement.maxHealth = 5;
+            Timer.seconds = 0;
+            Timer.minutes = 0;
         }
     }
 

@@ -7,8 +7,8 @@ public class Timer : MonoBehaviour
 {
     static private bool timerEnabled;
     public Text timerText;
-    private float seconds;
-    private int minutes;
+    static public float seconds;
+    static public int minutes;
     private bool timerStoped;
     // Start is called before the first frame update
     void Start()

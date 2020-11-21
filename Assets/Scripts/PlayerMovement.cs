@@ -21,8 +21,6 @@ public class PlayerMovement : MonoBehaviour
     private float timeUntilNextStep;
     private bool step1Next;
 
-    private float dropWeaponTimer;
-
     private void Start()
     {
         attackReady = true;
@@ -54,16 +52,11 @@ public class PlayerMovement : MonoBehaviour
         else
             shieldObject.SetActive(false);
 
-        if(dropWeaponTimer > 0 && Input.GetKey(KeyCode.Q) && GetComponent<CurrentWeapon>().SwitchWeapon != 0)
+        if (Input.GetKey(KeyCode.Q) && GetComponent<CurrentWeapon>().SwitchWeapon != 0)
         {
-            dropWeaponTimer -= Time.deltaTime;
-        }
-        else if (!Input.GetKey(KeyCode.Q) || GetComponent<CurrentWeapon>().SwitchWeapon == 0)
-        {
-            dropWeaponTimer = 1;
-        }
-        else
-        {
+            PickUp pu = Instantiate(GetComponent<UI_Inventory>().slots[GetComponent<CurrentWeapon>().SwitchWeapon].GetComponentInChildren<SwitchWeapon>().myDrop, transform.position, new Quaternion(0, 0, 0, 0)).GetComponent<PickUp>();
+            pu.dur = FindObjectOfType<UI_Inventory>().durs[GetComponent<CurrentWeapon>().SwitchWeapon];
+            pu.justDropped = 1;
             FindObjectOfType<UI_Inventory>().durs[GetComponent<CurrentWeapon>().SwitchWeapon] -= 100;
 
             FindObjectOfType<UI_Inventory>().isFull[GetComponent<CurrentWeapon>().SwitchWeapon] = false;

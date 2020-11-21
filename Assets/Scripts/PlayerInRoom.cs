@@ -7,7 +7,8 @@ public class PlayerInRoom : MonoBehaviour
 {
     public string roomType;
     private GameObject player;
-    private MusicManager mm; 
+    private MusicManager mm;
+    public bool pir;
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +20,12 @@ public class PlayerInRoom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player != null && Mathf.Abs(player.transform.position.x-transform.position.x)< 9 && Mathf.Abs(player.transform.position.y - transform.position.y) < 5)
+        if (player != null && Mathf.Abs(player.transform.position.x - transform.position.x) < 9 && Mathf.Abs(player.transform.position.y - transform.position.y) < 5)
         {
             mm.currentSong = roomType;
+            pir = true;
         }
+        else
+            pir = false;
     }
 }

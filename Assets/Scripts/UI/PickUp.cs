@@ -8,6 +8,8 @@ public class PickUp : MonoBehaviour
     public AudioSource pickupSound;
     public int itemButtonNumber;
     public string weaponType;
+    public int dur = 100;
+    public float justDropped;
 
     private void Start()
     {
@@ -15,20 +17,30 @@ public class PickUp : MonoBehaviour
             inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<UI_Inventory>();
     }
 
+    private void Update()
+    {
+        if(justDropped > 0)
+        {
+            justDropped -= Time.deltaTime;
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            if (!GetComponent<BatteryShop>() || (GetComponent<BatteryShop>() && GetComponent<BatteryShop>().CanPickup()))
+            if (justDropped <= 0)
             {
-                if (inventory.GetWeapon(100, weaponType, itemButtonNumber))
+                if (!GetComponent<BatteryShop>() || (GetComponent<BatteryShop>() && GetComponent<BatteryShop>().CanPickup()))
                 {
-                    if (pickupSound != null)
-                        AudioSource.PlayClipAtPoint(pickupSound.clip, transform.position);
-                    Destroy(gameObject);
+                    if (inventory.GetWeapon(dur, weaponType, itemButtonNumber))
+                    {
+                        if (pickupSound != null)
+                            AudioSource.PlayClipAtPoint(pickupSound.clip, transform.position);
+                        Destroy(gameObject);
+                    }
                 }
             }
-
         }
     }
 }

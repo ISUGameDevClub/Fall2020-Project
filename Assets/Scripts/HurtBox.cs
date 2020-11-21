@@ -8,6 +8,7 @@ public class HurtBox : MonoBehaviour
     public int damage;
     public bool playerAttack;
     public bool constantDamage;
+    public bool passOverDestructible;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +40,10 @@ public class HurtBox : MonoBehaviour
             {
                 collision.gameObject.GetComponent<Health>().TakeDamage(damage);
             }
+            else if (collision.gameObject.tag == "Destructible" && !passOverDestructible)
+            {
+                collision.gameObject.GetComponent<Health>().TakeDamage(damage);
+            }
         }
     }
 
@@ -55,6 +60,10 @@ public class HurtBox : MonoBehaviour
                 collision.gameObject.GetComponent<Health>().TakeDamage(damage);
             }
             else if (collision.gameObject.tag == "Player" && !playerAttack)
+            {
+                collision.gameObject.GetComponent<Health>().TakeDamage(damage);
+            }
+            else if (collision.gameObject.tag == "Destructible" && !passOverDestructible)
             {
                 collision.gameObject.GetComponent<Health>().TakeDamage(damage);
             }

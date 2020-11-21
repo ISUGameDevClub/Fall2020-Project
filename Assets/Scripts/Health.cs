@@ -15,10 +15,14 @@ public class Health : MonoBehaviour
     public Slider healthBar;
     private float healthBarOffset;
     public bool showHealthToStart;
+    public bool destructible;
+    private SpriteRenderer sr;
 
     // Start is called before the first frame update
     void Start()
     {
+        if(destructible)
+            sr = GetComponent<SpriteRenderer>();
         curHealth = maxHealth;
 
         if (healthBar != null)
@@ -36,7 +40,10 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(healthBar != null)
+        if (destructible)
+            sr.color = new Color((float)curHealth / maxHealth, (float)curHealth / maxHealth, (float)curHealth / maxHealth, 1);
+
+        if (healthBar != null)
             healthBar.transform.position = transform.position + (new Vector3(0, healthBarOffset, 0) * transform.localScale.x);
 
         if (healthBar != null && curHealth != maxHealth)

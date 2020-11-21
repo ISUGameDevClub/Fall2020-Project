@@ -146,6 +146,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6422475546516475765}
     m_Modifications:
+    - target: {fileID: 2220840168107508358, guid: 0659a16a833e68e4181626928cc56199,
+        type: 3}
+      propertyPath: possibleCommonDrops.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2220840168107508358, guid: 0659a16a833e68e4181626928cc56199,
+        type: 3}
+      propertyPath: possibleRareDrops.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2220840168107508358, guid: 0659a16a833e68e4181626928cc56199,
+        type: 3}
+      propertyPath: possibleLegendaryDrops.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2220840168107508358, guid: 0659a16a833e68e4181626928cc56199,
+        type: 3}
+      propertyPath: alwaysDropped
+      value: 
+      objectReference: {fileID: 3311224671789597219, guid: 5703d5a1b0b4a0d4f83ede67b62f2dc3,
+        type: 3}
     - target: {fileID: 3693953299916698648, guid: 0659a16a833e68e4181626928cc56199,
         type: 3}
       propertyPath: m_LocalPosition.x

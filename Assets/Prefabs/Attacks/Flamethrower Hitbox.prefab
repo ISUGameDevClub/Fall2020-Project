@@ -72,6 +72,7 @@ MonoBehaviour:
   damage: 1
   playerAttack: 1
   constantDamage: 0
+  passOverDestructible: 0
 --- !u!114 &4376209970938303179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,6 +89,8 @@ MonoBehaviour:
   speedLossOverTime: 6.5
   verticalSprite: 1
   verticalSpriteGameObject: {fileID: 5323249767010936194}
+  passOverDestructible: 0
+  stopOnWall: 1
 --- !u!70 &200650685192658904
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

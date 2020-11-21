@@ -235,8 +235,8 @@ GameObject:
   - component: {fileID: 3693953299916698649}
   - component: {fileID: 3765251638773406034}
   - component: {fileID: 3765251638773406033}
+  - component: {fileID: 1295073815758595654}
   - component: {fileID: 3765251638773406032}
-  - component: {fileID: 5107420198228099359}
   - component: {fileID: 4033718413589082577}
   - component: {fileID: 4731170525261876788}
   m_Layer: 8
@@ -255,7 +255,7 @@ Transform:
   m_GameObject: {fileID: 3693953299916698652}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.077, y: -0.033, z: 0}
-  m_LocalScale: {x: 2.42311, y: 2.5329528, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 22269896751719671}
   m_Father: {fileID: 0}
@@ -348,29 +348,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.425
---- !u!114 &3765251638773406032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3693953299916698652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d64e62fc9214084c9acc9009edd2505, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deathParticle: {fileID: 3549462287981749056, guid: c6c689ad507fe3945a2e8ca19a5f6b03,
-    type: 3}
-  isPlayer: 0
-  maxHealth: 80
-  curHealth: 0
-  invincibilityTimer: 0
-  isInvincible: 0
-  hurtSound: {fileID: 4033718413589082577}
-  healthBar: {fileID: 6256547725261096010}
-  showHealthToStart: 0
---- !u!114 &5107420198228099359
+--- !u!114 &1295073815758595654
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -388,6 +366,29 @@ MonoBehaviour:
   myAttack: {fileID: 200650685192658909, guid: cb59c2e688fe20447adf1b7c3c848147, type: 3}
   myFastAttack: {fileID: 200650685192658909, guid: 0ff9fb26904eec3468c3c6c7c4a2c70a,
     type: 3}
+--- !u!114 &3765251638773406032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3693953299916698652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d64e62fc9214084c9acc9009edd2505, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathParticle: {fileID: 3549462287981749056, guid: af471cab788d56d4a9e3c9c7de5f755f,
+    type: 3}
+  isPlayer: 0
+  maxHealth: 60
+  curHealth: 0
+  invincibilityTimer: 0
+  isInvincible: 0
+  hurtSound: {fileID: 4033718413589082577}
+  healthBar: {fileID: 6256547725261096010}
+  showHealthToStart: 0
+  destructible: 0
 --- !u!82 &4033718413589082577
 AudioSource:
   m_ObjectHideFlags: 0

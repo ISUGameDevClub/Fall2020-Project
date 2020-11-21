@@ -299,7 +299,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d64e62fc9214084c9acc9009edd2505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathParticle: {fileID: 0}
+  deathParticle: {fileID: 3549462287981749056, guid: c6c689ad507fe3945a2e8ca19a5f6b03,
+    type: 3}
   isPlayer: 1
   maxHealth: 5
   curHealth: 0
@@ -308,6 +309,7 @@ MonoBehaviour:
   hurtSound: {fileID: 833469471}
   healthBar: {fileID: 0}
   showHealthToStart: 0
+  destructible: 0
 --- !u!114 &393995056578830092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,6 +380,7 @@ MonoBehaviour:
   health: 0
   numOfHearts: 5
   hearts:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

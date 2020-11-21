@@ -140,13 +140,14 @@ MonoBehaviour:
   deathParticle: {fileID: 3549462287981749056, guid: c6c689ad507fe3945a2e8ca19a5f6b03,
     type: 3}
   isPlayer: 0
-  maxHealth: 12
+  maxHealth: 10
   curHealth: 0
   invincibilityTimer: 0
   isInvincible: 0
   hurtSound: {fileID: 6711635623179594464}
   healthBar: {fileID: 1634142678908098240}
   showHealthToStart: 0
+  destructible: 0
 --- !u!114 &824712956427697040
 MonoBehaviour:
   m_ObjectHideFlags: 0

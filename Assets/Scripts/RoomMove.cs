@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class RoomMove : MonoBehaviour
 {
+    public PlayerInRoom pir;
     public ClosedEnemyDoors ced;
     public GameObject camera;
     public bool horizontal;
@@ -28,7 +29,6 @@ public class RoomMove : MonoBehaviour
 
     // Update is called once per frame
     void LateUpdate()
-        // LateUpdate is used when moving the camera 
     {
         if (direction == "Right" && Vector3.Distance(camera.transform.position,origin) < XTransitionDistance) //Going to give us the distance between the camera and where the camera started 
         {

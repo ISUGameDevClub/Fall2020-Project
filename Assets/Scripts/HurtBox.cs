@@ -42,6 +42,7 @@ public class HurtBox : MonoBehaviour
             }
             else if (collision.gameObject.tag == "Destructible" && !passOverDestructible)
             {
+                if(!playerAttack || (playerAttack && !collision.gameObject.GetComponent<Health>().Zmode))
                 collision.gameObject.GetComponent<Health>().TakeDamage(damage);
             }
         }

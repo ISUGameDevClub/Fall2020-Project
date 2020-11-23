@@ -36,7 +36,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Barrel" || (!passOverDestructible && collision.gameObject.tag == "Destructible"))
+        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Barrel" || (!passOverDestructible && collision.gameObject.tag == "Destructible" && !(collision.gameObject.GetComponent<Health>().Zmode && GetComponent<HurtBox>().playerAttack)))
         {
             if (!stopOnWall || (stopOnWall && collision.gameObject.tag != "Wall"))
                 Destroy(gameObject);

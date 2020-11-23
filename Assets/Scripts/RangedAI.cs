@@ -10,12 +10,14 @@ public class RangedAI : MonoBehaviour
     public float speed;
     public float sightDistance;
     public float stun;
+    public bool zMode;
 
     public GameObject myAttack;
     private bool attackReady;
     private float hasSeenForTime;
 
     private Vector3 playerPosition;
+    public Vector3 checkpoint;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +35,7 @@ public class RangedAI : MonoBehaviour
             if (LookForPlayer())
             {
                 playerPosition = player.transform.position;
-                if ((player.transform.position - transform.position).magnitude < sightDistance)
+                if ((player.transform.position - transform.position).magnitude < sightDistance && !zMode)
                 {
                     Move();
                 }
@@ -41,7 +43,9 @@ public class RangedAI : MonoBehaviour
                 {
                     MoveAway();
                 }
+
                 Rotate();
+
                 if (attackReady && hasSeenForTime <= 0)
                 {
                     Attack();
@@ -54,6 +58,11 @@ public class RangedAI : MonoBehaviour
                 hasSeenForTime = timeToShootAfterSeeingThePlayer;
                 if (playerPosition != Vector3.zero)
                     MoveToLast();
+                else if (zMode)
+                {
+                    MoveToCheckpoint();
+                    RotateToCheckpoint();
+                }
             }
         }
         else
@@ -87,9 +96,25 @@ public class RangedAI : MonoBehaviour
         transform.position = transform.position + new Vector3(movement.x, movement.y, 0);
     }
 
+    private void MoveToCheckpoint()
+    {
+        GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        Vector2 playerDirection = (transform.position - checkpoint);
+        playerDirection = playerDirection.normalized;
+        Vector2 movement = playerDirection * speed * Time.deltaTime * -1;
+        transform.position = transform.position + new Vector3(movement.x, movement.y, 0);
+    }
+
     private void Rotate()
     {
         Vector3 direction = (player.transform.position - transform.position);
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+
+    private void RotateToCheckpoint()
+    {
+        Vector3 direction = (checkpoint - transform.position);
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
@@ -127,5 +152,11 @@ public class RangedAI : MonoBehaviour
         }
         else
             return false;
+    }
+
+    private void OnDestroy()
+    {
+        if (zMode && FindObjectOfType<ZController>() != null)
+            FindObjectOfType<ZController>().zombiesKilled++;
     }
 }

@@ -9,6 +9,7 @@ public class BatteryShop : MonoBehaviour
     public BatteryInventory be;
     public AudioSource rejectSound;
     bool canPlaySound;
+    public bool zMode;
 
     void Start()
     {

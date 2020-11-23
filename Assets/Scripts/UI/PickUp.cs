@@ -37,7 +37,11 @@ public class PickUp : MonoBehaviour
                     {
                         if (pickupSound != null)
                             AudioSource.PlayClipAtPoint(pickupSound.clip, transform.position);
-                        Destroy(gameObject);
+
+                        if (!GetComponent<BatteryShop>() || !GetComponent<BatteryShop>().zMode)
+                            Destroy(gameObject);
+                        else
+                            justDropped = 1;
                     }
                 }
             }

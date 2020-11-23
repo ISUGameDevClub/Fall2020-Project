@@ -16,6 +16,8 @@ public class Health : MonoBehaviour
     private float healthBarOffset;
     public bool showHealthToStart;
     public bool destructible;
+    public bool Zmode;
+    public Collider2D myCol;
     private SpriteRenderer sr;
 
     // Start is called before the first frame update
@@ -41,7 +43,19 @@ public class Health : MonoBehaviour
     void Update()
     {
         if (destructible)
+        {
             sr.color = new Color((float)curHealth / maxHealth, (float)curHealth / maxHealth, (float)curHealth / maxHealth, 1);
+
+            if(Zmode && curHealth <= 0)
+            {
+                sr.color = new Color((float)curHealth / maxHealth, (float)curHealth / maxHealth, (float)curHealth / maxHealth, .5f);
+                myCol.enabled = false;
+            }
+            else
+            {
+                myCol.enabled = true;
+            }
+        }
 
         if (healthBar != null)
             healthBar.transform.position = transform.position + (new Vector3(0, healthBarOffset, 0) * transform.localScale.x);
@@ -73,9 +87,10 @@ public class Health : MonoBehaviour
         {
             curHealth -= amount;
 
-            if (isPlayer)
+            if (isPlayer || (destructible && Zmode))
             {
-                GetComponent<Animator>().SetTrigger("Hurt");
+                if(isPlayer)
+                    GetComponent<Animator>().SetTrigger("Hurt");
                 StartCoroutine(PlayerHit());
             }
 
@@ -110,6 +125,8 @@ public class Health : MonoBehaviour
 
         if (healthBar != null)
             Destroy(healthBar.gameObject);
-        Destroy(gameObject);
+
+        if(!destructible && !Zmode)
+            Destroy(gameObject);
     }
 }

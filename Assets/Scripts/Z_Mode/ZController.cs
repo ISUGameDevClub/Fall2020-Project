@@ -43,7 +43,23 @@ public class ZController : MonoBehaviour
         keepSpawning = true;
         zombiesSpawned = 0;
         zombiesKilled = 0;
+        if(currentWave == 5)
+        {
+            Spawner[] s = FindObjectsOfType<Spawner>();
+            foreach(Spawner spawn in s)
+            {
+                spawn.waveLevel = 2;
+            }
+        }
 
+        if (currentWave == 10)
+        {
+            Spawner[] s = FindObjectsOfType<Spawner>();
+            foreach (Spawner spawn in s)
+            {
+                spawn.waveLevel = 3;
+            }
+        }
     }
 
     private IEnumerator EndText()

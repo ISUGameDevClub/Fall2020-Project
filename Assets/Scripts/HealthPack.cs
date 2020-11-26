@@ -22,7 +22,8 @@ public class HealthPack : MonoBehaviour
             {
                 collision.gameObject.GetComponent<Health>().HealDamage(healthHealed);
                 AudioSource.PlayClipAtPoint(healSound.clip, transform.position);
-                Destroy(gameObject);
+                if(!GetComponent<BatteryShop>() || (GetComponent<BatteryShop>() && !GetComponent<BatteryShop>().zMode))
+                    Destroy(gameObject);
             }
         }
     }

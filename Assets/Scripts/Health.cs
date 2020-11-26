@@ -51,7 +51,7 @@ public class Health : MonoBehaviour
                 sr.color = new Color((float)curHealth / maxHealth, (float)curHealth / maxHealth, (float)curHealth / maxHealth, .5f);
                 myCol.enabled = false;
             }
-            else
+            else if(Zmode)
             {
                 myCol.enabled = true;
             }
@@ -126,7 +126,7 @@ public class Health : MonoBehaviour
         if (healthBar != null)
             Destroy(healthBar.gameObject);
 
-        if(!destructible && !Zmode)
+        if(!destructible || (destructible && !Zmode))
             Destroy(gameObject);
     }
 }

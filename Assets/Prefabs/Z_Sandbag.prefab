@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   he: {fileID: 6762895158380395201}
-  timeBetweenFix: 0.5
+  timeBetweenFix: 0.25
 --- !u!1 &6762895158380395205
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   isPlayer: 0
   maxHealth: 20
   curHealth: 0
-  invincibilityTimer: 0
+  invincibilityTimer: 0.5
   isInvincible: 0
   hurtSound: {fileID: 6762895158380395200}
   healthBar: {fileID: 0}

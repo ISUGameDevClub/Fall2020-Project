@@ -117,6 +117,11 @@ public class Health : MonoBehaviour
     {
         if (isPlayer)
         {
+            if(Zmode)
+            {
+                GetComponent<BeatenGame>().ZombieDeath();
+            }
+
             FindObjectOfType<ScreenTransition>().FadeToDeath();
         }
 

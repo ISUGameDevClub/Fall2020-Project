@@ -44,6 +44,10 @@ public class LevelTransition : MonoBehaviour
         if (collision.gameObject.tag == "Player" && canEnter && !nextScene)
         {
             nextScene = true;
+            if(GetComponent<BeatenGame>())
+            {
+                GetComponent<BeatenGame>().BeatGame();
+            }
             FindObjectOfType<ScreenTransition>().FadeIn();
         }
         else if (collision.gameObject.tag == "Destructible")

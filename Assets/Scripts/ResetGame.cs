@@ -5,6 +5,8 @@ using UnityEngine;
 public class ResetGame : MonoBehaviour
 {
     public bool ResetGameWhenLoaded;
+    public bool z;
+    public static bool zMode;
 
     private void Awake()
     {
@@ -19,12 +21,26 @@ public class ResetGame : MonoBehaviour
             PlayerMovement.maxHealth = 5;
             Timer.seconds = 0;
             Timer.minutes = 0;
+
+            if (z)
+                zMode = true;
+            else
+                zMode = false;
         }
+    }
+
+    public void SetZ()
+    {
+        zMode = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKey(KeyCode.P) && Input.GetKey(KeyCode.O) && Input.GetKey(KeyCode.I))
+        {
+            if (FindObjectOfType<BeatenGame>())
+                FindObjectOfType<BeatenGame>().ResetGame();
+        }
     }
 }

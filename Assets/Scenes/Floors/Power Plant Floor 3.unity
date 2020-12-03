@@ -540,7 +540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainVolume: 0.15
   shopVolume: 0.1
-  bossVolume: 0.08
+  bossVolume: 0.2
   victoryVolume: 0.3
   musicFadeSpeed: 0.5
   mainTheme: {fileID: 93100323}
@@ -560,7 +560,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &403011308
 GameObject:
@@ -645,7 +645,7 @@ PrefabInstance:
     - target: {fileID: 1422921464166609269, guid: 82a596dac06a4c04380b4da27a660b75,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1422921464166609269, guid: 82a596dac06a4c04380b4da27a660b75,
         type: 3}

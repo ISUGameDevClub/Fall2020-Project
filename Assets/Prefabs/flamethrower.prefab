@@ -138,13 +138,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8975153254d74c045810c48ecffc4b9a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0fe41afd1643ac848838ab212a8e2ff4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -171,7 +171,7 @@ MonoBehaviour:
   WeaponType: Flamethrower
   CurrentWeapon: 0
   myWeaponNumber: 0
-  CharacterWithWeapon: {fileID: 21300000, guid: 9a3d9ee2cd9905d41ac99b0ae03c48cf,
+  CharacterWithWeapon: {fileID: 21300000, guid: 5c11def82efb28a4a8f0338ee18b0220,
     type: 3}
   myWeaponTypeNumber: 8
   myDrop: {fileID: 654103678196928525, guid: 79af03da08a905548993de521067ec25, type: 3}

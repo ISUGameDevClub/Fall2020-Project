@@ -10,6 +10,7 @@ public class Timer : MonoBehaviour
     static public float seconds;
     static public int minutes;
     private bool timerStoped;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -48,11 +48,6 @@ public class ScreenTransition : MonoBehaviour
             }
 
         }
-
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            StartCoroutine(Wait(SceneManager.GetActiveScene().name));
-        }
     }
 
     public void FadeOut()
@@ -63,7 +58,10 @@ public class ScreenTransition : MonoBehaviour
 
     public void FadeIn()
     {
-        StartCoroutine(Wait(nextScene));
+        if(!ResetGame.zMode)
+            StartCoroutine(Wait(nextScene));
+        else
+            StartCoroutine(Wait("Z_Mode"));
     }
 
     public void Quit()

@@ -73,8 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: 21300000, guid: 8975153254d74c045810c48ecffc4b9a, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0fe41afd1643ac848838ab212a8e2ff4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -115,6 +115,8 @@ MonoBehaviour:
   pickupSound: {fileID: 8208598651950698571}
   itemButtonNumber: 8
   weaponType: Flamethrower
+  dur: 100
+  justDropped: 0
 --- !u!82 &8208598651950698571
 AudioSource:
   m_ObjectHideFlags: 0

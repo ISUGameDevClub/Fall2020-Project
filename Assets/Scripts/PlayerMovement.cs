@@ -115,22 +115,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Rotate()
     {
-
-        Vector2 stickInput = new Vector2(-Input.GetAxis("RVertical"), -Input.GetAxis("RHorizontal"));
-        if (stickInput.magnitude != 0)
-            controllerInput = true;
-        else if(Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
-            controllerInput = false;
+        controllerInput = false;
 
         if (!controllerInput)
         {
             Vector3 direction = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        }
-        else if (stickInput.magnitude != 0)
-        {
-            Vector3 direction = stickInput;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
